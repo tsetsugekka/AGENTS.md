@@ -1,0 +1,10 @@
+# Anonymous document artifact metadata
+
+- This is a global privacy requirement for every created, edited, converted, rendered, or exported document artifact, including Excel (`.xlsx`, `.xlsm`), Word (`.docx`), PowerPoint (`.pptx`), PDF, OpenDocument files, images with metadata, and similar packaged formats.
+- Never embed or expose the user's given name, surname, full name, company or organization name, email address, operating-system username, account/profile name, home-directory name, or other identity-derived value unless the user explicitly requests that exact value in the current task.
+- Do not infer author identity from the authenticated profile, operating-system account, environment variables, local paths, source-file metadata, Office defaults, or application preferences.
+- Leave creator, author, last modified by, last saved by, company, manager, comment author, reviewer, and related identity fields blank. If a non-empty technical placeholder is unavoidable, use `Anonymous` or `User`, never a real profile or company value.
+- Do not embed absolute local paths, home-directory paths such as `/Users/<username>/`, `file://` links, temporary-directory paths, or external links/data connections that reveal local identity. Use relative paths or source file names without parent directories when provenance is needed.
+- When editing an existing artifact, scrub inherited personal metadata and local paths as part of the final export unless the user explicitly asks to preserve them.
+- After the final save/export, inspect the actual delivered binary rather than trusting library defaults. For OOXML files, check `docProps/core.xml`, `docProps/app.xml`, `docProps/custom.xml`, workbook absolute-path extensions, comments/people/authors, external links, and data connections. For PDFs, check both document information fields and XMP metadata. Scan packaged text for known identity tokens and local home paths.
+- If Excel, Word, PowerPoint, an artifact library, or another application reintroduces identity metadata during save, post-process the final artifact and repeat the privacy inspection before delivery.
