@@ -1,0 +1,17 @@
+.DS_Store
+.AppleDouble
+.LSOverride
+*.swp
+*.swo
+*.tmp
+*.log
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*.json
+service-account*.json
+secrets*.json
