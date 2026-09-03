@@ -1,5 +1,4 @@
 # Telegram notify-on-stop
-
 - Reply to the user in Chinese by default.
 - When the user explicitly asks to be notified after the current task, create the one-shot marker file `${HOME}/.codex/notify_on_stop_once`.
 - Codex may also create the one-shot marker at its discretion for a long-running task when the user has not interacted with Codex during that task. Treat a task as long-running after at least 15 minutes of actual execution time.

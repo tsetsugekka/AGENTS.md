@@ -1,5 +1,4 @@
 # Temporary files and project structure hygiene
-
 - Put session-only scratch files, diagnostics, downloads, and intermediate artifacts in the system temporary directory, preferably inside a task-specific directory created with `mktemp -d`, rather than in the project tree.
 - Before completing a task, remove temporary files and directories created by that task when they are known to have no future use. If a temporary artifact must be retained for debugging, handoff, or user-requested reuse, keep it deliberately and report its location and purpose.
 - Never delete pre-existing, unfamiliar, or ambiguously owned files merely because they look temporary. Cleanup is limited to targets known to have been created by the current task or otherwise confirmed disposable.

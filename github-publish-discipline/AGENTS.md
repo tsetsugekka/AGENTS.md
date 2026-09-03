@@ -1,5 +1,4 @@
 # GitHub publish discipline
-
 - This applies to all future Codex work, not only stock-related skills or a single repository.
 - Do not create, switch to, or push a new working branch unless the user explicitly asks for a branch, PR, draft PR, or experimental branch.
 - For direct requests such as "commit", "push", "publish to GitHub", "update GitHub", or "发布到 GitHub", default to the repository's intended target branch, usually `main`.
