@@ -6,7 +6,7 @@
 
 [中文](README.md) · [日本語](README.ja.md) · **English**
 
-> One global operating guide split into seven independently reusable `AGENTS.md` rule groups for multi-agent collaboration, temporary files, Telegram notifications, GitHub publishing, API keys, network fetching, and anonymous document metadata.
+> One global operating guide split into seven independently reusable `AGENTS.md` rule groups for multi-agent collaboration, model routing, temporary files, Telegram notifications, GitHub publishing, API keys, network fetching, and anonymous document metadata.
 
 ## What this repository is
 
@@ -26,7 +26,7 @@ Together, the rule groups define:
 
 | File | Primary focus | Best used on its own when you need… |
 |---|---|---|
-| [`multi-agent-delegation-and-model-routing/AGENTS.md`](multi-agent-delegation-and-model-routing/AGENTS.md) | Multi-agent delegation, Luna/Sol/Terra model routing, and primary-agent review | Independent subtasks or work with different complexity levels |
+| [`multi-agent-delegation-and-model-routing/AGENTS.md`](multi-agent-delegation-and-model-routing/AGENTS.md) | Multi-agent delegation, Luna/Sol/Terra/Astra model routing, and primary-agent review | Independent subtasks or work with different complexity levels |
 | [`temporary-files-and-project-structure-hygiene/AGENTS.md`](temporary-files-and-project-structure-hygiene/AGENTS.md) | Temporary directories, end-of-task cleanup, and root structure | A clean project tree and explicit file lifecycles |
 | [`telegram-notify-on-stop/AGENTS.md`](telegram-notify-on-stop/AGENTS.md) | Long-task stop notifications, interaction checks, one-shot markers, and credentials | Important results that may need to reach a user away from Codex |
 | [`github-publish-discipline/AGENTS.md`](github-publish-discipline/AGENTS.md) | Target branches, publishing authorization, and pre-commit checks | A repository with a controlled GitHub release flow |

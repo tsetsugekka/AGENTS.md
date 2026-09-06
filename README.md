@@ -6,7 +6,7 @@
 
 **中文** · [日本語](README.ja.md) · [English](README.en.md)
 
-> 将一份全局工作说明拆成七个可独立复用的 `AGENTS.md` 规则组，覆盖多 Agent 协作、临时文件、Telegram 通知、GitHub 发布、API key、网络抓取和文档隐私元数据。
+> 将一份全局工作说明拆成七个可独立复用的 `AGENTS.md` 规则组，覆盖多 Agent 协作、模型路由、临时文件、Telegram 通知、GitHub 发布、API key、网络抓取和文档隐私元数据。
 
 ## 这是什么
 
@@ -26,7 +26,7 @@
 
 | 文件 | 主要关注点 | 适合单独复用的场景 |
 |---|---|---|
-| [`multi-agent-delegation-and-model-routing/AGENTS.md`](multi-agent-delegation-and-model-routing/AGENTS.md) | 多 Agent 委派、Luna/Sol/Terra 模型路由和主 Agent 复核 | 有独立子任务或不同复杂度任务的工作流 |
+| [`multi-agent-delegation-and-model-routing/AGENTS.md`](multi-agent-delegation-and-model-routing/AGENTS.md) | 多 Agent 委派、Luna/Sol/Terra/Astra 模型路由和主 Agent 复核 | 有独立子任务或不同复杂度任务的工作流 |
 | [`temporary-files-and-project-structure-hygiene/AGENTS.md`](temporary-files-and-project-structure-hygiene/AGENTS.md) | 临时目录、任务结束清理和根目录结构 | 需要保持项目树整洁的任何项目 |
 | [`telegram-notify-on-stop/AGENTS.md`](telegram-notify-on-stop/AGENTS.md) | 长任务停止通知、用户交互判断、一次性 marker 和凭据 | 希望在用户离开期间获得重要结果提醒的工作流 |
 | [`github-publish-discipline/AGENTS.md`](github-publish-discipline/AGENTS.md) | 目标分支、发布授权和提交前检查 | 需要稳定 GitHub 发布流程的仓库 |

@@ -6,7 +6,7 @@
 
 [中文](README.md) · **日本語** · [English](README.en.md)
 
-> 1 つのグローバル運用規約を、マルチエージェント協働、一時ファイル、Telegram 通知、GitHub 公開、API key、ネットワーク取得、文書メタデータに分けた、7 つの独立利用可能な `AGENTS.md` ルール組です。
+> 1 つのグローバル運用規約を、マルチエージェント協働、モデルルーティング、一時ファイル、Telegram 通知、GitHub 公開、API key、ネットワーク取得、文書メタデータに分けた、7 つの独立利用可能な `AGENTS.md` ルール組です。
 
 ## このリポジトリについて
 
@@ -26,7 +26,7 @@
 
 | ファイル | 主な対象 | 単独利用に適する場面 |
 |---|---|---|
-| [`multi-agent-delegation-and-model-routing/AGENTS.md`](multi-agent-delegation-and-model-routing/AGENTS.md) | マルチエージェント委任、Luna/Sol/Terra のモデルルーティング、主エージェントのレビュー | 独立したサブタスクや異なる難易度の作業 |
+| [`multi-agent-delegation-and-model-routing/AGENTS.md`](multi-agent-delegation-and-model-routing/AGENTS.md) | マルチエージェント委任、Luna/Sol/Terra/Astra のモデルルーティング、主エージェントのレビュー | 独立したサブタスクや異なる難易度の作業 |
 | [`temporary-files-and-project-structure-hygiene/AGENTS.md`](temporary-files-and-project-structure-hygiene/AGENTS.md) | 一時ディレクトリ、タスク後の削除、ルート構成 | プロジェクトツリーを整理して保ちたい場合 |
 | [`telegram-notify-on-stop/AGENTS.md`](telegram-notify-on-stop/AGENTS.md) | 長時間タスクの停止通知、ユーザー操作の判定、one-shot marker、認証情報 | ユーザー不在中に重要な結果だけ知らせたい場合 |
 | [`github-publish-discipline/AGENTS.md`](github-publish-discipline/AGENTS.md) | 対象ブランチ、公開権限、コミット前チェック | 安定した GitHub 公開手順が必要なリポジトリ |
