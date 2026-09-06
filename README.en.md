@@ -15,7 +15,7 @@ An `AGENTS.md` file is a durable operating agreement for Codex and other coding 
 Together, the rule groups define:
 
 - how to choose multi-agent execution and models for different task complexity;
-- where temporary files belong, how to clean them up, and how to protect the project root;
+- where temporary files belong, how to clean them up, how to use a temporary Caffeine/keep-awake mode for long tasks, and how to protect the project root;
 - when a long-running task may send a Telegram notification and the one-notification limit;
 - branch, commit, and pre-publish checks for GitHub changes;
 - persistence and non-disclosure rules for API keys used by local Skills;
@@ -27,7 +27,7 @@ Together, the rule groups define:
 | File | Primary focus | Best used on its own when you need… |
 |---|---|---|
 | [`multi-agent-delegation-and-model-routing/AGENTS.md`](multi-agent-delegation-and-model-routing/AGENTS.md) | Multi-agent delegation, Luna/Sol/Terra/Astra model routing, and primary-agent review | Independent subtasks or work with different complexity levels |
-| [`temporary-files-and-project-structure-hygiene/AGENTS.md`](temporary-files-and-project-structure-hygiene/AGENTS.md) | Temporary directories, end-of-task cleanup, and root structure | A clean project tree and explicit file lifecycles |
+| [`temporary-files-and-project-structure-hygiene/AGENTS.md`](temporary-files-and-project-structure-hygiene/AGENTS.md) | Temporary directories, end-of-task cleanup, bounded Caffeine/keep-awake mode for long-running tasks, and root structure | A clean project tree and explicit file lifecycles |
 | [`telegram-notify-on-stop/AGENTS.md`](telegram-notify-on-stop/AGENTS.md) | Long-task stop notifications, interaction checks, one-shot markers, and credentials | Important results that may need to reach a user away from Codex |
 | [`github-publish-discipline/AGENTS.md`](github-publish-discipline/AGENTS.md) | Target branches, publishing authorization, and pre-commit checks | A repository with a controlled GitHub release flow |
 | [`api-key-persistence-for-local-skills/AGENTS.md`](api-key-persistence-for-local-skills/AGENTS.md) | Local Skill key storage, the MX exception, and output redaction | Local Skills that call external APIs |
@@ -49,6 +49,7 @@ The seven files are thematic rule groups, not mutually exclusive configurations.
 
 - These files are the seven top-level rule groups from the same global guide; each file preserves the complete meaning of its corresponding group.
 - Before copying a group into another project, check that its paths, tools, credential store, and platform assumptions apply.
+- Use a temporary Caffeine/keep-awake mode only when uninterrupted execution materially benefits a long task, and disable it when the task ends; never use it to change password or other system security settings.
 - Never place API keys, tokens, cookies, personal data, production data, or real private configuration in a public repository.
 - If a project has stricter local rules, follow its source-of-truth instructions and the user's current request.
 

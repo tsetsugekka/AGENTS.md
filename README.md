@@ -15,7 +15,7 @@
 这些规则组明确了：
 
 - 如何根据任务难度选择多 Agent 和模型；
-- 临时文件放置、清理和项目根目录治理；
+- 临时文件放置、清理、长任务的临时 Caffeine 保持唤醒以及项目根目录治理；
 - 长时间任务的 Telegram 通知和“一任务一次”限制；
 - GitHub 分支、提交和发布前的检查；
 - 本地 Skill 的 API key 持久化与禁止泄露；
@@ -27,7 +27,7 @@
 | 文件 | 主要关注点 | 适合单独复用的场景 |
 |---|---|---|
 | [`multi-agent-delegation-and-model-routing/AGENTS.md`](multi-agent-delegation-and-model-routing/AGENTS.md) | 多 Agent 委派、Luna/Sol/Terra/Astra 模型路由和主 Agent 复核 | 有独立子任务或不同复杂度任务的工作流 |
-| [`temporary-files-and-project-structure-hygiene/AGENTS.md`](temporary-files-and-project-structure-hygiene/AGENTS.md) | 临时目录、任务结束清理和根目录结构 | 需要保持项目树整洁的任何项目 |
+| [`temporary-files-and-project-structure-hygiene/AGENTS.md`](temporary-files-and-project-structure-hygiene/AGENTS.md) | 临时目录、任务结束清理、长任务临时 Caffeine 保持唤醒和根目录结构 | 需要保持项目树整洁的任何项目 |
 | [`telegram-notify-on-stop/AGENTS.md`](telegram-notify-on-stop/AGENTS.md) | 长任务停止通知、用户交互判断、一次性 marker 和凭据 | 希望在用户离开期间获得重要结果提醒的工作流 |
 | [`github-publish-discipline/AGENTS.md`](github-publish-discipline/AGENTS.md) | 目标分支、发布授权和提交前检查 | 需要稳定 GitHub 发布流程的仓库 |
 | [`api-key-persistence-for-local-skills/AGENTS.md`](api-key-persistence-for-local-skills/AGENTS.md) | 本地 Skill 的 key 存储、MX 特例和输出脱敏 | 使用外部 API 的本地 Skill 集合 |
@@ -49,6 +49,7 @@
 
 - 这些文件来自同一份全局说明的七个一级规则组，文件内容保持对应规则组的完整语义。
 - 复制到其他项目时，请检查其中的路径、工具、凭据存储位置和平台假设是否适用。
+- 长任务只有在连续执行确有必要时才临时启用 Caffeine/保持唤醒模式，并在任务结束后关闭；不得借此修改密码或其他系统安全设置。
 - API key、token、Cookie、个人资料、生产数据和真实私密配置不应进入公开仓库。
 - 若项目已有更严格的本地规则，应以项目的权威说明和用户当前请求为准。
 

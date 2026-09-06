@@ -15,7 +15,7 @@
 このルール組は、次の事項を明確にします。
 
 - タスクの難易度に応じたマルチエージェントとモデルの選択；
-- 一時ファイルの置き場所、削除、プロジェクトルートの管理；
+- 一時ファイルの置き場所、削除、長時間タスク向けの一時的な Caffeine/スリープ防止、プロジェクトルートの管理；
 - 長時間タスクにおける Telegram 通知と「1 タスク 1 回」の制限；
 - GitHub のブランチ、コミット、公開前チェック；
 - ローカル Skill の API key 永続化と非開示；
@@ -27,7 +27,7 @@
 | ファイル | 主な対象 | 単独利用に適する場面 |
 |---|---|---|
 | [`multi-agent-delegation-and-model-routing/AGENTS.md`](multi-agent-delegation-and-model-routing/AGENTS.md) | マルチエージェント委任、Luna/Sol/Terra/Astra のモデルルーティング、主エージェントのレビュー | 独立したサブタスクや異なる難易度の作業 |
-| [`temporary-files-and-project-structure-hygiene/AGENTS.md`](temporary-files-and-project-structure-hygiene/AGENTS.md) | 一時ディレクトリ、タスク後の削除、ルート構成 | プロジェクトツリーを整理して保ちたい場合 |
+| [`temporary-files-and-project-structure-hygiene/AGENTS.md`](temporary-files-and-project-structure-hygiene/AGENTS.md) | 一時ディレクトリ、タスク後の削除、長時間タスク向けの限定的な Caffeine/スリープ防止、ルート構成 | プロジェクトツリーを整理して保ちたい場合 |
 | [`telegram-notify-on-stop/AGENTS.md`](telegram-notify-on-stop/AGENTS.md) | 長時間タスクの停止通知、ユーザー操作の判定、one-shot marker、認証情報 | ユーザー不在中に重要な結果だけ知らせたい場合 |
 | [`github-publish-discipline/AGENTS.md`](github-publish-discipline/AGENTS.md) | 対象ブランチ、公開権限、コミット前チェック | 安定した GitHub 公開手順が必要なリポジトリ |
 | [`api-key-persistence-for-local-skills/AGENTS.md`](api-key-persistence-for-local-skills/AGENTS.md) | ローカル Skill の key 保管、MX の例外、出力の秘匿 | 外部 API を使うローカル Skill 集合 |
@@ -49,6 +49,7 @@
 
 - これらは、同じグローバル規約にある 7 つのトップレベルルール組であり、各ファイルは対応する意味を完全に保っています。
 - 他のプロジェクトへコピーする前に、パス、ツール、認証情報の保管場所、プラットフォーム前提を確認してください。
+- Caffeine/スリープ防止は、長時間タスクの継続実行に実質的な利点がある場合だけ一時的に使い、タスク終了時に解除してください。パスワードやその他のシステムセキュリティ設定を変更するために使ってはいけません。
 - API key、token、Cookie、個人情報、本番データ、実際の秘密設定を公開リポジトリに入れないでください。
 - プロジェクトにより厳格なローカル規約がある場合は、プロジェクトの正本と現在のユーザー要求を優先してください。
 
