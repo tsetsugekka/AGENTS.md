@@ -14,7 +14,7 @@
 
 这些规则组明确了：
 
-- 如何根据任务难度选择多 Agent 和模型；
+- 如何根据任务难度选择多 Agent 和模型，优先评估 Astra low/medium，并在有明确理由时选择 Sol high/xhigh；
 - 临时文件放置、清理和项目根目录治理；
 - 长任务期间的临时 Caffeine 保持唤醒，以及对 Computer Use 中断风险的边界说明；
 - 长时间任务的 Telegram 通知和“一任务一次”限制；

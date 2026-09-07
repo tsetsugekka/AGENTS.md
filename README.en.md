@@ -14,7 +14,7 @@ An `AGENTS.md` file is a durable operating agreement for Codex and other coding 
 
 Together, the rule groups define:
 
-- how to choose multi-agent execution and models for different task complexity;
+- how to choose multi-agent execution and models for different task complexity, first evaluating Astra low/medium and using Sol high/xhigh only for a clear alternative-route reason;
 - where temporary files belong, how to clean them up, and how to protect the project root;
 - how temporary Caffeine/keep-awake mode can reduce interruption risk during long tasks and Computer Use, and where its security limits are;
 - when a long-running task may send a Telegram notification and the one-notification limit;
