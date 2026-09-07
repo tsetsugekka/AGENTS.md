@@ -1,4 +1,9 @@
 # Multi-agent delegation and model routing
+- For work previously routed to `gpt-5.6-sol` with `high`/`xhigh`, prefer `gpt-6-astra` with `low` or `medium`: use `low` for moderate complexity with controlled risk and `medium` for more complex but bounded work. This is a default routing preference, not a performance guarantee for every task.
+- When complex reasoning is expected or actual `low`/`medium` results are insufficient, first increase Astra to `high`, then use `xhigh` if needed. Long context or task importance alone does not automatically require higher effort; high-risk actions still require authorization boundaries and appropriate verification.
+- Use `gpt-5.6-sol` with `high`/`xhigh` only as an alternative for a clear domain-fit reason, Astra unavailability, or an actual cost/latency advantage; it is not the default escalation from Astra `low`/`medium`.
+- Apply the same routing criteria to primary tasks and subtasks, choosing the model and effort for each scope. An Astra primary agent does not default to delegating to Sol and remains responsible for coordination and final review.
+- When implementation reliability or tool execution is the main risk, `gpt-5.6-terra` with `high` is an option. Adjust routing based on actual task performance, avoid escalation based solely on one benchmark or step count, and do not let an inadequate model fail repeatedly.
 
 ### Delegation principles
 - Multi-agent execution is allowed when a task contains independent, bounded subtasks that can make useful progress in parallel, and each subtask has a clear input, output, and completion condition.
