@@ -1,5 +1,7 @@
 # GitHub publish discipline
 
-- Apply to all work. Do not create, switch to, or push a new working branch unless the user explicitly requests a branch, PR, draft PR, or experimental branch.
-- Direct commit, push, or GitHub publish/update requests default to the intended target branch, usually `main`; confirm with `git branch --show-current` before staging or committing.
-- If on an old temporary branch, safely move work to the target branch or fast-forward as appropriate; otherwise ask before publishing. Do not continue by inertia. Delete local and remote temporary branches after merging when no longer needed.
+- Before staging or committing, confirm the branch with `git branch --show-current` and inspect the working tree, index, and publication scope; commit and publish only the current task's content, preserving other changes and their staging state.
+- Unrelated files, existing staged content, parallel tasks, or separable changes in the same file are not blockers; when safe isolation is possible, handle it automatically using files, hunks, or a temporary independent index. After an independent commit, reconcile only this task's committed changes in the regular index, and review actual commit and deployment contents before publication.
+- Ask only when an actual conflict or unclear scope requires a user decision, such as incompatible edits to the same content, inseparable unfinished dependencies, a target branch that cannot be safely integrated, or overwriting protected production data. Complete safe preparation first, then explain the specific issue and ask once; do not treat a potential conflict as an existing one.
+- Do not create, switch to, or push a new working branch without an explicit request; if on an old temporary branch, safely integrate this task's work into the intended target branch rather than publishing from the old branch. Delete local and remote copies of temporary branches after merging when no longer needed.
+- Follow project rules for credentials, production data, publication scope, and post-deployment verification. Internal maintenance documents must not be uploaded to public sites.

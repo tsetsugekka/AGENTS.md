@@ -6,7 +6,7 @@
 
 [中文](README.md) · [日本語](README.ja.md) · **English**
 
-> One global operating guide split into ten independently reusable `AGENTS.md` rule groups for multi-agent collaboration, model routing, temporary files, temporary Caffeine keep-awake behavior, Telegram notifications, GitHub publishing, API keys, network fetching, anonymous document metadata, and development documentation and task continuity.
+> Selected public sections of a Chinese global operating guide, faithfully translated with private content excluded, form ten independently reusable English `AGENTS.md` rule groups. This repository is not a complete copy of the global guide.
 
 ## What this repository is
 
@@ -14,7 +14,8 @@ An `AGENTS.md` file is a durable operating agreement for Codex and other coding 
 
 Together, the rule groups define:
 
-- how to choose multi-agent execution and models for different task complexity, first evaluating Astra low/medium and using Sol high/xhigh only for a clear alternative-route reason;
+- the actual status at the end of each final response, with unfinished work or blockers;
+- how to delegate well-bounded subtasks worth running in parallel, start with the least capable model that can reliably complete the task, and have the primary agent review the results;
 - where temporary files belong, how to clean them up, and how to protect the project root;
 - how temporary Caffeine/keep-awake mode can reduce interruption risk during long tasks and Computer Use, and where its security limits are;
 - when a long-running task may send a Telegram notification and the one-notification limit;
@@ -28,15 +29,15 @@ Together, the rule groups define:
 
 Use [`development-documentation-and-task-continuity/AGENTS.md`](development-documentation-and-task-continuity/AGENTS.md) when a development project needs ongoing maintenance or cross-session handoff, and involves any of multi-module collaboration, external services or deployment, phased delivery, or complex business constraints. One-off small changes do not require the full set. The five document responsibilities are:
 
-- `README.md`: project purpose, entry points, directory responsibilities, required configuration, usage and maintenance procedures, and actual build, verification, and deployment commands as a successor's navigation;
-- `SPEC.md`: the currently effective scope, behavior, interfaces and data contracts, key constraints, and acceptance criteria;
-- `CHANGELOG.md`: meaningful feature, behavior, interface, and operational-maintenance changes and their impact by date or version, distinguishing unreleased from released changes;
-- `TASK.md`: the current task and unfinished work, including objectives, scope, status, next steps, dependencies or blockers, decisions needed from the user, owners, and completion criteria;
-- `CASE-STUDY.md`: real failures, rework, or erroneous judgments with reusable value, including evidence, causes, fixes, verification, and prevention lessons; state clearly when there are no real cases.
+- `README.md`: purpose, entry points, and operations;
+- `SPEC.md`: current behavior, contracts, and acceptance criteria;
+- `CHANGELOG.md`: important changes and release status;
+- `TASK.md`: the current task, unfinished items, blockers, and next steps;
+- `CASE-STUDY.md`: evidence, causes, fix verification, and reusable lessons from real errors; do not invent cases when none exist.
 
-Each responsibility may use a single Markdown file or indexed directories split by module or topic. CASE-STUDY may be one Markdown file or a `case-study/` directory (or existing equivalent), with one Markdown per case and a directory README or existing index for navigation.
+Each responsibility may use a single Markdown file or indexed directories split by module or topic. When cases become numerous, use a `case-study/` directory (or existing equivalent), with one Markdown per case and a directory README or existing index for navigation.
 
-Reuse existing equivalent files or sections and follow the project's conventions. Keep one clear source for current rules, task status, and historical evidence, linking from other documents instead of maintaining duplicate content. Update affected documents in the same task when requirements, implementation status, or acceptance conclusions change; before ending, pausing, or handing off, write unfinished items, blockers, and next steps back to the unified task entry point.
+Prefer existing documents, names, and directories. Read relevant documents before starting, and update only affected content when making changes. Before ending, pausing, or handing off, write unfinished work back to the task entry point. Maintain one authoritative source for each fact or status, with links elsewhere. Distinguish current specifications, unimplemented plans, historical records, implementation, verification, release, and operational acceptance. Documentation updates do not expand authority and must not put credentials or internal records into public artifacts.
 
 ## The ten rule groups
 
@@ -48,7 +49,7 @@ Reuse existing equivalent files or sections and follow the project's conventions
 | [`temporary-files-and-project-structure-hygiene/AGENTS.md`](temporary-files-and-project-structure-hygiene/AGENTS.md) | Temporary directories, end-of-task cleanup, and root structure | A clean project tree and explicit file lifecycles |
 | [`temporary-caffeine-mode-for-long-running-tasks/AGENTS.md`](temporary-caffeine-mode-for-long-running-tasks/AGENTS.md) | Temporary keep-awake behavior for long tasks, Computer Use interruption risk, and security boundaries | Long tasks that need continuous execution or foreground interaction |
 | [`telegram-notify-on-stop/AGENTS.md`](telegram-notify-on-stop/AGENTS.md) | Long-task stop notifications, interaction checks, one-shot markers, and credentials | Important results that may need to reach a user away from Codex |
-| [`github-publish-discipline/AGENTS.md`](github-publish-discipline/AGENTS.md) | Target branches, publishing authorization, and pre-commit checks | A repository with a controlled GitHub release flow |
+| [`github-publish-discipline/AGENTS.md`](github-publish-discipline/AGENTS.md) | Branch discipline, scope isolation, staging-state protection, and publishing checks | A repository with a controlled GitHub release flow |
 | [`api-key-persistence-for-local-skills/AGENTS.md`](api-key-persistence-for-local-skills/AGENTS.md) | Local Skill key storage, service-specific exceptions, and output redaction | Local Skills that call external APIs |
 | [`network-scraping-discipline/AGENTS.md`](network-scraping-discipline/AGENTS.md) | Request pacing, aggregate endpoints, and rate-limit handling | Tasks that repeatedly access network data sources |
 | [`anonymous-document-artifact-metadata/AGENTS.md`](anonymous-document-artifact-metadata/AGENTS.md) | Anonymous author fields and path privacy for Office/PDF artifacts | Generating or converting documents, spreadsheets, slides, or PDFs |
@@ -68,7 +69,7 @@ The ten files are thematic rule groups, not mutually exclusive configurations. A
 
 ## Usage notes
 
-- These files are the ten top-level rule groups from the same global guide; each file preserves the complete meaning of its corresponding group.
+- The English rules faithfully express the selected public sections, with private content excluded; all three READMEs introduce the same ten rule groups.
 - Before copying a group into another project, check that its paths, tools, credential store, and platform assumptions apply.
 - The Caffeine rule can reduce interruption risk from idle sleep, display sleep, or some screensaver behavior, but it cannot guarantee protection against manual locking, managed lock policies, session switching, or logout; never use it to change password or other system security settings.
 - Never place API keys, tokens, cookies, personal data, production data, or real private configuration in a public repository.
@@ -77,7 +78,7 @@ The ten files are thematic rule groups, not mutually exclusive configurations. A
 ## Maintenance
 
 - Keep exactly one corresponding `AGENTS.md` in each rule-group directory, with the directory name matching the rule-group title.
-- When a rule changes, edit the relevant file and update the index and explanation in all three README languages.
+- The Chinese source is the sole source of rules. Update it first, faithfully translate the affected public content, and synchronize all three READMEs; do not independently add to or change the rules in English.
 - Before pushing, check Markdown, absolute paths, secrets, and unintended generated files.
 - Keep commits focused and distinguish rule changes, README changes, and repository metadata changes.
 

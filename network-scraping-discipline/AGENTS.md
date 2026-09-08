@@ -1,4 +1,4 @@
 # Network scraping discipline
 
-- After more than three consecutive requests to one host, add moderate randomized waits. Avoid tight loops, high concurrency, and per-item bulk scraping; prefer batch, aggregate, cached, or official data-center endpoints for large datasets.
-- On rate limits, blocks, or instability, promptly report the host, endpoint family, and observed error (status code, timeout, DNS failure, connection reset, etc.). Stop increasing request volume against that host unless the user approves a safer retry strategy.
+- After more than three consecutive requests to the same host, add moderate randomized waits; avoid tight loops, high concurrency, and large per-item scraping runs. Prefer batch, aggregate, cached, or official endpoints for large-scale data analysis.
+- On rate limits, blocks, or instability, report the host, endpoint scope, and specific error (status code, timeout, DNS, connection reset, etc.); stop increasing requests to that host unless the user approves a safer retry strategy.

@@ -1,5 +1,5 @@
 # Temporary files and project structure hygiene
 
-- Put session scratch files, diagnostics, downloads, and intermediates in the system temporary directory, preferably a task directory from `mktemp -d`. If repository-local scratch is necessary, reuse an existing ignored directory and keep incidental files out of version control.
-- Before completion, remove task-created temporary artifacts known to have no future use. Report the location and purpose of anything deliberately retained for debugging, handoff, or requested reuse. Do not delete pre-existing, unfamiliar, or ambiguously owned files just because they look temporary; cleanup targets must be task-created or confirmed disposable.
-- Inspect existing structure and documentation before adding a root-level directory; reuse existing locations and add only necessary, durable responsibilities.
+- Put session temporary files, diagnostics, downloads, and intermediates in the system temporary directory, preferably a task directory created with `mktemp -d`; if repository-local temporary storage is necessary, reuse an ignored temporary directory and avoid polluting version control.
+- Before completion, clean up temporary artifacts created by this task that are known to be no longer needed; report the location and purpose of anything retained for debugging or handoff. Do not delete pre-existing, unfamiliar, or ambiguously owned files based on appearance alone.
+- Before adding a subdirectory at the project root, inspect the existing structure and documentation and prefer reuse; add directories only for genuinely necessary long-term responsibilities.

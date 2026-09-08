@@ -6,7 +6,7 @@
 
 **中文** · [日本語](README.ja.md) · [English](README.en.md)
 
-> 将一份全局工作说明拆成十个可独立复用的 `AGENTS.md` 规则组，覆盖多 Agent 协作、模型路由、临时文件、Caffeine 保持唤醒、Telegram 通知、GitHub 发布、API key、网络抓取、文档隐私元数据，以及开发文档与任务连续性。
+> 从一份中文全局工作说明中选择公开章节，忠实翻译并排除私人内容，形成十个可独立复用的英文 `AGENTS.md` 规则组；本仓库不是全局说明的完整副本。
 
 ## 这是什么
 
@@ -14,7 +14,8 @@
 
 这些规则组明确了：
 
-- 如何根据任务难度选择多 Agent 和模型，优先评估 Astra low/medium，并在有明确理由时选择 Sol high/xhigh；
+- 最终回答末尾的实际状态，以及未完成事项或阻塞；
+- 如何委派边界清晰且值得并行的子任务，从能可靠完成任务的最低能力模型开始，并由主 Agent 复核成果；
 - 临时文件放置、清理和项目根目录治理；
 - 长任务期间的临时 Caffeine 保持唤醒，以及对 Computer Use 中断风险的边界说明；
 - 长时间任务的 Telegram 通知和“一任务一次”限制；
@@ -28,15 +29,15 @@
 
 当开发项目需要持续维护或跨会话交接，且涉及多模块协作、外部服务/部署、分阶段交付、复杂业务约束中的任一项时，启用 [`development-documentation-and-task-continuity/AGENTS.md`](development-documentation-and-task-continuity/AGENTS.md)。五类文档职责如下；一次性小改动不必补齐整套文件：
 
-- `README.md`：项目用途、入口、目录职责、配置、使用与维护方式，以及实际可用的构建、验证、部署命令，作为接手者的导航；
-- `SPEC.md`：当前有效的范围、行为、接口和数据契约、关键约束与验收标准；
-- `CHANGELOG.md`：按日期或版本记录有意义的功能、行为、接口和运维变化及其影响，区分未发布与已发布；
-- `TASK.md`：当前任务和未完成事项的目标、范围、状态、下一步、依赖/阻塞、待用户决定事项、负责人和完成条件；
-- `CASE-STUDY.md`：记录具有复用价值的真实故障、返工或错误判断、证据、根因、修复验证和防复发经验；没有实际案例时明确标注暂无。
+- `README.md`：用途、入口和操作；
+- `SPEC.md`：现行行为、契约和验收标准；
+- `CHANGELOG.md`：重要变化及发布状态；
+- `TASK.md`：当前任务、未完成项、阻塞和下一步；
+- `CASE-STUDY.md`：真实错误的证据、原因、修复验证和复用经验；没有实际案例时不虚构。
 
-这些职责可由单个 Markdown 或按模块、主题拆分的索引目录承载。CASE-STUDY 可用单个 Markdown，也可使用 `case-study/`（或已有等价目录），每个案例一个 Markdown，并由目录内 README 或既有索引导航。
+这些职责可由单个 Markdown 或按模块、主题拆分的索引目录承载。案例较多时使用 `case-study/`（或已有等价目录），每个案例一个 Markdown，并由目录内 README 或既有索引导航。
 
-先复用已有的等价文件或章节，遵循项目约定；当前规则、任务状态和历史证据各保留一个明确来源，其他文档通过链接引用，避免重复维护。需求、实施状态或验收结论变化时，在同一任务中更新受影响文档；结束、暂停或交接前，将未完成项、阻塞和下一步写回统一任务入口。
+优先复用现有文档、命名与目录。开工读取相关文档，变更时只更新受影响内容；结束、暂停或交接前，将未完成事项写回任务入口。同一事实或状态只维护一个权威来源，其他位置链接引用；区分现行规格、未实现方案、历史记录，以及实现、验证、发布和运行验收。文档同步不扩大操作权限，也不得把凭据或内部记录混入公开产物。
 
 ## 十个规则组
 
@@ -48,7 +49,7 @@
 | [`temporary-files-and-project-structure-hygiene/AGENTS.md`](temporary-files-and-project-structure-hygiene/AGENTS.md) | 临时目录、任务结束清理和根目录结构 | 需要保持项目树整洁的任何项目 |
 | [`temporary-caffeine-mode-for-long-running-tasks/AGENTS.md`](temporary-caffeine-mode-for-long-running-tasks/AGENTS.md) | 长任务临时保持唤醒、Computer Use 中断风险和安全边界 | 需要连续运行或保持前台交互的长任务 |
 | [`telegram-notify-on-stop/AGENTS.md`](telegram-notify-on-stop/AGENTS.md) | 长任务停止通知、用户交互判断、一次性 marker 和凭据 | 希望在用户离开期间获得重要结果提醒的工作流 |
-| [`github-publish-discipline/AGENTS.md`](github-publish-discipline/AGENTS.md) | 目标分支、发布授权和提交前检查 | 需要稳定 GitHub 发布流程的仓库 |
+| [`github-publish-discipline/AGENTS.md`](github-publish-discipline/AGENTS.md) | 分支纪律、范围隔离、暂存状态保护和发布检查 | 需要稳定 GitHub 发布流程的仓库 |
 | [`api-key-persistence-for-local-skills/AGENTS.md`](api-key-persistence-for-local-skills/AGENTS.md) | 本地 Skill 的 key 存储、服务特例和输出脱敏 | 使用外部 API 的本地 Skill 集合 |
 | [`network-scraping-discipline/AGENTS.md`](network-scraping-discipline/AGENTS.md) | 抓取节流、聚合端点和限流故障处理 | 需要重复访问网络数据源的任务 |
 | [`anonymous-document-artifact-metadata/AGENTS.md`](anonymous-document-artifact-metadata/AGENTS.md) | Office/PDF 等产物的匿名作者字段和路径隐私 | 生成或转换文档、表格、演示文稿和 PDF |
@@ -68,7 +69,7 @@
 
 ## 使用注意
 
-- 这些文件来自同一份全局说明的十个一级规则组，文件内容保持对应规则组的完整语义。
+- 英文规则忠实表达所选公开章节，排除私人内容；三语 README 介绍同一套十个规则组。
 - 复制到其他项目时，请检查其中的路径、工具、凭据存储位置和平台假设是否适用。
 - Caffeine 规则只能降低闲置睡眠、显示器休眠或部分屏保行为造成的中断风险，不能保证阻止手动锁屏、受管制的锁屏策略、会话切换或注销；不得借此修改密码或其他系统安全设置。
 - API key、token、Cookie、个人资料、生产数据和真实私密配置不应进入公开仓库。
@@ -77,7 +78,7 @@
 ## 维护
 
 - 每个目录只放对应的 `AGENTS.md`，目录名与规则组标题保持一致。
-- 规则有变化时，只修改相关规则组，并同步更新三个语言版 README 的索引和说明。
+- 中文底稿是唯一规则来源。规则有变化时，先更新底稿，再忠实翻译受影响的公开部分并同步三语 README；不在英文中自行补充或改变规则。
 - 推送前检查 Markdown、绝对路径、私密值和意外生成文件。
 - 保持每次提交聚焦，清楚区分规则、README 和仓库元数据变更。
 
