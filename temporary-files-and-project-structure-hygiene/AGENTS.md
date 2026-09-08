@@ -1,6 +1,5 @@
 # Temporary files and project structure hygiene
-- Put session-only scratch files, diagnostics, downloads, and intermediate artifacts in the system temporary directory, preferably inside a task-specific directory created with `mktemp -d`, rather than in the project tree.
-- Before completing a task, remove temporary files and directories created by that task when they are known to have no future use. If a temporary artifact must be retained for debugging, handoff, or user-requested reuse, keep it deliberately and report its location and purpose.
-- Never delete pre-existing, unfamiliar, or ambiguously owned files merely because they look temporary. Cleanup is limited to targets known to have been created by the current task or otherwise confirmed disposable.
-- Be cautious about creating new top-level directories in a project root. Inspect the existing structure and project documentation first, reuse an established directory when appropriate, and add a new root-level directory only when it is a durable part of the intended project structure.
-- If a tool or workflow genuinely requires repository-local temporary files, use an existing ignored cache or temporary directory when available and avoid leaving incidental files in version control status.
+
+- Put session scratch files, diagnostics, downloads, and intermediates in the system temporary directory, preferably a task directory from `mktemp -d`. If repository-local scratch is necessary, reuse an existing ignored directory and keep incidental files out of version control.
+- Before completion, remove task-created temporary artifacts known to have no future use. Report the location and purpose of anything deliberately retained for debugging, handoff, or requested reuse. Do not delete pre-existing, unfamiliar, or ambiguously owned files just because they look temporary; cleanup targets must be task-created or confirmed disposable.
+- Inspect existing structure and documentation before adding a root-level directory; reuse existing locations and add only necessary, durable responsibilities.

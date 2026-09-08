@@ -1,8 +1,6 @@
 # API key persistence for local skills
-- For user-approved persistent API keys used by local Codex skills, normally write a clearly marked managed block in `${HOME}/.zshenv`, unless that service already has a stricter canonical managed store.
-- When adding or rotating a password, API key, token, or other credential, use a local hidden-input prompt or a confirmed interactive terminal with echo disabled so the user enters it directly. If the current tool cannot reliably accept hidden input, provide a user-run hidden-input command or a secure edit path; never ask the user to send the credential in chat or type it at an ordinary shell prompt. Pass hidden-input return values directly to the established credential store or authentication flow. Keep plaintext, including hidden-input return values, out of command arguments, shell history, logs, and tool output; report only save and validation results.
-- Service-specific exceptions may use a documented canonical local credential store and reader. Do not duplicate those credentials into shell profiles, `launchctl`, Keychain, skill files, or project files.
-- When an installed local skill needs an API key and the variable is absent, run it through the service's approved managed-key bridge or canonical credential reader; inject the key only into that validated child process.
-- Do not use macOS Keychain or `launchctl` unless the user explicitly asks for those storage mechanisms.
-- Never print or reveal live API key values in replies or command output; report only presence, source label, permissions, and validation result.
-- Keep skill files themselves free of live credentials.
+
+- Store user-approved persistent local Skill API keys in a clearly marked managed block in `${HOME}/.zshenv`, unless the service has a stricter canonical store. Use Keychain or `launchctl` only when explicitly requested.
+- Receive passwords, keys, and tokens through a local hidden-input prompt or reliable interactive terminal with echo disabled, passing values directly to the established store/authentication flow. If reliable hidden input is unavailable, give the user a hidden-input command or secure edit path to run themselves.
+- Never request credentials in chat or at an ordinary shell prompt. Keep plaintext out of command arguments, history, logs, tool output, replies, and Skill files; report only presence, source label, permissions, and save/validation results.
+- For service-specific stores, use the documented canonical reader and do not duplicate credentials into shell profiles, `launchctl`, Keychain, Skill files, or project files. If a Skill's key variable is absent, use its approved managed-key bridge or canonical reader, injecting only into the validated child process.

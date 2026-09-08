@@ -26,13 +26,15 @@
 
 ## 開発ドキュメントとタスクの継続性
 
-開発プロジェクトに継続的な保守またはセッションをまたぐ引き継ぎが必要で、かつマルチモジュール協働、外部サービスやデプロイ、段階的な納品、複雑な業務制約のいずれかを伴う場合は、[`development-documentation-and-task-continuity/AGENTS.md`](development-documentation-and-task-continuity/AGENTS.md) を使用します。5 種類の文書の責務は次のとおりです。
+開発プロジェクトに継続的な保守またはセッションをまたぐ引き継ぎが必要で、かつマルチモジュール協働、外部サービスやデプロイ、段階的な納品、複雑な業務制約のいずれかを伴う場合は、[`development-documentation-and-task-continuity/AGENTS.md`](development-documentation-and-task-continuity/AGENTS.md) を使用します。単発の小さな変更では一式を揃える必要はありません。5 種類の文書の責務は次のとおりです。
 
 - `README.md`：プロジェクトの目的、入口、ディレクトリの責務、必要な設定、利用・保守方法、実際に利用できるビルド・検証・デプロイコマンドを示す、引き継ぎ者向けのナビゲーション；
 - `SPEC.md`：現在有効な範囲、動作、インターフェースとデータ契約、重要な制約、受け入れ基準；
 - `CHANGELOG.md`：意味のある機能・動作・インターフェース・運用保守の変更と影響を日付またはバージョンごとに記録し、未リリースとリリース済みを区別；
 - `TASK.md`：現在のタスクと未完了作業の目的、範囲、状態、次の手順、依存関係/阻害要因、ユーザーの判断事項、担当者、完了条件；
 - `CASE-STUDY.md`：再利用価値のある実際の障害、やり直し、誤った判断について、証拠、原因、修正、検証、再発防止の教訓を記録。実例がなければその旨を明記します。
+
+各責務は単一の Markdown、またはモジュール・テーマ別の索引付きディレクトリで管理できます。CASE-STUDY は単一の Markdown、または `case-study/`（既存の同等ディレクトリも可）に事例ごとの Markdown を置き、ディレクトリ内の README や既存の索引から案内します。
 
 既存の同等のファイルやセクションを再利用し、プロジェクトの慣例に従います。現行ルール、タスク状態、履歴上の証拠はそれぞれ明確な情報源を 1 つに保ち、他の文書からリンクして重複管理を避けます。要件、実装状態、受け入れ結論が変わった場合は同じタスク内で影響を受ける文書を更新し、終了・一時停止・引き継ぎの前に未完了項目、阻害要因、次の手順を統一されたタスクの入口へ書き戻します。
 
@@ -47,7 +49,7 @@
 | [`temporary-caffeine-mode-for-long-running-tasks/AGENTS.md`](temporary-caffeine-mode-for-long-running-tasks/AGENTS.md) | 長時間タスク向けの一時的なスリープ防止、Computer Use の中断リスク、セキュリティ上の境界 | 継続実行や前面での対話が必要な長時間タスク |
 | [`telegram-notify-on-stop/AGENTS.md`](telegram-notify-on-stop/AGENTS.md) | 長時間タスクの停止通知、ユーザー操作の判定、one-shot marker、認証情報 | ユーザー不在中に重要な結果だけ知らせたい場合 |
 | [`github-publish-discipline/AGENTS.md`](github-publish-discipline/AGENTS.md) | 対象ブランチ、公開権限、コミット前チェック | 安定した GitHub 公開手順が必要なリポジトリ |
-| [`api-key-persistence-for-local-skills/AGENTS.md`](api-key-persistence-for-local-skills/AGENTS.md) | ローカル Skill の key 保管、MX の例外、出力の秘匿 | 外部 API を使うローカル Skill 集合 |
+| [`api-key-persistence-for-local-skills/AGENTS.md`](api-key-persistence-for-local-skills/AGENTS.md) | ローカル Skill の key 保管、サービス固有の例外、出力の秘匿 | 外部 API を使うローカル Skill 集合 |
 | [`network-scraping-discipline/AGENTS.md`](network-scraping-discipline/AGENTS.md) | 取得速度制御、集約エンドポイント、レート制限対応 | ネットワークデータソースへ繰り返しアクセスする作業 |
 | [`anonymous-document-artifact-metadata/AGENTS.md`](anonymous-document-artifact-metadata/AGENTS.md) | Office/PDF などの匿名作成者フィールドとパスの秘匿 | 文書、表計算、スライド、PDF の生成・変換 |
 

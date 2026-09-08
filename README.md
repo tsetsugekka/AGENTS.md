@@ -26,13 +26,15 @@
 
 ## 开发文档与任务连续性
 
-当开发项目需要持续维护或跨会话交接，且涉及多模块协作、外部服务/部署、分阶段交付、复杂业务约束中的任一项时，启用 [`development-documentation-and-task-continuity/AGENTS.md`](development-documentation-and-task-continuity/AGENTS.md)。五类文档各自负责：
+当开发项目需要持续维护或跨会话交接，且涉及多模块协作、外部服务/部署、分阶段交付、复杂业务约束中的任一项时，启用 [`development-documentation-and-task-continuity/AGENTS.md`](development-documentation-and-task-continuity/AGENTS.md)。五类文档职责如下；一次性小改动不必补齐整套文件：
 
 - `README.md`：项目用途、入口、目录职责、配置、使用与维护方式，以及实际可用的构建、验证、部署命令，作为接手者的导航；
 - `SPEC.md`：当前有效的范围、行为、接口和数据契约、关键约束与验收标准；
 - `CHANGELOG.md`：按日期或版本记录有意义的功能、行为、接口和运维变化及其影响，区分未发布与已发布；
 - `TASK.md`：当前任务和未完成事项的目标、范围、状态、下一步、依赖/阻塞、待用户决定事项、负责人和完成条件；
 - `CASE-STUDY.md`：记录具有复用价值的真实故障、返工或错误判断、证据、根因、修复验证和防复发经验；没有实际案例时明确标注暂无。
+
+这些职责可由单个 Markdown 或按模块、主题拆分的索引目录承载。CASE-STUDY 可用单个 Markdown，也可使用 `case-study/`（或已有等价目录），每个案例一个 Markdown，并由目录内 README 或既有索引导航。
 
 先复用已有的等价文件或章节，遵循项目约定；当前规则、任务状态和历史证据各保留一个明确来源，其他文档通过链接引用，避免重复维护。需求、实施状态或验收结论变化时，在同一任务中更新受影响文档；结束、暂停或交接前，将未完成项、阻塞和下一步写回统一任务入口。
 
@@ -47,7 +49,7 @@
 | [`temporary-caffeine-mode-for-long-running-tasks/AGENTS.md`](temporary-caffeine-mode-for-long-running-tasks/AGENTS.md) | 长任务临时保持唤醒、Computer Use 中断风险和安全边界 | 需要连续运行或保持前台交互的长任务 |
 | [`telegram-notify-on-stop/AGENTS.md`](telegram-notify-on-stop/AGENTS.md) | 长任务停止通知、用户交互判断、一次性 marker 和凭据 | 希望在用户离开期间获得重要结果提醒的工作流 |
 | [`github-publish-discipline/AGENTS.md`](github-publish-discipline/AGENTS.md) | 目标分支、发布授权和提交前检查 | 需要稳定 GitHub 发布流程的仓库 |
-| [`api-key-persistence-for-local-skills/AGENTS.md`](api-key-persistence-for-local-skills/AGENTS.md) | 本地 Skill 的 key 存储、MX 特例和输出脱敏 | 使用外部 API 的本地 Skill 集合 |
+| [`api-key-persistence-for-local-skills/AGENTS.md`](api-key-persistence-for-local-skills/AGENTS.md) | 本地 Skill 的 key 存储、服务特例和输出脱敏 | 使用外部 API 的本地 Skill 集合 |
 | [`network-scraping-discipline/AGENTS.md`](network-scraping-discipline/AGENTS.md) | 抓取节流、聚合端点和限流故障处理 | 需要重复访问网络数据源的任务 |
 | [`anonymous-document-artifact-metadata/AGENTS.md`](anonymous-document-artifact-metadata/AGENTS.md) | Office/PDF 等产物的匿名作者字段和路径隐私 | 生成或转换文档、表格、演示文稿和 PDF |
 

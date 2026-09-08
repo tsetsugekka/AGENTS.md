@@ -26,13 +26,15 @@ Together, the rule groups define:
 
 ## Development documentation and task continuity
 
-Use [`development-documentation-and-task-continuity/AGENTS.md`](development-documentation-and-task-continuity/AGENTS.md) when a development project needs ongoing maintenance or cross-session handoff, and involves any of multi-module collaboration, external services or deployment, phased delivery, or complex business constraints. The five document responsibilities are:
+Use [`development-documentation-and-task-continuity/AGENTS.md`](development-documentation-and-task-continuity/AGENTS.md) when a development project needs ongoing maintenance or cross-session handoff, and involves any of multi-module collaboration, external services or deployment, phased delivery, or complex business constraints. One-off small changes do not require the full set. The five document responsibilities are:
 
 - `README.md`: project purpose, entry points, directory responsibilities, required configuration, usage and maintenance procedures, and actual build, verification, and deployment commands as a successor's navigation;
 - `SPEC.md`: the currently effective scope, behavior, interfaces and data contracts, key constraints, and acceptance criteria;
 - `CHANGELOG.md`: meaningful feature, behavior, interface, and operational-maintenance changes and their impact by date or version, distinguishing unreleased from released changes;
 - `TASK.md`: the current task and unfinished work, including objectives, scope, status, next steps, dependencies or blockers, decisions needed from the user, owners, and completion criteria;
 - `CASE-STUDY.md`: real failures, rework, or erroneous judgments with reusable value, including evidence, causes, fixes, verification, and prevention lessons; state clearly when there are no real cases.
+
+Each responsibility may use a single Markdown file or indexed directories split by module or topic. CASE-STUDY may be one Markdown file or a `case-study/` directory (or existing equivalent), with one Markdown per case and a directory README or existing index for navigation.
 
 Reuse existing equivalent files or sections and follow the project's conventions. Keep one clear source for current rules, task status, and historical evidence, linking from other documents instead of maintaining duplicate content. Update affected documents in the same task when requirements, implementation status, or acceptance conclusions change; before ending, pausing, or handing off, write unfinished items, blockers, and next steps back to the unified task entry point.
 
@@ -47,7 +49,7 @@ Reuse existing equivalent files or sections and follow the project's conventions
 | [`temporary-caffeine-mode-for-long-running-tasks/AGENTS.md`](temporary-caffeine-mode-for-long-running-tasks/AGENTS.md) | Temporary keep-awake behavior for long tasks, Computer Use interruption risk, and security boundaries | Long tasks that need continuous execution or foreground interaction |
 | [`telegram-notify-on-stop/AGENTS.md`](telegram-notify-on-stop/AGENTS.md) | Long-task stop notifications, interaction checks, one-shot markers, and credentials | Important results that may need to reach a user away from Codex |
 | [`github-publish-discipline/AGENTS.md`](github-publish-discipline/AGENTS.md) | Target branches, publishing authorization, and pre-commit checks | A repository with a controlled GitHub release flow |
-| [`api-key-persistence-for-local-skills/AGENTS.md`](api-key-persistence-for-local-skills/AGENTS.md) | Local Skill key storage, the MX exception, and output redaction | Local Skills that call external APIs |
+| [`api-key-persistence-for-local-skills/AGENTS.md`](api-key-persistence-for-local-skills/AGENTS.md) | Local Skill key storage, service-specific exceptions, and output redaction | Local Skills that call external APIs |
 | [`network-scraping-discipline/AGENTS.md`](network-scraping-discipline/AGENTS.md) | Request pacing, aggregate endpoints, and rate-limit handling | Tasks that repeatedly access network data sources |
 | [`anonymous-document-artifact-metadata/AGENTS.md`](anonymous-document-artifact-metadata/AGENTS.md) | Anonymous author fields and path privacy for Office/PDF artifacts | Generating or converting documents, spreadsheets, slides, or PDFs |
 
