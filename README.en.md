@@ -1,12 +1,12 @@
 # AGENTS.md
 
-![Rule groups](https://img.shields.io/badge/AGENTS.md-8%20rule%20groups-2563eb)
+![Rule groups](https://img.shields.io/badge/AGENTS.md-9%20rule%20groups-2563eb)
 ![Languages](https://img.shields.io/badge/README-%E4%B8%AD%E6%96%87%20%7C%20%E6%97%A5%E6%9C%AC%E8%AA%9E%20%7C%20English-16a34a)
 ![Maintenance](https://img.shields.io/badge/continuously%20maintained-verified-7c3aed)
 
 [中文](README.md) · [日本語](README.ja.md) · **English**
 
-> One global operating guide split into eight independently reusable `AGENTS.md` rule groups for multi-agent collaboration, model routing, temporary files, temporary Caffeine keep-awake behavior, Telegram notifications, GitHub publishing, API keys, network fetching, and anonymous document metadata.
+> One global operating guide split into nine independently reusable `AGENTS.md` rule groups for multi-agent collaboration, model routing, temporary files, temporary Caffeine keep-awake behavior, Telegram notifications, GitHub publishing, API keys, network fetching, and anonymous document metadata.
 
 ## What this repository is
 
@@ -23,10 +23,11 @@ Together, the rule groups define:
 - throttling, batching, and failure handling for repeated network fetching;
 - anonymous metadata and delivery checks for document artifacts.
 
-## The eight rule groups
+## The nine rule groups
 
 | File | Primary focus | Best used on its own when you need… |
 |---|---|---|
+| [`final-response-status/AGENTS.md`](final-response-status/AGENTS.md) | Label the actual status at the end of each final response and explain unfinished work or blockers | Codex / Claude Code |
 | [`multi-agent-delegation-and-model-routing/AGENTS.md`](multi-agent-delegation-and-model-routing/AGENTS.md) | Multi-agent delegation, Luna/Sol/Terra/Astra model routing, and primary-agent review | Independent subtasks or work with different complexity levels |
 | [`temporary-files-and-project-structure-hygiene/AGENTS.md`](temporary-files-and-project-structure-hygiene/AGENTS.md) | Temporary directories, end-of-task cleanup, and root structure | A clean project tree and explicit file lifecycles |
 | [`temporary-caffeine-mode-for-long-running-tasks/AGENTS.md`](temporary-caffeine-mode-for-long-running-tasks/AGENTS.md) | Temporary keep-awake behavior for long tasks, Computer Use interruption risk, and security boundaries | Long tasks that need continuous execution or foreground interaction |
@@ -38,7 +39,7 @@ Together, the rule groups define:
 
 ## How to combine them
 
-The eight files are thematic rule groups, not mutually exclusive configurations. A practical composition is:
+The nine files are thematic rule groups, not mutually exclusive configurations. A practical composition is:
 
 1. Start with `temporary-files-and-project-structure-hygiene` for the baseline file lifecycle.
 2. Add `temporary-caffeine-mode-for-long-running-tasks` when a long task or Computer Use benefits from uninterrupted execution.
@@ -50,7 +51,7 @@ The eight files are thematic rule groups, not mutually exclusive configurations.
 
 ## Usage notes
 
-- These files are the eight top-level rule groups from the same global guide; each file preserves the complete meaning of its corresponding group.
+- These files are the nine top-level rule groups from the same global guide; each file preserves the complete meaning of its corresponding group.
 - Before copying a group into another project, check that its paths, tools, credential store, and platform assumptions apply.
 - The Caffeine rule can reduce interruption risk from idle sleep, display sleep, or some screensaver behavior, but it cannot guarantee protection against manual locking, managed lock policies, session switching, or logout; never use it to change password or other system security settings.
 - Never place API keys, tokens, cookies, personal data, production data, or real private configuration in a public repository.

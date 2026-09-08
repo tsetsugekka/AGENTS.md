@@ -1,12 +1,12 @@
 # AGENTS.md
 
-![ルール](https://img.shields.io/badge/AGENTS.md-8%20%E3%83%AB%E3%83%BC%E3%83%AB%E7%B5%84-2563eb)
-![言語](https://img.shields.io/badge/README-%E4%B8%AD%E6%96%87%20%7C%20%E6%97%A5%E6%9C%AC%E8%AA%9E%20%7C%20English-16a34a)
-![メンテナンス](https://img.shields.io/badge/%E7%B6%99%E7%B6%9A%E7%AE%A1%E7%90%86-verified-7c3aed)
+![ルール](https://img.shields.io/badge/AGENTS.md-9%20%E3%93%AB%E3%93%BC%E3%93%AB%E7%B5%94-2563eb)
+![言語](https://img.shields.io/badge/README-%E4%B9%AD%E6%96%97%20%7C%20%E6%97%A5%E6%9C%AC%E9%AA%9E%20%7C%20English-16a34a)
+![メンテナンス](https://img.shields.io/badge/%E7%B6%99%E7%B6%9A%E7%AE%A1%E7%90%96-verified-7c3aed)
 
 [中文](README.md) · **日本語** · [English](README.en.md)
 
-> 1 つのグローバル運用規約を、マルチエージェント協働、モデルルーティング、一時ファイル、一時的な Caffeine/スリープ防止、Telegram 通知、GitHub 公開、API key、ネットワーク取得、文書メタデータに分けた、8 つの独立利用可能な `AGENTS.md` ルール組です。
+> 1 つのグローバル運用規約を、マルチエージェント協働、モデルルーティング、一時ファイル、一時的な Caffeine/スリープ防止、Telegram 通知、GitHub 公開、API key、ネットワーク取得、文書メタデータに分けた、9 つの独立利用可能な `AGENTS.md` ルール組です。
 
 ## このリポジトリについて
 
@@ -23,10 +23,11 @@
 - 繰り返し行うネットワーク取得の速度制御、バッチ処理、障害対応；
 - 文書成果物の匿名メタデータと納品前チェック。
 
-## 8 つのルール組
+## 9 つのルール組
 
 | ファイル | 主な対象 | 単独利用に適する場面 |
 |---|---|---|
+| [`final-response-status/AGENTS.md`](final-response-status/AGENTS.md) | 最終回答の末尾に実際の状況を明示し、未完了や阻害要因を短く説明する | Codex / Claude Code |
 | [`multi-agent-delegation-and-model-routing/AGENTS.md`](multi-agent-delegation-and-model-routing/AGENTS.md) | マルチエージェント委任、Luna/Sol/Terra/Astra のモデルルーティング、主エージェントのレビュー | 独立したサブタスクや異なる難易度の作業 |
 | [`temporary-files-and-project-structure-hygiene/AGENTS.md`](temporary-files-and-project-structure-hygiene/AGENTS.md) | 一時ディレクトリ、タスク後の削除、ルート構成 | プロジェクトツリーを整理して保ちたい場合 |
 | [`temporary-caffeine-mode-for-long-running-tasks/AGENTS.md`](temporary-caffeine-mode-for-long-running-tasks/AGENTS.md) | 長時間タスク向けの一時的なスリープ防止、Computer Use の中断リスク、セキュリティ上の境界 | 継続実行や前面での対話が必要な長時間タスク |
@@ -38,7 +39,7 @@
 
 ## 組み合わせ方
 
-8 ファイルはテーマ別のルール組であり、互いに排他的な設定ではありません。通常は次の順で組み合わせられます。
+9 ファイルはテーマ別のルール組であり、互いに排他的な設定ではありません。通常は次の順で組み合わせられます。
 
 1. まず `temporary-files-and-project-structure-hygiene` を加え、すべてのタスクのファイルライフサイクルを定めます。
 2. 長時間タスクや Computer Use の継続実行に利点がある場合は `temporary-caffeine-mode-for-long-running-tasks` を加えます。
@@ -50,7 +51,7 @@
 
 ## 利用上の注意
 
-- これらは、同じグローバル規約にある 8 つのトップレベルルール組であり、各ファイルは対応する意味を完全に保っています。
+- これらは、同じグローバル規約にある 9 つのトップレベルルール組であり、各ファイルは対応する意味を完全に保っています。
 - 他のプロジェクトへコピーする前に、パス、ツール、認証情報の保管場所、プラットフォーム前提を確認してください。
 - Caffeine ルールは、アイドル時のスリープ、ディスプレイ休止、または一部のスクリーンセーバー動作による中断リスクを下げるだけで、手動ロック、管理されたロックポリシー、セッション切替、ログアウトを保証するものではありません。パスワードやその他のシステムセキュリティ設定を変更するために使ってはいけません。
 - API key、token、Cookie、個人情報、本番データ、実際の秘密設定を公開リポジトリに入れないでください。
