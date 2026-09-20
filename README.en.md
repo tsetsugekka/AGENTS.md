@@ -75,9 +75,13 @@ The ten files are thematic rule groups, not mutually exclusive configurations. A
 - Never place API keys, tokens, cookies, personal data, production data, or real private configuration in a public repository.
 - If a project has stricter local rules, follow its source-of-truth instructions and the user's current request.
 
+## Companion hooks
+
+[Final response status](final-response-status/README.md) and [Telegram stop notifications](telegram-notify-on-stop/README.md) include optional scripts and installation instructions. AGENTS.md retains judgment and authorization rules; the same-topic README documents the hook contract. Copying rules alone does not install hooks. Preserve existing configuration entries and review trust through `/hooks`. The status checker only warns, without restarting the agent; Telegram does not transmit chat content. Script tests do not prove actual triggering or delivery.
+
 ## Maintenance
 
-- Keep exactly one corresponding `AGENTS.md` in each rule-group directory, with the directory name matching the rule-group title.
+- Keep the corresponding `AGENTS.md` in each topic directory; place companion hook scripts and their `README.md` in the same directory, without a duplicate `HOOK.md`.
 - The Chinese source is the sole source of rules. Update it first, faithfully translate the affected public content, and synchronize all three READMEs; do not independently add to or change the rules in English.
 - Before pushing, check Markdown, absolute paths, secrets, and unintended generated files.
 - Keep commits focused and distinguish rule changes, README changes, and repository metadata changes.
