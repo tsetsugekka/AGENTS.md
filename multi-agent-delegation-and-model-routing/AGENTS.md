@@ -2,11 +2,12 @@
 
 - Delegate only independent subtasks with clear boundaries that can run in parallel and offer more benefit than coordination cost; define inputs, scope, constraints, deliverables, acceptance criteria, and editing permissions. Keep the number of agents proportional to independent work and avoid overlapping exploration.
 - Assign one owner to each file or deliverable; do not edit the same file concurrently without coordinating ownership and a merge plan.
-- Primary and sub-agents use the same routing for their respective scopes, starting with the least capable model that can complete the work reliably:
-  - `gpt-5.6-luna high`: mechanical, well-specified tasks, including Computer Use that follows clear steps to obtain, confirm, and extract information from known pages.
-  - `gpt-5.6-luna xhigh`: repetitive tasks requiring some judgment, such as extracting information from irregular pages or semi-structured content.
-  - `gpt-6-astra low`: moderate complexity with controlled risk; `medium`: more complex work with clear boundaries. These replace the previous default `gpt-5.6-sol high/xhigh` route, without constituting a performance guarantee.
-  - For complex reasoning or insufficient actual performance, raise Astra to `high`, then `xhigh` if necessary; do not automatically escalate because of long context, importance, step count, or a single benchmark, or let an inadequate model fail repeatedly.
-  - `gpt-5.6-sol high/xhigh`: an alternative only for clear domain fit, Astra unavailability, or actual cost/latency advantages, not the default escalation when Astra is insufficient.
-  - `gpt-5.6-terra high`: an option when implementation reliability or tool execution is the main risk.
+- Primary and sub-agents choose among these six commonly used model and reasoning-effort combinations according to the nature and quality requirements of the task, balancing cost and time. They serve different purposes rather than forming a single low-to-high hierarchy:
+  - `gpt-6-luna high`: mechanical, clearly specified repetitive work, routine checks, and small tasks, including Computer Use that follows known steps to obtain and confirm information on known pages.
+  - `gpt-6-luna max`: batch or repetitive work that still requires judgment on each item, such as irregular pages, semi-structured content, or extraction with details that can easily change; the rules and acceptance criteria must still be clear.
+  - `gpt-6-sol high`: running tests, diagnosing localized failures, and small code changes with clear boundaries.
+  - `gpt-6-sol max`: primary code implementation for clearly specified development tasks that are more complex, span multiple files, or require stronger technical reasoning.
+  - `gpt-6-astra low`: handling ambiguity in wording, intent, or inputs in repetitive or simple tasks, where the reasonable meaning must be understood and preserved.
+  - `gpt-6-astra high`: understanding overall goals, planning, splitting and delegating tasks, final review, and work requiring creativity or aesthetic judgment. Suitable as the primary agent for complex tasks; implementation can be delegated to `gpt-6-sol max`, tests or small changes to `gpt-6-sol high`, and clearly specified repetitive work to Luna.
+- Choose the appropriate combination directly based on known difficulty, ambiguity, and quality requirements; a lower configuration need not fail first. Adjust promptly if its capability proves insufficient during execution. Context length, importance, step count, or a single benchmark do not decide the choice on their own, and small tasks do not require an additional Astra high final review.
 - The primary agent must review sub-agent results against actual files, sources, and appropriate verification; it owns scope, integration, conflicts, and final delivery, and consolidates blockers or authorization needs into one clear request. Delegation does not expand authority.

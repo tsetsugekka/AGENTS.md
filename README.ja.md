@@ -15,7 +15,7 @@
 このルール組は、次の事項を明確にします。
 
 - 最終回答の末尾に示す実際の状態、および未完了事項や阻害要因；
-- 範囲が明確で並列化に価値があるサブタスクの委任、確実に完了できる最も能力の低いモデルからの選択、主エージェントによる成果のレビュー；
+- 範囲が明確で並列化に価値があるサブタスクの委任、作業の性質に応じた Luna・Sol・Astra の 6 種類の組み合わせの選択、主エージェントによる成果のレビュー；
 - 一時ファイルの置き場所、削除、プロジェクトルートの管理；
 - 長時間タスクと Computer Use における一時的な Caffeine/スリープ防止、およびセキュリティ上の限界；
 - 長時間タスクにおける Telegram 通知と「1 タスク 1 回」の制限；
@@ -45,7 +45,7 @@
 |---|---|---|
 | [`final-response-status/AGENTS.md`](final-response-status/AGENTS.md) | 最終回答の末尾に実際の状況を明示し、未完了や阻害要因を短く説明する | 完了状態を明確に示す必要があるタスク |
 | [`development-documentation-and-task-continuity/AGENTS.md`](development-documentation-and-task-continuity/AGENTS.md) | 開発ドキュメントの継続性、および README、SPEC、CHANGELOG、TASK、CASE-STUDY の 5 つの責務 | 継続的な保守またはセッションをまたぐ引き継ぎが必要で、かつマルチモジュール協働、外部サービス/デプロイ、段階的な納品、複雑な業務制約を伴う開発プロジェクト |
-| [`multi-agent-delegation-and-model-routing/AGENTS.md`](multi-agent-delegation-and-model-routing/AGENTS.md) | マルチエージェント委任、Luna/Sol/Terra/Astra のモデルルーティング、主エージェントのレビュー | 独立したサブタスクや異なる難易度の作業 |
+| [`multi-agent-delegation-and-model-routing/AGENTS.md`](multi-agent-delegation-and-model-routing/AGENTS.md) | マルチエージェント委任、Luna/Sol/Astra の 6 種類のモデルと推論レベルの組み合わせ、主エージェントのレビュー | 独立したサブタスクや異なる難易度の作業 |
 | [`temporary-files-and-project-structure-hygiene/AGENTS.md`](temporary-files-and-project-structure-hygiene/AGENTS.md) | 一時ディレクトリ、タスク後の削除、ルート構成 | プロジェクトツリーを整理して保ちたい場合 |
 | [`temporary-caffeine-mode-for-long-running-tasks/AGENTS.md`](temporary-caffeine-mode-for-long-running-tasks/AGENTS.md) | 長時間タスク向けの一時的なスリープ防止、Computer Use の中断リスク、セキュリティ上の境界 | 継続実行や前面での対話が必要な長時間タスク |
 | [`telegram-notify-on-stop/AGENTS.md`](telegram-notify-on-stop/AGENTS.md) | 長時間タスクの停止通知、ユーザー操作の判定、one-shot marker、認証情報 | ユーザー不在中に重要な結果だけ知らせたい場合 |
@@ -77,7 +77,7 @@
 
 ## 付属フック
 
-[回答末尾の状態チェック](final-response-status/README.md)と [Telegram 停止通知](telegram-notify-on-stop/README.md)には任意のスクリプトと導入手順があります。判断と権限のルールは AGENTS.md に残し、同じテーマの README にフックの実行仕様を記載します。ルールのコピーだけではフックは導入されません。既存設定を保持して統合し、`/hooks` で信頼を確認してください。状態チェックは警告のみで再実行せず、Telegram は会話本文を送信しません。スクリプトのテストは実際の発火や配信を保証しません。
+[回答末尾の状態チェック](final-response-status/README.md)と [Telegram 停止通知](telegram-notify-on-stop/README.md)には任意のスクリプトと導入手順があります。ルールのコピーだけではフックは導入されません。既存設定を保持して統合し、`/hooks` で信頼を確認してください。状態チェックは警告のみで再実行せず、Telegram は会話本文を送信しません。スクリプトのテストは実際の発火や配信を保証しません。
 
 ## メンテナンス
 
