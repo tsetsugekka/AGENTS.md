@@ -15,7 +15,7 @@
 这些规则组明确了：
 
 - 最终回答末尾的实际状态，以及未完成事项或阻塞；
-- 如何委派边界清晰且值得并行的子任务，按任务性质选用 Luna、Sol、Astra 的六种常用组合，并由主 Agent 复核成果；
+- 如何委派边界清晰且值得并行的子任务，按任务性质选用 Luna、Sol 6.1、Astra 的八种常用组合，约定检查点和合理等待、避免无效轮询，并由主 Agent 复核成果；
 - 临时文件放置、清理和项目根目录治理；
 - 长任务期间的临时 Caffeine 保持唤醒，以及对 Computer Use 中断风险的边界说明；
 - 长时间任务的 Telegram 通知和“一任务一次”限制；
@@ -45,7 +45,7 @@
 |---|---|---|
 | [`final-response-status/AGENTS.md`](final-response-status/AGENTS.md) | 明确最终回答的实际状态，有未完成或阻塞时简要说明 | 需要明确标注完成状态的任务 |
 | [`development-documentation-and-task-continuity/AGENTS.md`](development-documentation-and-task-continuity/AGENTS.md) | 开发文档连续性，以及 README、SPEC、CHANGELOG、TASK、CASE-STUDY 五类文档的职责 | 需要持续维护或跨会话交接，且涉及多模块协作、外部服务/部署、分阶段交付、复杂业务约束的开发项目 |
-| [`multi-agent-delegation-and-model-routing/AGENTS.md`](multi-agent-delegation-and-model-routing/AGENTS.md) | 多 Agent 委派、Luna/Sol/Astra 六种模型与思考档位组合、主 Agent 复核 | 有独立子任务或不同复杂度任务的工作流 |
+| [`multi-agent-delegation-and-model-routing/AGENTS.md`](multi-agent-delegation-and-model-routing/AGENTS.md) | 多 Agent 委派、Luna/Sol 6.1/Astra 八种模型与思考档位组合、检查点与等待、主 Agent 复核 | 有独立子任务或不同复杂度任务的工作流 |
 | [`temporary-files-and-project-structure-hygiene/AGENTS.md`](temporary-files-and-project-structure-hygiene/AGENTS.md) | 临时目录、任务结束清理和根目录结构 | 需要保持项目树整洁的任何项目 |
 | [`temporary-caffeine-mode-for-long-running-tasks/AGENTS.md`](temporary-caffeine-mode-for-long-running-tasks/AGENTS.md) | 长任务临时保持唤醒、Computer Use 中断风险和安全边界 | 需要连续运行或保持前台交互的长任务 |
 | [`telegram-notify-on-stop/AGENTS.md`](telegram-notify-on-stop/AGENTS.md) | 长任务停止通知、用户交互判断、一次性 marker 和凭据 | 希望在用户离开期间获得重要结果提醒的工作流 |

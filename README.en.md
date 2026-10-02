@@ -15,7 +15,7 @@ An `AGENTS.md` file is a durable operating agreement for Codex and other coding 
 Together, the rule groups define:
 
 - the actual status at the end of each final response, with unfinished work or blockers;
-- how to delegate well-bounded subtasks worth running in parallel, choose among six Luna, Sol, and Astra combinations by task type, and have the primary agent review the results;
+- how to delegate well-bounded subtasks worth running in parallel, choose among eight commonly used Luna, Sol 6.1, and Astra combinations by task type, agree on checkpoints and appropriate waiting, avoid unproductive polling, and have the primary agent review the results;
 - where temporary files belong, how to clean them up, and how to protect the project root;
 - how temporary Caffeine/keep-awake mode can reduce interruption risk during long tasks and Computer Use, and where its security limits are;
 - when a long-running task may send a Telegram notification and the one-notification limit;
@@ -45,7 +45,7 @@ Prefer existing documents, names, and directories. Read relevant documents befor
 |---|---|---|
 | [`final-response-status/AGENTS.md`](final-response-status/AGENTS.md) | Label the actual status at the end of each final response and explain unfinished work or blockers | Tasks that need an explicit completion status |
 | [`development-documentation-and-task-continuity/AGENTS.md`](development-documentation-and-task-continuity/AGENTS.md) | Development documentation continuity and the five responsibilities of README, SPEC, CHANGELOG, TASK, and CASE-STUDY | Development projects needing ongoing maintenance or cross-session handoff, and involving multi-module collaboration, external services/deployment, phased delivery, or complex business constraints |
-| [`multi-agent-delegation-and-model-routing/AGENTS.md`](multi-agent-delegation-and-model-routing/AGENTS.md) | Multi-agent delegation, six Luna/Sol/Astra model and reasoning-effort combinations, and primary-agent review | Independent subtasks or work with different complexity levels |
+| [`multi-agent-delegation-and-model-routing/AGENTS.md`](multi-agent-delegation-and-model-routing/AGENTS.md) | Multi-agent delegation, eight Luna/Sol 6.1/Astra model and reasoning-effort combinations, checkpoints and waiting, and primary-agent review | Independent subtasks or work with different complexity levels |
 | [`temporary-files-and-project-structure-hygiene/AGENTS.md`](temporary-files-and-project-structure-hygiene/AGENTS.md) | Temporary directories, end-of-task cleanup, and root structure | A clean project tree and explicit file lifecycles |
 | [`temporary-caffeine-mode-for-long-running-tasks/AGENTS.md`](temporary-caffeine-mode-for-long-running-tasks/AGENTS.md) | Temporary keep-awake behavior for long tasks, Computer Use interruption risk, and security boundaries | Long tasks that need continuous execution or foreground interaction |
 | [`telegram-notify-on-stop/AGENTS.md`](telegram-notify-on-stop/AGENTS.md) | Long-task stop notifications, interaction checks, one-shot markers, and credentials | Important results that may need to reach a user away from Codex |
