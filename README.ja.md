@@ -6,7 +6,7 @@
 
 [中文](README.md) · **日本語** · [English](README.en.md)
 
-> 中国語のグローバル運用規約から公開する章を選び、忠実に翻訳して私的な内容を除いた、10 個の独立利用可能な英語の `AGENTS.md` ルール組です。このリポジトリはグローバル規約の完全なコピーではありません。
+> 中国語のグローバル運用規約から公開する章を選び、私的な内容を除いて、10 個の独立利用可能な中国語・英語のルール組を提供します。中国語は中国語原稿から直接採用し、英語は忠実な翻訳です。このリポジトリはグローバル規約の完全なコピーではありません。
 
 ## このリポジトリについて
 
@@ -43,16 +43,16 @@
 
 | ファイル | 主な対象 | 単独利用に適する場面 |
 |---|---|---|
-| [`final-response-status/AGENTS.md`](final-response-status/AGENTS.md) | 最終回答の末尾に実際の状況を明示し、未完了や阻害要因を短く説明する | 完了状態を明確に示す必要があるタスク |
-| [`development-documentation-and-task-continuity/AGENTS.md`](development-documentation-and-task-continuity/AGENTS.md) | 開発ドキュメントの継続性、および README、SPEC、CHANGELOG、TASK、CASE-STUDY の 5 つの責務 | 継続的な保守またはセッションをまたぐ引き継ぎが必要で、かつマルチモジュール協働、外部サービス/デプロイ、段階的な納品、複雑な業務制約を伴う開発プロジェクト |
-| [`multi-agent-delegation-and-model-routing/AGENTS.md`](multi-agent-delegation-and-model-routing/AGENTS.md) | マルチエージェント委任、Luna/Sol 6.1/Astra の 8 種類のモデルと推論レベルの組み合わせ、チェックポイントと待機、主エージェントのレビュー | 独立したサブタスクや異なる難易度の作業 |
-| [`temporary-files-and-project-structure-hygiene/AGENTS.md`](temporary-files-and-project-structure-hygiene/AGENTS.md) | 一時ディレクトリ、タスク後の削除、ルート構成 | プロジェクトツリーを整理して保ちたい場合 |
-| [`temporary-caffeine-mode-for-long-running-tasks/AGENTS.md`](temporary-caffeine-mode-for-long-running-tasks/AGENTS.md) | 長時間タスク向けの一時的なスリープ防止、Computer Use の中断リスク、セキュリティ上の境界 | 継続実行や前面での対話が必要な長時間タスク |
-| [`telegram-notify-on-stop/AGENTS.md`](telegram-notify-on-stop/AGENTS.md) | 長時間タスクの停止通知、ユーザー操作の判定、one-shot marker、認証情報 | ユーザー不在中に重要な結果だけ知らせたい場合 |
-| [`github-publish-discipline/AGENTS.md`](github-publish-discipline/AGENTS.md) | ブランチ規律、作業範囲の分離、ステージ状態の保護、公開チェック | 安定した GitHub 公開手順が必要なリポジトリ |
-| [`api-key-persistence-for-local-skills/AGENTS.md`](api-key-persistence-for-local-skills/AGENTS.md) | ローカル Skill の key 保管、サービス固有の例外、出力の秘匿 | 外部 API を使うローカル Skill 集合 |
-| [`network-scraping-discipline/AGENTS.md`](network-scraping-discipline/AGENTS.md) | 取得速度制御、集約エンドポイント、レート制限対応 | ネットワークデータソースへ繰り返しアクセスする作業 |
-| [`anonymous-document-artifact-metadata/AGENTS.md`](anonymous-document-artifact-metadata/AGENTS.md) | Office/PDF などの匿名作成者フィールドとパスの秘匿 | 文書、表計算、スライド、PDF の生成・変換 |
+| [中文](final-response-status/AGENTS.zh-CN.md) · [English](final-response-status/AGENTS.md) | 最終回答の末尾に実際の状況を明示し、未完了や阻害要因を短く説明する | 完了状態を明確に示す必要があるタスク |
+| [中文](development-documentation-and-task-continuity/AGENTS.zh-CN.md) · [English](development-documentation-and-task-continuity/AGENTS.md) | 開発ドキュメントの継続性、および README、SPEC、CHANGELOG、TASK、CASE-STUDY の 5 つの責務 | 継続的な保守またはセッションをまたぐ引き継ぎが必要で、かつマルチモジュール協働、外部サービス/デプロイ、段階的な納品、複雑な業務制約を伴う開発プロジェクト |
+| [中文](multi-agent-delegation-and-model-routing/AGENTS.zh-CN.md) · [English](multi-agent-delegation-and-model-routing/AGENTS.md) | マルチエージェント委任、Luna/Sol 6.1/Astra の 8 種類のモデルと推論レベルの組み合わせ、チェックポイントと待機、主エージェントのレビュー | 独立したサブタスクや異なる難易度の作業 |
+| [中文](temporary-files-and-project-structure-hygiene/AGENTS.zh-CN.md) · [English](temporary-files-and-project-structure-hygiene/AGENTS.md) | 一時ディレクトリ、タスク後の削除、ルート構成 | プロジェクトツリーを整理して保ちたい場合 |
+| [中文](temporary-caffeine-mode-for-long-running-tasks/AGENTS.zh-CN.md) · [English](temporary-caffeine-mode-for-long-running-tasks/AGENTS.md) | 長時間タスク向けの一時的なスリープ防止、Computer Use の中断リスク、セキュリティ上の境界 | 継続実行や前面での対話が必要な長時間タスク |
+| [中文](telegram-notify-on-stop/AGENTS.zh-CN.md) · [English](telegram-notify-on-stop/AGENTS.md) | 長時間タスクの停止通知、ユーザー操作の判定、one-shot marker、認証情報 | ユーザー不在中に重要な結果だけ知らせたい場合 |
+| [中文](github-publish-discipline/AGENTS.zh-CN.md) · [English](github-publish-discipline/AGENTS.md) | ブランチ規律、作業範囲の分離、ステージ状態の保護、公開チェック | 安定した GitHub 公開手順が必要なリポジトリ |
+| [中文](api-key-persistence-for-local-skills/AGENTS.zh-CN.md) · [English](api-key-persistence-for-local-skills/AGENTS.md) | ローカル Skill の key 保管、サービス固有の例外、出力の秘匿 | 外部 API を使うローカル Skill 集合 |
+| [中文](network-scraping-discipline/AGENTS.zh-CN.md) · [English](network-scraping-discipline/AGENTS.md) | 取得速度制御、集約エンドポイント、レート制限対応 | ネットワークデータソースへ繰り返しアクセスする作業 |
+| [中文](anonymous-document-artifact-metadata/AGENTS.zh-CN.md) · [English](anonymous-document-artifact-metadata/AGENTS.md) | Office/PDF などの匿名作成者フィールドとパスの秘匿 | 文書、表計算、スライド、PDF の生成・変換 |
 
 ## 組み合わせ方
 
@@ -69,7 +69,8 @@
 
 ## 利用上の注意
 
-- 英語のルールは、選ばれた公開章を忠実に表し、私的な内容を除いています。3 言語の README は同じ 10 個のルール組を紹介します。
+- 中国語の `AGENTS.zh-CN.md` は中国語原稿から直接採用し、私的な内容とオリジナルではない内容を除いています。英語からの逆翻訳ではありません。英語の `AGENTS.md` は同じ公開ルールの忠実な翻訳です。3 言語の README は同じ 10 個のルール組を紹介します。
+- 導入時はテーマごとに一方の言語を選び、対象プロジェクトの `AGENTS.md` に統合してください。同じルールの中国語版と英語版を同時に読み込ませないでください。
 - 他のプロジェクトへコピーする前に、パス、ツール、認証情報の保管場所、プラットフォーム前提を確認してください。
 - Caffeine ルールは、アイドル時のスリープ、ディスプレイ休止、または一部のスクリーンセーバー動作による中断リスクを下げるだけで、手動ロック、管理されたロックポリシー、セッション切替、ログアウトを保証するものではありません。パスワードやその他のシステムセキュリティ設定を変更するために使ってはいけません。
 - API key、token、Cookie、個人情報、本番データ、実際の秘密設定を公開リポジトリに入れないでください。
@@ -77,11 +78,11 @@
 
 ## 付属フック
 
-[回答末尾の状態チェック](final-response-status/README.md)と [Telegram 停止通知](telegram-notify-on-stop/README.md)には任意のスクリプトと導入手順があります。ルールのコピーだけではフックは導入されません。既存設定を保持して統合し、`/hooks` で信頼を確認してください。状態チェックは警告のみで再実行せず、Telegram は会話本文を送信しません。スクリプトのテストは実際の発火や配信を保証しません。
+[回答末尾の状態チェック](final-response-status/README.md)と [Telegram 停止通知](telegram-notify-on-stop/README.md)でスクリプトを説明しています。ルールのコピーだけではフックは導入されません。既存設定を保持して統合し、`/hooks` で信頼を確認してください。状態チェックは警告のみで再実行せず、Telegram は会話本文を送信しません。付属 Telegram スクリプトは旧版で、現在のルールが要求するタスク分離と結果要約は未実装です。現在のルールを採用するには対応する実装が必要です。スクリプトのテストは実際の発火や配信を保証しません。
 
 ## メンテナンス
 
-- 各テーマのディレクトリに対応する `AGENTS.md` を置き、付属フックのスクリプトと `README.md` も同じ場所で管理します。重複する `HOOK.md` は作りません。
+- 各テーマのディレクトリに英語の `AGENTS.md` と中国語の `AGENTS.zh-CN.md` を置き、付属フックのスクリプトと中国語・英語の README も同じ場所で管理します。重複する `HOOK.md` は作りません。
 - 中国語の原稿をルールの唯一の正本とします。変更時は原稿を先に更新し、影響する公開部分を忠実に翻訳して 3 言語の README に反映します。英語側で独自にルールを追加・変更しません。
 - push 前に Markdown、絶対パス、秘密値、意図しない生成ファイルを確認します。
 - ルール、README、リポジトリメタデータの変更を区別できる、焦点の明確なコミットを維持します。

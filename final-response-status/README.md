@@ -1,5 +1,7 @@
 # Final response status hook
 
+[中文说明](README.zh-CN.md)
+
 [AGENTS.md](AGENTS.md) defines the status semantics; [check_final_status.py](check_final_status.py) only checks the label format. It reads the Stop event JSON from stdin and checks `last_assistant_message`. A short trailing `[status]` or `【状态】` label is accepted, with optional Markdown emphasis. Empty messages and unrelated events are skipped.
 
 Output is `{}` when no warning is needed, otherwise a `systemMessage`. It never restarts the agent, calls a model, stores messages, accesses the network, or judges actual completion. Requires Python 3 standard library.

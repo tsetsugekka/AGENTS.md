@@ -6,7 +6,7 @@
 
 [中文](README.md) · [日本語](README.ja.md) · **English**
 
-> Selected public sections of a Chinese global operating guide, faithfully translated with private content excluded, form ten independently reusable English `AGENTS.md` rule groups. This repository is not a complete copy of the global guide.
+> Selected public sections of a Chinese global operating guide, with private content excluded, form ten independently reusable rule groups in Chinese and English. Chinese is taken directly from the Chinese source, and English is a faithful translation. This repository is not a complete copy of the global guide.
 
 ## What this repository is
 
@@ -43,16 +43,16 @@ Prefer existing documents, names, and directories. Read relevant documents befor
 
 | File | Primary focus | Best used on its own when you need… |
 |---|---|---|
-| [`final-response-status/AGENTS.md`](final-response-status/AGENTS.md) | Label the actual status at the end of each final response and explain unfinished work or blockers | Tasks that need an explicit completion status |
-| [`development-documentation-and-task-continuity/AGENTS.md`](development-documentation-and-task-continuity/AGENTS.md) | Development documentation continuity and the five responsibilities of README, SPEC, CHANGELOG, TASK, and CASE-STUDY | Development projects needing ongoing maintenance or cross-session handoff, and involving multi-module collaboration, external services/deployment, phased delivery, or complex business constraints |
-| [`multi-agent-delegation-and-model-routing/AGENTS.md`](multi-agent-delegation-and-model-routing/AGENTS.md) | Multi-agent delegation, eight Luna/Sol 6.1/Astra model and reasoning-effort combinations, checkpoints and waiting, and primary-agent review | Independent subtasks or work with different complexity levels |
-| [`temporary-files-and-project-structure-hygiene/AGENTS.md`](temporary-files-and-project-structure-hygiene/AGENTS.md) | Temporary directories, end-of-task cleanup, and root structure | A clean project tree and explicit file lifecycles |
-| [`temporary-caffeine-mode-for-long-running-tasks/AGENTS.md`](temporary-caffeine-mode-for-long-running-tasks/AGENTS.md) | Temporary keep-awake behavior for long tasks, Computer Use interruption risk, and security boundaries | Long tasks that need continuous execution or foreground interaction |
-| [`telegram-notify-on-stop/AGENTS.md`](telegram-notify-on-stop/AGENTS.md) | Long-task stop notifications, interaction checks, one-shot markers, and credentials | Important results that may need to reach a user away from Codex |
-| [`github-publish-discipline/AGENTS.md`](github-publish-discipline/AGENTS.md) | Branch discipline, scope isolation, staging-state protection, and publishing checks | A repository with a controlled GitHub release flow |
-| [`api-key-persistence-for-local-skills/AGENTS.md`](api-key-persistence-for-local-skills/AGENTS.md) | Local Skill key storage, service-specific exceptions, and output redaction | Local Skills that call external APIs |
-| [`network-scraping-discipline/AGENTS.md`](network-scraping-discipline/AGENTS.md) | Request pacing, aggregate endpoints, and rate-limit handling | Tasks that repeatedly access network data sources |
-| [`anonymous-document-artifact-metadata/AGENTS.md`](anonymous-document-artifact-metadata/AGENTS.md) | Anonymous author fields and path privacy for Office/PDF artifacts | Generating or converting documents, spreadsheets, slides, or PDFs |
+| [中文](final-response-status/AGENTS.zh-CN.md) · [English](final-response-status/AGENTS.md) | Label the actual status at the end of each final response and explain unfinished work or blockers | Tasks that need an explicit completion status |
+| [中文](development-documentation-and-task-continuity/AGENTS.zh-CN.md) · [English](development-documentation-and-task-continuity/AGENTS.md) | Development documentation continuity and the five responsibilities of README, SPEC, CHANGELOG, TASK, and CASE-STUDY | Development projects needing ongoing maintenance or cross-session handoff, and involving multi-module collaboration, external services/deployment, phased delivery, or complex business constraints |
+| [中文](multi-agent-delegation-and-model-routing/AGENTS.zh-CN.md) · [English](multi-agent-delegation-and-model-routing/AGENTS.md) | Multi-agent delegation, eight Luna/Sol 6.1/Astra model and reasoning-effort combinations, checkpoints and waiting, and primary-agent review | Independent subtasks or work with different complexity levels |
+| [中文](temporary-files-and-project-structure-hygiene/AGENTS.zh-CN.md) · [English](temporary-files-and-project-structure-hygiene/AGENTS.md) | Temporary directories, end-of-task cleanup, and root structure | A clean project tree and explicit file lifecycles |
+| [中文](temporary-caffeine-mode-for-long-running-tasks/AGENTS.zh-CN.md) · [English](temporary-caffeine-mode-for-long-running-tasks/AGENTS.md) | Temporary keep-awake behavior for long tasks, Computer Use interruption risk, and security boundaries | Long tasks that need continuous execution or foreground interaction |
+| [中文](telegram-notify-on-stop/AGENTS.zh-CN.md) · [English](telegram-notify-on-stop/AGENTS.md) | Long-task stop notifications, interaction checks, one-shot markers, and credentials | Important results that may need to reach a user away from Codex |
+| [中文](github-publish-discipline/AGENTS.zh-CN.md) · [English](github-publish-discipline/AGENTS.md) | Branch discipline, scope isolation, staging-state protection, and publishing checks | A repository with a controlled GitHub release flow |
+| [中文](api-key-persistence-for-local-skills/AGENTS.zh-CN.md) · [English](api-key-persistence-for-local-skills/AGENTS.md) | Local Skill key storage, service-specific exceptions, and output redaction | Local Skills that call external APIs |
+| [中文](network-scraping-discipline/AGENTS.zh-CN.md) · [English](network-scraping-discipline/AGENTS.md) | Request pacing, aggregate endpoints, and rate-limit handling | Tasks that repeatedly access network data sources |
+| [中文](anonymous-document-artifact-metadata/AGENTS.zh-CN.md) · [English](anonymous-document-artifact-metadata/AGENTS.md) | Anonymous author fields and path privacy for Office/PDF artifacts | Generating or converting documents, spreadsheets, slides, or PDFs |
 
 ## How to combine them
 
@@ -69,7 +69,8 @@ The ten files are thematic rule groups, not mutually exclusive configurations. A
 
 ## Usage notes
 
-- The English rules faithfully express the selected public sections, with private content excluded; all three READMEs introduce the same ten rule groups.
+- Chinese `AGENTS.zh-CN.md` is taken directly from the Chinese source, with private and non-original content excluded; it is not back-translated from English. English `AGENTS.md` faithfully translates the same public rules. All three READMEs introduce the same ten rule groups.
+- For each topic, choose one language and merge it into the target project’s `AGENTS.md`; do not load both language versions of the same rule.
 - Before copying a group into another project, check that its paths, tools, credential store, and platform assumptions apply.
 - The Caffeine rule can reduce interruption risk from idle sleep, display sleep, or some screensaver behavior, but it cannot guarantee protection against manual locking, managed lock policies, session switching, or logout; never use it to change password or other system security settings.
 - Never place API keys, tokens, cookies, personal data, production data, or real private configuration in a public repository.
@@ -77,11 +78,11 @@ The ten files are thematic rule groups, not mutually exclusive configurations. A
 
 ## Companion hooks
 
-[Final response status](final-response-status/README.md) and [Telegram stop notifications](telegram-notify-on-stop/README.md) include optional scripts and installation instructions. Copying rules alone does not install hooks. Preserve existing configuration entries and review trust through `/hooks`. The status checker only warns, without restarting the agent; Telegram does not transmit chat content. Script tests do not prove actual triggering or delivery.
+[Final response status](final-response-status/README.md) and [Telegram stop notifications](telegram-notify-on-stop/README.md) document the scripts. Copying rules alone does not install hooks. Preserve existing configuration entries and review trust through `/hooks`. The status checker only warns, without restarting the agent; Telegram does not transmit chat content. The included Telegram script is a legacy version that does not implement the current rules for task isolation and result summaries; adopting the current rules requires a matching implementation. Script tests do not prove actual triggering or delivery.
 
 ## Maintenance
 
-- Keep the corresponding `AGENTS.md` in each topic directory; place companion hook scripts and their `README.md` in the same directory, without a duplicate `HOOK.md`.
+- Keep English `AGENTS.md` and Chinese `AGENTS.zh-CN.md` in each topic directory; place companion hook scripts and their English and Chinese READMEs in the same directory, without a duplicate `HOOK.md`.
 - The Chinese source is the sole source of rules. Update it first, faithfully translate the affected public content, and synchronize all three READMEs; do not independently add to or change the rules in English.
 - Before pushing, check Markdown, absolute paths, secrets, and unintended generated files.
 - Keep commits focused and distinguish rule changes, README changes, and repository metadata changes.

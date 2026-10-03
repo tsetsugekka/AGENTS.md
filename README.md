@@ -6,7 +6,7 @@
 
 **中文** · [日本語](README.ja.md) · [English](README.en.md)
 
-> 从一份中文全局工作说明中选择公开章节，忠实翻译并排除私人内容，形成十个可独立复用的英文 `AGENTS.md` 规则组；本仓库不是全局说明的完整副本。
+> 从一份中文全局工作说明中选择公开章节并排除私人内容，提供十个可独立复用的中英文规则组；中文直接取自中文底稿，英文为忠实翻译。本仓库不是全局说明的完整副本。
 
 ## 这是什么
 
@@ -43,16 +43,16 @@
 
 | 文件 | 主要关注点 | 适合单独复用的场景 |
 |---|---|---|
-| [`final-response-status/AGENTS.md`](final-response-status/AGENTS.md) | 明确最终回答的实际状态，有未完成或阻塞时简要说明 | 需要明确标注完成状态的任务 |
-| [`development-documentation-and-task-continuity/AGENTS.md`](development-documentation-and-task-continuity/AGENTS.md) | 开发文档连续性，以及 README、SPEC、CHANGELOG、TASK、CASE-STUDY 五类文档的职责 | 需要持续维护或跨会话交接，且涉及多模块协作、外部服务/部署、分阶段交付、复杂业务约束的开发项目 |
-| [`multi-agent-delegation-and-model-routing/AGENTS.md`](multi-agent-delegation-and-model-routing/AGENTS.md) | 多 Agent 委派、Luna/Sol 6.1/Astra 八种模型与思考档位组合、检查点与等待、主 Agent 复核 | 有独立子任务或不同复杂度任务的工作流 |
-| [`temporary-files-and-project-structure-hygiene/AGENTS.md`](temporary-files-and-project-structure-hygiene/AGENTS.md) | 临时目录、任务结束清理和根目录结构 | 需要保持项目树整洁的任何项目 |
-| [`temporary-caffeine-mode-for-long-running-tasks/AGENTS.md`](temporary-caffeine-mode-for-long-running-tasks/AGENTS.md) | 长任务临时保持唤醒、Computer Use 中断风险和安全边界 | 需要连续运行或保持前台交互的长任务 |
-| [`telegram-notify-on-stop/AGENTS.md`](telegram-notify-on-stop/AGENTS.md) | 长任务停止通知、用户交互判断、一次性 marker 和凭据 | 希望在用户离开期间获得重要结果提醒的工作流 |
-| [`github-publish-discipline/AGENTS.md`](github-publish-discipline/AGENTS.md) | 分支纪律、范围隔离、暂存状态保护和发布检查 | 需要稳定 GitHub 发布流程的仓库 |
-| [`api-key-persistence-for-local-skills/AGENTS.md`](api-key-persistence-for-local-skills/AGENTS.md) | 本地 Skill 的 key 存储、服务特例和输出脱敏 | 使用外部 API 的本地 Skill 集合 |
-| [`network-scraping-discipline/AGENTS.md`](network-scraping-discipline/AGENTS.md) | 抓取节流、聚合端点和限流故障处理 | 需要重复访问网络数据源的任务 |
-| [`anonymous-document-artifact-metadata/AGENTS.md`](anonymous-document-artifact-metadata/AGENTS.md) | Office/PDF 等产物的匿名作者字段和路径隐私 | 生成或转换文档、表格、演示文稿和 PDF |
+| [中文](final-response-status/AGENTS.zh-CN.md) · [English](final-response-status/AGENTS.md) | 明确最终回答的实际状态，有未完成或阻塞时简要说明 | 需要明确标注完成状态的任务 |
+| [中文](development-documentation-and-task-continuity/AGENTS.zh-CN.md) · [English](development-documentation-and-task-continuity/AGENTS.md) | 开发文档连续性，以及 README、SPEC、CHANGELOG、TASK、CASE-STUDY 五类文档的职责 | 需要持续维护或跨会话交接，且涉及多模块协作、外部服务/部署、分阶段交付、复杂业务约束的开发项目 |
+| [中文](multi-agent-delegation-and-model-routing/AGENTS.zh-CN.md) · [English](multi-agent-delegation-and-model-routing/AGENTS.md) | 多 Agent 委派、Luna/Sol 6.1/Astra 八种模型与思考档位组合、检查点与等待、主 Agent 复核 | 有独立子任务或不同复杂度任务的工作流 |
+| [中文](temporary-files-and-project-structure-hygiene/AGENTS.zh-CN.md) · [English](temporary-files-and-project-structure-hygiene/AGENTS.md) | 临时目录、任务结束清理和根目录结构 | 需要保持项目树整洁的任何项目 |
+| [中文](temporary-caffeine-mode-for-long-running-tasks/AGENTS.zh-CN.md) · [English](temporary-caffeine-mode-for-long-running-tasks/AGENTS.md) | 长任务临时保持唤醒、Computer Use 中断风险和安全边界 | 需要连续运行或保持前台交互的长任务 |
+| [中文](telegram-notify-on-stop/AGENTS.zh-CN.md) · [English](telegram-notify-on-stop/AGENTS.md) | 长任务停止通知、用户交互判断、一次性 marker 和凭据 | 希望在用户离开期间获得重要结果提醒的工作流 |
+| [中文](github-publish-discipline/AGENTS.zh-CN.md) · [English](github-publish-discipline/AGENTS.md) | 分支纪律、范围隔离、暂存状态保护和发布检查 | 需要稳定 GitHub 发布流程的仓库 |
+| [中文](api-key-persistence-for-local-skills/AGENTS.zh-CN.md) · [English](api-key-persistence-for-local-skills/AGENTS.md) | 本地 Skill 的 key 存储、服务特例和输出脱敏 | 使用外部 API 的本地 Skill 集合 |
+| [中文](network-scraping-discipline/AGENTS.zh-CN.md) · [English](network-scraping-discipline/AGENTS.md) | 抓取节流、聚合端点和限流故障处理 | 需要重复访问网络数据源的任务 |
+| [中文](anonymous-document-artifact-metadata/AGENTS.zh-CN.md) · [English](anonymous-document-artifact-metadata/AGENTS.md) | Office/PDF 等产物的匿名作者字段和路径隐私 | 生成或转换文档、表格、演示文稿和 PDF |
 
 ## 组合方式
 
@@ -69,7 +69,8 @@
 
 ## 使用注意
 
-- 英文规则忠实表达所选公开章节，排除私人内容；三语 README 介绍同一套十个规则组。
+- 中文 `AGENTS.zh-CN.md` 直接取自中文底稿，排除私人和非原创内容，不从英文反译；英文 `AGENTS.md` 忠实翻译同一公开规则。三语 README 介绍同一套十个规则组。
+- 安装时每个主题选择一种语言，合并到目标项目的 `AGENTS.md`；不要同时加载中英文同一规则。
 - 复制到其他项目时，请检查其中的路径、工具、凭据存储位置和平台假设是否适用。
 - Caffeine 规则只能降低闲置睡眠、显示器休眠或部分屏保行为造成的中断风险，不能保证阻止手动锁屏、受管制的锁屏策略、会话切换或注销；不得借此修改密码或其他系统安全设置。
 - API key、token、Cookie、个人资料、生产数据和真实私密配置不应进入公开仓库。
@@ -77,11 +78,11 @@
 
 ## 配套钩子
 
-[回答状态检查](final-response-status/README.md)与 [Telegram 停止通知](telegram-notify-on-stop/README.md)提供可选脚本和安装说明。仅复制规则不会安装钩子。合并配置时保留既有条目，并在 `/hooks` 审阅信任。状态检查只提醒、不自动续跑；Telegram 不传输聊天正文。脚本测试不等于实际触发或消息送达。
+[回答状态检查](final-response-status/README.zh-CN.md)与 [Telegram 停止通知](telegram-notify-on-stop/README.zh-CN.md)提供脚本说明。仅复制规则不会安装钩子。合并配置时保留既有条目，并在 `/hooks` 审阅信任。状态检查只提醒、不自动续跑；Telegram 不传输聊天正文。附带 Telegram 脚本为旧版，尚未实现当前规则要求的任务隔离和结果摘要，采用当前规则需提供匹配实现。脚本测试不等于实际触发或消息送达。
 
 ## 维护
 
-- 每个主题目录保留对应的 `AGENTS.md`；配套钩子的脚本及 `README.md` 放在同一目录，不重复维护 `HOOK.md`。
+- 每个主题目录保留英文 `AGENTS.md` 与中文 `AGENTS.zh-CN.md`；配套钩子的脚本、中英文 README 放在同一目录，不重复维护 `HOOK.md`。
 - 中文底稿是唯一规则来源。规则有变化时，先更新底稿，再忠实翻译受影响的公开部分并同步三语 README；不在英文中自行补充或改变规则。
 - 推送前检查 Markdown、绝对路径、私密值和意外生成文件。
 - 保持每次提交聚焦，清楚区分规则、README 和仓库元数据变更。
