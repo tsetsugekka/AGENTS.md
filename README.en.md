@@ -1,12 +1,12 @@
 # AGENTS.md
 
-![Rule groups](https://img.shields.io/badge/AGENTS.md-10%20rule%20groups-2563eb)
+![Rule groups](https://img.shields.io/badge/AGENTS.md-11%20rule%20groups-2563eb)
 ![Languages](https://img.shields.io/badge/README-%E4%B8%AD%E6%96%87%20%7C%20%E6%97%A5%E6%9C%AC%E8%AA%9E%20%7C%20English-16a34a)
 ![Maintenance](https://img.shields.io/badge/continuously%20maintained-verified-7c3aed)
 
 [中文](README.md) · [日本語](README.ja.md) · **English**
 
-> Selected public sections of a Chinese global operating guide, with private content excluded, form ten independently reusable rule groups in Chinese and English. Chinese is taken directly from the Chinese source, and English is a faithful translation. This repository is not a complete copy of the global guide.
+> Selected public sections of a Chinese global operating guide, with private content excluded, form eleven independently reusable rule groups in Chinese and English. Chinese is taken directly from the Chinese source, and English is a faithful translation. This repository is not a complete copy of the global guide.
 
 ## What this repository is
 
@@ -39,7 +39,7 @@ Each responsibility may use a single Markdown file or indexed directories split 
 
 Prefer existing documents, names, and directories. Read relevant documents before starting, and update only affected content when making changes. Before ending, pausing, or handing off, write unfinished work back to the task entry point. Maintain one authoritative source for each fact or status, with links elsewhere. Distinguish current specifications, unimplemented plans, historical records, implementation, verification, release, and operational acceptance. Documentation updates do not expand authority and must not put credentials or internal records into public artifacts.
 
-## The ten rule groups
+## The eleven rule groups
 
 | File | Primary focus | Best used on its own when you need… |
 |---|---|---|
@@ -53,10 +53,25 @@ Prefer existing documents, names, and directories. Read relevant documents befor
 | [中文](api-key-persistence-for-local-skills/AGENTS.zh-CN.md) · [English](api-key-persistence-for-local-skills/AGENTS.md) | Local Skill key storage, service-specific exceptions, and output redaction | Local Skills that call external APIs |
 | [中文](network-scraping-discipline/AGENTS.zh-CN.md) · [English](network-scraping-discipline/AGENTS.md) | Request pacing, aggregate endpoints, and rate-limit handling | Tasks that repeatedly access network data sources |
 | [中文](anonymous-document-artifact-metadata/AGENTS.zh-CN.md) · [English](anonymous-document-artifact-metadata/AGENTS.md) | Anonymous author fields and path privacy for Office/PDF artifacts | Generating or converting documents, spreadsheets, slides, or PDFs |
+| [中文](frontend-design/AGENTS.zh-CN.md) · [English](frontend-design/AGENTS.md) | Responsibilities of three design skills, compact layouts, and app-like mobile workflows | Interface design, redesign, and frontend work involving an interface |
+
+## Pick topics and read on demand
+
+This is a catalog, not a whole-repository installation package. Select only the topics you need; there is no requirement to read or apply every directory. Public topics retain their complete text even when the author's local global configuration splits details into on-demand documents. You need not reproduce that local structure.
+
+Merge frequent rules into your own `AGENTS.md` or the equivalent persistent instruction file for your agent. For less frequent topics, save the full text as ordinary Markdown and leave an explicit trigger and path in the root instructions, for example:
+
+```markdown
+Before interface design, redesign, or frontend development involving an interface, read docs/FRONTEND-DESIGN.md. Do not read it for other tasks.
+```
+
+Save the design topic's text at that example path yourself. Do not give an on-demand document a root-instruction filename that your runtime automatically loads. Resolve relative paths from your own instruction file, bring required companion documents, and check links. A Markdown link alone does not guarantee reading. Keep necessary safety boundaries in the always-loaded entry point.
+
+The design skills referenced by the topic must be available in your environment. This repository neither installs nor bundles them and does not enable design hooks.
 
 ## How to combine them
 
-The ten files are thematic rule groups, not mutually exclusive configurations. A practical composition is:
+The eleven files are thematic rule groups, not mutually exclusive configurations. A practical composition is:
 
 1. Start with `temporary-files-and-project-structure-hygiene` for the baseline file lifecycle.
 2. Add `temporary-caffeine-mode-for-long-running-tasks` when a long task or Computer Use benefits from uninterrupted execution.
@@ -69,7 +84,7 @@ The ten files are thematic rule groups, not mutually exclusive configurations. A
 
 ## Usage notes
 
-- Chinese `AGENTS.zh-CN.md` is taken directly from the Chinese source, with private and non-original content excluded; it is not back-translated from English. English `AGENTS.md` faithfully translates the same public rules. All three READMEs introduce the same ten rule groups.
+- Chinese `AGENTS.zh-CN.md` is taken directly from the Chinese source, with private and non-original content excluded; it is not back-translated from English. English `AGENTS.md` faithfully translates the same public rules. All three READMEs introduce the same eleven rule groups.
 - For each topic, choose one language and merge it into the target project’s `AGENTS.md`; do not load both language versions of the same rule.
 - Before copying a group into another project, check that its paths, tools, credential store, and platform assumptions apply.
 - The Caffeine rule can reduce interruption risk from idle sleep, display sleep, or some screensaver behavior, but it cannot guarantee protection against manual locking, managed lock policies, session switching, or logout; never use it to change password or other system security settings.

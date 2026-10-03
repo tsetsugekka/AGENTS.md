@@ -1,12 +1,12 @@
 # AGENTS.md
 
-![规则组](https://img.shields.io/badge/AGENTS.md-10%20%E8%A7%84%E5%88%99%E7%BB%84-2563eb)
+![规则组](https://img.shields.io/badge/AGENTS.md-11%20%E8%A7%84%E5%88%99%E7%BB%84-2563eb)
 ![语言](https://img.shields.io/badge/README-%E4%B8%AD%E6%96%87%20%7C%20%E6%97%A5%E6%9C%AC%E8%AA%9E%20%7C%20English-16a34a)
 ![维护](https://img.shields.io/badge/%E6%8C%81%E7%BB%AD%E7%BB%B4%E6%8A%A4-verified-7c3aed)
 
 **中文** · [日本語](README.ja.md) · [English](README.en.md)
 
-> 从一份中文全局工作说明中选择公开章节并排除私人内容，提供十个可独立复用的中英文规则组；中文直接取自中文底稿，英文为忠实翻译。本仓库不是全局说明的完整副本。
+> 从一份中文全局工作说明中选择公开章节并排除私人内容，提供十一个可独立复用的中英文规则组；中文直接取自中文底稿，英文为忠实翻译。本仓库不是全局说明的完整副本。
 
 ## 这是什么
 
@@ -39,7 +39,7 @@
 
 优先复用现有文档、命名与目录。开工读取相关文档，变更时只更新受影响内容；结束、暂停或交接前，将未完成事项写回任务入口。同一事实或状态只维护一个权威来源，其他位置链接引用；区分现行规格、未实现方案、历史记录，以及实现、验证、发布和运行验收。文档同步不扩大操作权限，也不得把凭据或内部记录混入公开产物。
 
-## 十个规则组
+## 十一个规则组
 
 | 文件 | 主要关注点 | 适合单独复用的场景 |
 |---|---|---|
@@ -53,10 +53,25 @@
 | [中文](api-key-persistence-for-local-skills/AGENTS.zh-CN.md) · [English](api-key-persistence-for-local-skills/AGENTS.md) | 本地 Skill 的 key 存储、服务特例和输出脱敏 | 使用外部 API 的本地 Skill 集合 |
 | [中文](network-scraping-discipline/AGENTS.zh-CN.md) · [English](network-scraping-discipline/AGENTS.md) | 抓取节流、聚合端点和限流故障处理 | 需要重复访问网络数据源的任务 |
 | [中文](anonymous-document-artifact-metadata/AGENTS.zh-CN.md) · [English](anonymous-document-artifact-metadata/AGENTS.md) | Office/PDF 等产物的匿名作者字段和路径隐私 | 生成或转换文档、表格、演示文稿和 PDF |
+| [中文](frontend-design/AGENTS.zh-CN.md) · [English](frontend-design/AGENTS.md) | 三个设计 Skill 的分工、紧凑布局与手机 App 式流程 | 界面设计、改版和涉及界面的前端开发 |
+
+## 按主题选用与按需读取
+
+这是规则目录，不是整仓安装包；只选择需要的主题，不要求读取或应用全部目录。公开主题保留完整正文，即使本地全局配置将细则拆成按需文档，也不要求使用者复制作者的目录结构。
+
+常用规则可直接合并进自己的 `AGENTS.md`（或对应 Agent 的持久指令文件）。低频主题也可以保存为普通 Markdown，在根指令里只写清触发条件和文件路径，例如：
+
+```markdown
+仅在界面设计、改版或涉及界面的前端开发时，先读取 docs/FRONTEND-DESIGN.md；其他任务不读取。
+```
+
+此示例中的目标文件需要由使用者将设计主题正文保存到该路径。按需文档不要命名为会被运行环境自动加载的根指令文件；相对路径以自己的指令文件位置为准，复制时携带所需配套文档并核对链接。Markdown 链接本身不保证自动读取。必要安全边界仍应留在常驻入口。
+
+设计主题引用的 Skill 需在使用环境中可用，本仓库不安装或捆绑这些 Skill，也不启用设计钩子。
 
 ## 组合方式
 
-十份文件是主题化规则组，而不是互相排斥的配置。通常可以这样组合：
+十一份文件是主题化规则组，而不是互相排斥的配置。通常可以这样组合：
 
 1. 先加入 `temporary-files-and-project-structure-hygiene`，建立所有任务的文件生命周期底线。
 2. 长任务或 Computer Use 需要连续运行时，加入 `temporary-caffeine-mode-for-long-running-tasks`。
@@ -69,7 +84,7 @@
 
 ## 使用注意
 
-- 中文 `AGENTS.zh-CN.md` 直接取自中文底稿，排除私人和非原创内容，不从英文反译；英文 `AGENTS.md` 忠实翻译同一公开规则。三语 README 介绍同一套十个规则组。
+- 中文 `AGENTS.zh-CN.md` 直接取自中文底稿，排除私人和非原创内容，不从英文反译；英文 `AGENTS.md` 忠实翻译同一公开规则。三语 README 介绍同一套十一个规则组。
 - 安装时每个主题选择一种语言，合并到目标项目的 `AGENTS.md`；不要同时加载中英文同一规则。
 - 复制到其他项目时，请检查其中的路径、工具、凭据存储位置和平台假设是否适用。
 - Caffeine 规则只能降低闲置睡眠、显示器休眠或部分屏保行为造成的中断风险，不能保证阻止手动锁屏、受管制的锁屏策略、会话切换或注销；不得借此修改密码或其他系统安全设置。
