@@ -1,111 +1,69 @@
-# AGENTS.md
-
-![Rule groups](https://img.shields.io/badge/AGENTS.md-11%20rule%20groups-2563eb)
-![Languages](https://img.shields.io/badge/README-%E4%B8%AD%E6%96%87%20%7C%20%E6%97%A5%E6%9C%AC%E8%AA%9E%20%7C%20English-16a34a)
-![Maintenance](https://img.shields.io/badge/continuously%20maintained-verified-7c3aed)
+# AGENTS.md · Pick the rules your agent needs
 
 [中文](README.md) · [日本語](README.ja.md) · **English**
 
-> Selected public sections of a Chinese global operating guide, with private content excluded, form eleven independently reusable rule groups in Chinese and English. Chinese is taken directly from the Chinese source, and English is a faithful translation. This repository is not a complete copy of the global guide.
+Make it clear when an agent should act, what it should read, which boundaries it must respect, and what a trustworthy handoff requires.
 
-## What this repository is
+This catalog contains **11 independent topics**, each in Chinese and English. **It is not a configuration package to install wholesale.**
 
-An `AGENTS.md` file is a durable operating agreement for Codex and other coding agents at a project boundary. Each split file owns one stable topic, so it can be adopted on its own or combined with the other groups as needed.
+## Start here
 
-Together, the rule groups define:
+1. Choose only the topics you need from the table.
+2. Pick one language and read the scope, dependencies, and limitations.
+3. Merge frequent rules into your persistent instructions; use on-demand reading for less frequent topics. Preserve existing project constraints rather than replacing the entire file.
+4. Check paths and companion documents. Copying rules does not install skills, hooks, or tools, or grant operational authority.
 
-- the actual status at the end of each final response, with unfinished work or blockers;
-- how to delegate well-bounded subtasks worth running in parallel, choose among eight commonly used Luna, Sol 6.1, and Astra combinations by task type, agree on checkpoints and appropriate waiting, avoid unproductive polling, and have the primary agent review the results;
-- where temporary files belong, how to clean them up, and how to protect the project root;
-- how temporary Caffeine/keep-awake mode can reduce interruption risk during long tasks and Computer Use, and where its security limits are;
-- when a long-running task may send a Telegram notification and the one-notification limit;
-- branch, commit, and pre-publish checks for GitHub changes;
-- persistence and non-disclosure rules for API keys used by local Skills;
-- throttling, batching, and failure handling for repeated network fetching;
-- anonymous metadata and delivery checks for document artifacts;
-- documentation and continuity for development projects that need ongoing maintenance or cross-session handoff, and involve any of multi-module collaboration, external services or deployment, phased delivery, or complex business constraints: maintain README, SPEC, CHANGELOG, TASK, and CASE-STUDY with distinct responsibilities for navigation, the current contract, change history, task status, and reusable cases.
+## Rule catalog
 
-## Development documentation and task continuity
+| Topic | What it covers | Rules |
+| --- | --- | --- |
+| Response status | Make completion, unfinished work, and blockers explicit | [中文](final-response-status/AGENTS.zh-CN.md) · [English](final-response-status/AGENTS.md) |
+| Delegation & model routing | Independent subtasks, eight model/effort combinations, sensible waiting and review | [中文](multi-agent-delegation-and-model-routing/AGENTS.zh-CN.md) · [English](multi-agent-delegation-and-model-routing/AGENTS.md) |
+| Development docs & continuity | Responsibilities of README / SPEC / CHANGELOG / TASK / CASE-STUDY and on-demand instructions | [中文](development-documentation-and-task-continuity/AGENTS.zh-CN.md) · [English](development-documentation-and-task-continuity/AGENTS.md) |
+| Frontend design | Design-skill roles, compact layouts, and app-like mobile workflows | [中文](frontend-design/AGENTS.zh-CN.md) · [English](frontend-design/AGENTS.md) |
+| Temporary files & structure | Temporary artifact cleanup, existing-file protection, and stable project roots | [中文](temporary-files-and-project-structure-hygiene/AGENTS.zh-CN.md) · [English](temporary-files-and-project-structure-hygiene/AGENTS.md) |
+| Keep-awake for long tasks | Temporary Caffeine use, cleanup, and security limits | [中文](temporary-caffeine-mode-for-long-running-tasks/AGENTS.zh-CN.md) · [English](temporary-caffeine-mode-for-long-running-tasks/AGENTS.md) |
+| Telegram notifications | Useful end-of-task notifications, triggers, and the once-per-task limit | [中文](telegram-notify-on-stop/AGENTS.zh-CN.md) · [English](telegram-notify-on-stop/AGENTS.md) |
+| GitHub publishing | Branches, scope isolation, and preserving other changes; no automatic publishing authorization | [中文](github-publish-discipline/AGENTS.zh-CN.md) · [English](github-publish-discipline/AGENTS.md) |
+| Credential handling | Safe input, persistence, and non-disclosure for local Skill credentials | [中文](api-key-persistence-for-local-skills/AGENTS.zh-CN.md) · [English](api-key-persistence-for-local-skills/AGENTS.md) |
+| Network fetching | Pacing, batching, and rate limits; distinguish internal operations | [中文](network-scraping-discipline/AGENTS.zh-CN.md) · [English](network-scraping-discipline/AGENTS.md) |
+| Anonymous document metadata | Remove identity fields and local paths; inspect final deliverables | [中文](anonymous-document-artifact-metadata/AGENTS.zh-CN.md) · [English](anonymous-document-artifact-metadata/AGENTS.md) |
 
-Use [`development-documentation-and-task-continuity/AGENTS.md`](development-documentation-and-task-continuity/AGENTS.md) when a development project needs ongoing maintenance or cross-session handoff, and involves any of multi-module collaboration, external services or deployment, phased delivery, or complex business constraints. One-off small changes do not require the full set. The five document responsibilities are:
+## Two ways to adopt a topic
 
-- `README.md`: purpose, entry points, and operations;
-- `SPEC.md`: current behavior, contracts, and acceptance criteria;
-- `CHANGELOG.md`: important changes and release status;
-- `TASK.md`: the current task, unfinished items, blockers, and next steps;
-- `CASE-STUDY.md`: evidence, causes, fix verification, and reusable lessons from real errors; do not invent cases when none exist.
+**Merge directly** for frequently applicable rules. Integrate the chosen text into your `AGENTS.md`, `CLAUDE.md`, or other actual instruction file. Check model, tool, and platform assumptions first; renaming a file does not guarantee compatibility.
 
-Each responsibility may use a single Markdown file or indexed directories split by module or topic. When cases become numerous, use a `case-study/` directory (or existing equivalent), with one Markdown per case and a directory README or existing index for navigation.
-
-Prefer existing documents, names, and directories. Read relevant documents before starting, and update only affected content when making changes. Before ending, pausing, or handing off, write unfinished work back to the task entry point. Maintain one authoritative source for each fact or status, with links elsewhere. Distinguish current specifications, unimplemented plans, historical records, implementation, verification, release, and operational acceptance. Documentation updates do not expand authority and must not put credentials or internal records into public artifacts.
-
-## The eleven rule groups
-
-| File | Primary focus | Best used on its own when you need… |
-|---|---|---|
-| [中文](final-response-status/AGENTS.zh-CN.md) · [English](final-response-status/AGENTS.md) | Label the actual status at the end of each final response and explain unfinished work or blockers | Tasks that need an explicit completion status |
-| [中文](development-documentation-and-task-continuity/AGENTS.zh-CN.md) · [English](development-documentation-and-task-continuity/AGENTS.md) | Development documentation continuity and the five responsibilities of README, SPEC, CHANGELOG, TASK, and CASE-STUDY | Development projects needing ongoing maintenance or cross-session handoff, and involving multi-module collaboration, external services/deployment, phased delivery, or complex business constraints |
-| [中文](multi-agent-delegation-and-model-routing/AGENTS.zh-CN.md) · [English](multi-agent-delegation-and-model-routing/AGENTS.md) | Multi-agent delegation, eight Luna/Sol 6.1/Astra model and reasoning-effort combinations, checkpoints and waiting, and primary-agent review | Independent subtasks or work with different complexity levels |
-| [中文](temporary-files-and-project-structure-hygiene/AGENTS.zh-CN.md) · [English](temporary-files-and-project-structure-hygiene/AGENTS.md) | Temporary directories, end-of-task cleanup, and root structure | A clean project tree and explicit file lifecycles |
-| [中文](temporary-caffeine-mode-for-long-running-tasks/AGENTS.zh-CN.md) · [English](temporary-caffeine-mode-for-long-running-tasks/AGENTS.md) | Temporary keep-awake behavior for long tasks, Computer Use interruption risk, and security boundaries | Long tasks that need continuous execution or foreground interaction |
-| [中文](telegram-notify-on-stop/AGENTS.zh-CN.md) · [English](telegram-notify-on-stop/AGENTS.md) | Long-task stop notifications, interaction checks, one-shot markers, and credentials | Important results that may need to reach a user away from Codex |
-| [中文](github-publish-discipline/AGENTS.zh-CN.md) · [English](github-publish-discipline/AGENTS.md) | Branch discipline, scope isolation, staging-state protection, and publishing checks | A repository with a controlled GitHub release flow |
-| [中文](api-key-persistence-for-local-skills/AGENTS.zh-CN.md) · [English](api-key-persistence-for-local-skills/AGENTS.md) | Local Skill key storage, service-specific exceptions, and output redaction | Local Skills that call external APIs |
-| [中文](network-scraping-discipline/AGENTS.zh-CN.md) · [English](network-scraping-discipline/AGENTS.md) | Request pacing, aggregate endpoints, and rate-limit handling | Tasks that repeatedly access network data sources |
-| [中文](anonymous-document-artifact-metadata/AGENTS.zh-CN.md) · [English](anonymous-document-artifact-metadata/AGENTS.md) | Anonymous author fields and path privacy for Office/PDF artifacts | Generating or converting documents, spreadsheets, slides, or PDFs |
-| [中文](frontend-design/AGENTS.zh-CN.md) · [English](frontend-design/AGENTS.md) | Responsibilities of three design skills, compact layouts, and app-like mobile workflows | Interface design, redesign, and frontend work involving an interface |
-
-## Pick topics and read on demand
-
-This is a catalog, not a whole-repository installation package. Select only the topics you need; there is no requirement to read or apply every directory. Public topics retain their complete text even when the author's local global configuration splits details into on-demand documents. You need not reproduce that local structure.
-
-Merge frequent rules into your own `AGENTS.md` or the equivalent persistent instruction file for your agent. For less frequent topics, save the full text as ordinary Markdown and leave an explicit trigger and path in the root instructions, for example:
+**Read on demand** for long, infrequently needed topics. Save the complete text as ordinary Markdown, keeping an explicit trigger, path, and necessary safety boundaries in the root instructions. For example, save the design topic to `docs/FRONTEND-DESIGN.md` and add:
 
 ```markdown
-Before interface design, redesign, or frontend development involving an interface, read docs/FRONTEND-DESIGN.md. Do not read it for other tasks.
+Before interface design, redesign, or frontend work involving an interface,
+read docs/FRONTEND-DESIGN.md. Do not read it for other tasks.
 ```
 
-Save the design topic's text at that example path yourself. Do not give an on-demand document a root-instruction filename that your runtime automatically loads. Resolve relative paths from your own instruction file, bring required companion documents, and check links. A Markdown link alone does not guarantee reading. Keep necessary safety boundaries in the always-loaded entry point.
+Adjust paths relative to your instruction file and include required companion documents. A link alone does not guarantee reading. Do not load the same rule both in full and on demand, or give an on-demand document a root-instruction filename your runtime automatically loads.
 
-The design skills referenced by the topic must be available in your environment. This repository neither installs nor bundles them and does not enable design hooks.
+Public topics retain their complete text; you need not reproduce the author's local directory structure. Keep general constraints and safety boundaries in the entry point, and load long task-specific details on demand. Short rules and content explicitly requested to remain always loaded need not be split.
 
-## How to combine them
+## Before adopting
 
-The eleven files are thematic rule groups, not mutually exclusive configurations. A practical composition is:
+- **Source:** Chinese comes from the local Chinese source and its explicitly referenced details, with private content excluded. English is a faithful translation, not a separate rule set; Chinese is not back-translated.
+- **Design:** `finesse-ui`, Taste's `redesign-existing-projects`, and `impeccable` must be available in your environment. This repository neither bundles those skills nor enables design hooks.
+- **Model routing:** These are preferences by purpose and cost, not a universal performance ranking. Your runtime must support the chosen models and reasoning levels.
+- **Keep-awake:** It cannot guarantee protection against manual or managed locking and must not bypass passwords or security policies.
+- **Publishing and credentials:** The author's automatic commit, push, and deployment authorization is excluded, as are personal credentials, account configuration, and private paths.
+- **Scope:** Resolve conflicts with existing project rules before adoption. Copying these rules does not expand authority. Choose one language to avoid duplicate loading.
 
-1. Start with `temporary-files-and-project-structure-hygiene` for the baseline file lifecycle.
-2. Add `temporary-caffeine-mode-for-long-running-tasks` when a long task or Computer Use benefits from uninterrupted execution.
-3. Add `multi-agent-delegation-and-model-routing` when parallel work is useful.
-4. Add `github-publish-discipline` whenever the task changes GitHub state.
-5. Add the API-key and network-fetching rules when external APIs or data sources are involved.
-6. Add the anonymous-metadata rules when creating Office, PDF, or other packaged artifacts.
-7. Add Telegram notification rules only when meaningful long-task reminders are actually needed.
-8. Add the development-documentation and task-continuity rule when a development project needs ongoing maintenance or cross-session handoff, and involves multi-module collaboration, external services or deployment, phased delivery, or complex business constraints; maintain the five document responsibilities for navigation, the current specification, change history, task status, and reusable cases.
+## Optional hooks: distinguish rules from implementation
 
-## Usage notes
+| Companion | Current status |
+| --- | --- |
+| [Final-response status checker](final-response-status/README.md) | Checks label format, not actual completion; does not restart the agent |
+| [Telegram notifications](telegram-notify-on-stop/README.md) | The included legacy script does not meet the current task-isolation and result-summary contract; do not enable it as an implementation of the new rules |
 
-- Chinese `AGENTS.zh-CN.md` is taken directly from the Chinese source, with private and non-original content excluded; it is not back-translated from English. English `AGENTS.md` faithfully translates the same public rules. All three READMEs introduce the same eleven rule groups.
-- For each topic, choose one language and merge it into the target project’s `AGENTS.md`; do not load both language versions of the same rule.
-- Before copying a group into another project, check that its paths, tools, credential store, and platform assumptions apply.
-- The Caffeine rule can reduce interruption risk from idle sleep, display sleep, or some screensaver behavior, but it cannot guarantee protection against manual locking, managed lock policies, session switching, or logout; never use it to change password or other system security settings.
-- Never place API keys, tokens, cookies, personal data, production data, or real private configuration in a public repository.
-- If a project has stricter local rules, follow its source-of-truth instructions and the user's current request.
+Follow each README for installation, trust, and verification. Passing script tests does not establish actual triggering or message delivery.
 
-## Companion hooks
+## Maintenance and reuse
 
-[Final response status](final-response-status/README.md) and [Telegram stop notifications](telegram-notify-on-stop/README.md) document the scripts. Copying rules alone does not install hooks. Preserve existing configuration entries and review trust through `/hooks`. The status checker only warns, without restarting the agent; Telegram does not transmit chat content. The included Telegram script is a legacy version that does not implement the current rules for task isolation and result summaries; adopting the current rules requires a matching implementation. Script tests do not prove actual triggering or delivery.
+Each topic maintains `AGENTS.zh-CN.md` and `AGENTS.md`; the three READMEs guide selection. Update the Chinese source first, then synchronize public text and translations. Do not create competing sources for the same fact.
 
-## Maintenance
-
-- Keep English `AGENTS.md` and Chinese `AGENTS.zh-CN.md` in each topic directory; place companion hook scripts and their English and Chinese READMEs in the same directory, without a duplicate `HOOK.md`.
-- The Chinese source is the sole source of rules. Update it first, faithfully translate the affected public content, and synchronize all three READMEs; do not independently add to or change the rules in English.
-- Before pushing, check Markdown, absolute paths, secrets, and unintended generated files.
-- Keep commits focused and distinguish rule changes, README changes, and repository metadata changes.
-
-## Topics
-
-`AGENTS.md` · `codex` · `ai-agents` · `agent-instructions` · `multi-agent` · `prompt-engineering` · `workflow-automation`
-
-## License
-
-No license file is included by default. Add an explicit license only after the maintainer has chosen the intended reuse terms.
+No license is currently included, so open-source permission is not implied. Confirm reuse terms before redistribution.

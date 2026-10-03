@@ -1,111 +1,69 @@
-# AGENTS.md
-
-![ルール](https://img.shields.io/badge/AGENTS.md-11%20%E3%83%AB%E3%83%BC%E3%83%AB%E7%B5%84-2563eb)
-![言語](https://img.shields.io/badge/README-%E4%B8%AD%E6%96%87%20%7C%20%E6%97%A5%E6%9C%AC%E8%AA%9E%20%7C%20English-16a34a)
-![メンテナンス](https://img.shields.io/badge/%E7%B6%99%E7%B6%9A%E7%AE%A1%E7%90%86-verified-7c3aed)
+# AGENTS.md · 必要なルールだけを選ぶ
 
 [中文](README.md) · **日本語** · [English](README.en.md)
 
-> 中国語のグローバル運用規約から公開する章を選び、私的な内容を除いて、11 個の独立利用可能な中国語・英語のルール組を提供します。中国語は中国語原稿から直接採用し、英語は忠実な翻訳です。このリポジトリはグローバル規約の完全なコピーではありません。
+Agent がいつ動き、何を読み、どの境界を守り、何をもって成果を引き渡すかを明確にするためのルール集です。
 
-## このリポジトリについて
+**11 の独立したテーマ**を中国語原稿と英訳で提供します。**リポジトリ全体を一括導入する設定パッケージではありません。**
 
-`AGENTS.md` は、プロジェクト境界で Codex などの coding agent に読み込ませる持続的な作業規約です。分割後の各ファイルは 1 つの安定したテーマだけを担当し、単独でも、必要な組み合わせでも利用できます。
+## はじめに
 
-このルール組は、次の事項を明確にします。
+1. 下の一覧から必要なテーマだけを選びます。
+2. 一方の言語を選び、適用範囲・依存・制限を確認します。
+3. 頻用するルールは持続指示へ統合し、低頻度のテーマは必要時に読みます。既存のプロジェクト制約を保持し、ファイル全体を置き換えません。
+4. パスと付属文書を確認します。ルールのコピーだけでは Skill・フック・ツールは導入されず、操作権限も増えません。
 
-- 最終回答の末尾に示す実際の状態、および未完了事項や阻害要因；
-- 範囲が明確で並列化に価値があるサブタスクの委任、作業の性質に応じた Luna・Sol 6.1・Astra の 8 種類の常用組み合わせの選択、チェックポイントと適切な待機、無益なポーリングの回避、主エージェントによる成果のレビュー；
-- 一時ファイルの置き場所、削除、プロジェクトルートの管理；
-- 長時間タスクと Computer Use における一時的な Caffeine/スリープ防止、およびセキュリティ上の限界；
-- 長時間タスクにおける Telegram 通知と「1 タスク 1 回」の制限；
-- GitHub のブランチ、コミット、公開前チェック；
-- ローカル Skill の API key 永続化と非開示；
-- 繰り返し行うネットワーク取得の速度制御、バッチ処理、障害対応；
-- 文書成果物の匿名メタデータと納品前チェック；
-- 継続的な保守またはセッションをまたぐ引き継ぎが必要で、かつマルチモジュール協働、外部サービスまたはデプロイ、段階的な納品、複雑な業務制約のいずれかを伴う開発プロジェクトでは、README、SPEC、CHANGELOG、TASK、CASE-STUDY の 5 種類の Markdown 文書を、ナビゲーション、現行契約、変更履歴、タスク状態、再利用可能な事例という各責務に分けて維持します。
+## ルール一覧
 
-## 開発ドキュメントとタスクの継続性
+| テーマ | 対象 | 本文 |
+| --- | --- | --- |
+| 回答の状態 | 完了・未完了・阻害要因を明示 | [中文](final-response-status/AGENTS.zh-CN.md) · [English](final-response-status/AGENTS.md) |
+| 委任とモデル選択 | 独立タスク、八つのモデル設定、適切な待機と検証 | [中文](multi-agent-delegation-and-model-routing/AGENTS.zh-CN.md) · [English](multi-agent-delegation-and-model-routing/AGENTS.md) |
+| 開発文書と引き継ぎ | 五種類の開発文書の責務と必要時に読む指示 | [中文](development-documentation-and-task-continuity/AGENTS.zh-CN.md) · [English](development-documentation-and-task-continuity/AGENTS.md) |
+| フロントエンド設計 | デザイン Skill の分担、コンパクトな配置、アプリ型のモバイル操作 | [中文](frontend-design/AGENTS.zh-CN.md) · [English](frontend-design/AGENTS.md) |
+| 一時ファイルと構成 | 一時成果物の整理、既存ファイルの保護、ルート構成の維持 | [中文](temporary-files-and-project-structure-hygiene/AGENTS.zh-CN.md) · [English](temporary-files-and-project-structure-hygiene/AGENTS.md) |
+| 長時間作業のスリープ防止 | 一時的な Caffeine の利用・解除と安全上の限界 | [中文](temporary-caffeine-mode-for-long-running-tasks/AGENTS.zh-CN.md) · [English](temporary-caffeine-mode-for-long-running-tasks/AGENTS.md) |
+| Telegram 通知 | 有用な終了通知、発動条件、タスク単位の回数制限 | [中文](telegram-notify-on-stop/AGENTS.zh-CN.md) · [English](telegram-notify-on-stop/AGENTS.md) |
+| GitHub 公開規律 | ブランチ、変更範囲の分離、他の作業の保護。自動公開権限は付与しない | [中文](github-publish-discipline/AGENTS.zh-CN.md) · [English](github-publish-discipline/AGENTS.md) |
+| 認証情報の扱い | ローカル Skill の安全な入力・保存・非開示 | [中文](api-key-persistence-for-local-skills/AGENTS.zh-CN.md) · [English](api-key-persistence-for-local-skills/AGENTS.md) |
+| ネットワーク取得 | 速度制御、バッチ取得、制限時の対応。内部運用と区別 | [中文](network-scraping-discipline/AGENTS.zh-CN.md) · [English](network-scraping-discipline/AGENTS.md) |
+| 文書メタデータの匿名化 | 個人情報とローカルパスの除去、最終成果物の再確認 | [中文](anonymous-document-artifact-metadata/AGENTS.zh-CN.md) · [English](anonymous-document-artifact-metadata/AGENTS.md) |
 
-開発プロジェクトに継続的な保守またはセッションをまたぐ引き継ぎが必要で、かつマルチモジュール協働、外部サービスやデプロイ、段階的な納品、複雑な業務制約のいずれかを伴う場合は、[`development-documentation-and-task-continuity/AGENTS.md`](development-documentation-and-task-continuity/AGENTS.md) を使用します。単発の小さな変更では一式を揃える必要はありません。5 種類の文書の責務は次のとおりです。
+## 二つの導入方法
 
-- `README.md`：用途、入口、操作；
-- `SPEC.md`：現行の動作、契約、受け入れ基準；
-- `CHANGELOG.md`：重要な変更とリリース状況；
-- `TASK.md`：現在のタスク、未完了項目、阻害要因、次の手順；
-- `CASE-STUDY.md`：実際の誤りの証拠、原因、修正の検証、再利用できる経験。実例がなければ創作しません。
+**直接統合**は頻用するルール向けです。選んだ本文を自分の `AGENTS.md`、`CLAUDE.md` または実際に使う指示ファイルへ統合します。モデル・ツール・OS の前提を確認してください。ファイル名の変更だけでは互換性を保証しません。
 
-各責務は単一の Markdown、またはモジュール・テーマ別の索引付きディレクトリで管理できます。事例が増えた場合は `case-study/`（既存の同等ディレクトリも可）に事例ごとの Markdown を置き、ディレクトリ内の README や既存の索引から案内します。
-
-既存の文書、名前、ディレクトリを優先して再利用します。着手前に関連文書を読み、変更時は影響する内容だけを更新します。終了・一時停止・引き継ぎの前に、未完了事項をタスクの入口へ書き戻します。同じ事実や状態の正本は 1 つとし、他の場所からリンクします。現行仕様、未実装の計画、履歴、実装、検証、リリース、運用時の受け入れを区別します。文書の更新は操作権限を拡大せず、認証情報や内部記録を公開成果物に混入させてはいけません。
-
-## 11 個のルール組
-
-| ファイル | 主な対象 | 単独利用に適する場面 |
-|---|---|---|
-| [中文](final-response-status/AGENTS.zh-CN.md) · [English](final-response-status/AGENTS.md) | 最終回答の末尾に実際の状況を明示し、未完了や阻害要因を短く説明する | 完了状態を明確に示す必要があるタスク |
-| [中文](development-documentation-and-task-continuity/AGENTS.zh-CN.md) · [English](development-documentation-and-task-continuity/AGENTS.md) | 開発ドキュメントの継続性、および README、SPEC、CHANGELOG、TASK、CASE-STUDY の 5 つの責務 | 継続的な保守またはセッションをまたぐ引き継ぎが必要で、かつマルチモジュール協働、外部サービス/デプロイ、段階的な納品、複雑な業務制約を伴う開発プロジェクト |
-| [中文](multi-agent-delegation-and-model-routing/AGENTS.zh-CN.md) · [English](multi-agent-delegation-and-model-routing/AGENTS.md) | マルチエージェント委任、Luna/Sol 6.1/Astra の 8 種類のモデルと推論レベルの組み合わせ、チェックポイントと待機、主エージェントのレビュー | 独立したサブタスクや異なる難易度の作業 |
-| [中文](temporary-files-and-project-structure-hygiene/AGENTS.zh-CN.md) · [English](temporary-files-and-project-structure-hygiene/AGENTS.md) | 一時ディレクトリ、タスク後の削除、ルート構成 | プロジェクトツリーを整理して保ちたい場合 |
-| [中文](temporary-caffeine-mode-for-long-running-tasks/AGENTS.zh-CN.md) · [English](temporary-caffeine-mode-for-long-running-tasks/AGENTS.md) | 長時間タスク向けの一時的なスリープ防止、Computer Use の中断リスク、セキュリティ上の境界 | 継続実行や前面での対話が必要な長時間タスク |
-| [中文](telegram-notify-on-stop/AGENTS.zh-CN.md) · [English](telegram-notify-on-stop/AGENTS.md) | 長時間タスクの停止通知、ユーザー操作の判定、one-shot marker、認証情報 | ユーザー不在中に重要な結果だけ知らせたい場合 |
-| [中文](github-publish-discipline/AGENTS.zh-CN.md) · [English](github-publish-discipline/AGENTS.md) | ブランチ規律、作業範囲の分離、ステージ状態の保護、公開チェック | 安定した GitHub 公開手順が必要なリポジトリ |
-| [中文](api-key-persistence-for-local-skills/AGENTS.zh-CN.md) · [English](api-key-persistence-for-local-skills/AGENTS.md) | ローカル Skill の key 保管、サービス固有の例外、出力の秘匿 | 外部 API を使うローカル Skill 集合 |
-| [中文](network-scraping-discipline/AGENTS.zh-CN.md) · [English](network-scraping-discipline/AGENTS.md) | 取得速度制御、集約エンドポイント、レート制限対応 | ネットワークデータソースへ繰り返しアクセスする作業 |
-| [中文](anonymous-document-artifact-metadata/AGENTS.zh-CN.md) · [English](anonymous-document-artifact-metadata/AGENTS.md) | Office/PDF などの匿名作成者フィールドとパスの秘匿 | 文書、表計算、スライド、PDF の生成・変換 |
-| [中文](frontend-design/AGENTS.zh-CN.md) · [English](frontend-design/AGENTS.md) | 三つのデザイン Skill の分担、コンパクトなレイアウト、アプリ型のモバイル操作 | UI の設計・改修と画面を伴うフロントエンド開発 |
-
-## テーマの選択と必要時の読み込み
-
-ここはルールの一覧であり、リポジトリ全体の導入パッケージではありません。必要なテーマだけを選び、全ディレクトリを読み込んだり適用したりする必要はありません。作者のローカル設定では詳細を必要時に読む文書へ分けても、公開テーマは全文を保持します。同じディレクトリ構成を再現する必要はありません。
-
-頻用するルールは、自分の `AGENTS.md` または利用 Agent の持続指示ファイルへ統合できます。低頻度のテーマは通常の Markdown として保存し、ルート指示には読む条件とパスを明記できます。
+**必要時に読む**方法は、長く低頻度のテーマ向けです。全文を通常の Markdown として保存し、ルート指示に読む条件・パス・必要な安全境界を残します。たとえば設計テーマを `docs/FRONTEND-DESIGN.md` へ保存し、次を加えます。
 
 ```markdown
-UI の設計・改修または画面を伴うフロントエンド開発の前に docs/FRONTEND-DESIGN.md を読む。それ以外の作業では読まない。
+UI の設計・改修または画面を伴うフロントエンド開発の前に、
+docs/FRONTEND-DESIGN.md を読む。それ以外の作業では読まない。
 ```
 
-この例では、利用者がデザインテーマの本文を指定パスへ保存してください。必要時に読む文書には、実行環境が自動で読むルート指示ファイル名を使わないでください。相対パスは自分の指示ファイルを基準に調整し、必要な付属文書もコピーしてリンクを確認します。Markdown リンクだけでは自動読み込みを保証しません。必要な安全境界は常時読む入口に残します。
+パスは自分の指示ファイルを基準に調整し、必要な付属文書も持参します。リンクだけでは読み込みを保証しません。同じルールを常時全文と必要時の両方で重複させず、必要時に読む文書には実行環境が自動読込するルート指示ファイル名を付けません。
 
-デザインテーマが参照する Skill は利用環境に必要です。このリポジトリはそれらを導入・同梱せず、デザインフックも有効にしません。
+公開テーマは全文を保持するため、作者のローカル構成を再現する必要はありません。一般的な制約と安全境界は入口に残し、長い作業別の詳細は必要時に読みます。短いルールや、ユーザーが常駐を指定した内容は分割しません。
 
-## 組み合わせ方
+## 採用前の確認
 
-11 ファイルはテーマ別のルール組であり、互いに排他的な設定ではありません。通常は次の順で組み合わせられます。
+- **出典：** 中国語はローカルの中国語原稿と明示参照された詳細から、私的な内容を除いたものです。英語は忠実な翻訳で別ルールではなく、中国語を英語から逆翻訳しません。
+- **設計：** `finesse-ui`、Taste の `redesign-existing-projects`、`impeccable` が利用環境に必要です。本リポジトリは Skill を同梱せず、設計フックも有効化しません。
+- **モデル選択：** 用途と費用に応じた選好であり、普遍的な性能順位ではありません。モデルと推論レベルは実行環境の対応が必要です。
+- **スリープ防止：** 手動・管理下のロックを防ぐ保証はなく、パスワードや安全方針を迂回してはいけません。
+- **公開と認証：** 作者の自動 commit・push・デプロイ権限、個人の認証情報・アカウント設定・私的パスは含みません。
+- **適用範囲：** 既存のプロジェクト規則との矛盾を解消してから採用します。コピーで権限は拡大しません。一方の言語だけを選び、重複読込を避けます。
 
-1. まず `temporary-files-and-project-structure-hygiene` を加え、すべてのタスクのファイルライフサイクルを定めます。
-2. 長時間タスクや Computer Use の継続実行に利点がある場合は `temporary-caffeine-mode-for-long-running-tasks` を加えます。
-3. 並列処理が必要なら `multi-agent-delegation-and-model-routing` を加えます。
-4. GitHub を変更する場合は `github-publish-discipline` を加えます。
-5. 外部 API やデータ取得を使う場合は、API key とネットワーク取得のルールを加えます。
-6. Office、PDF、その他メタデータを持つ成果物を作る場合は、匿名メタデータのルールを加えます。
-7. Telegram 通知は、長時間タスクの重要な通知が本当に必要な場合だけ加えます。
-8. 開発プロジェクトに継続的な保守またはセッションをまたぐ引き継ぎが必要で、かつマルチモジュール協働、外部サービス/デプロイ、段階的な納品、複雑な業務制約を伴う場合は、開発ドキュメントとタスクの継続性ルールを加えます。5 種類の文書を、ナビゲーション、現行仕様、変更履歴、タスク状態、再利用可能な事例という責務ごとに維持します。
+## 任意のフック：ルールと実装は別
 
-## 利用上の注意
+| 付属機能 | 現在の状態 |
+| --- | --- |
+| [回答末尾の状態チェック](final-response-status/README.md) | ラベル形式のみを確認し、実際の完了を判定せず Agent も再起動しません |
+| [Telegram 通知](telegram-notify-on-stop/README.md) | 付属の旧版スクリプトは現在のタスク分離・結果要約契約に未対応です。新ルールの実装として有効にしないでください |
 
-- 中国語の `AGENTS.zh-CN.md` は中国語原稿から直接採用し、私的な内容とオリジナルではない内容を除いています。英語からの逆翻訳ではありません。英語の `AGENTS.md` は同じ公開ルールの忠実な翻訳です。3 言語の README は同じ 11 個のルール組を紹介します。
-- 導入時はテーマごとに一方の言語を選び、対象プロジェクトの `AGENTS.md` に統合してください。同じルールの中国語版と英語版を同時に読み込ませないでください。
-- 他のプロジェクトへコピーする前に、パス、ツール、認証情報の保管場所、プラットフォーム前提を確認してください。
-- Caffeine ルールは、アイドル時のスリープ、ディスプレイ休止、または一部のスクリーンセーバー動作による中断リスクを下げるだけで、手動ロック、管理されたロックポリシー、セッション切替、ログアウトを保証するものではありません。パスワードやその他のシステムセキュリティ設定を変更するために使ってはいけません。
-- API key、token、Cookie、個人情報、本番データ、実際の秘密設定を公開リポジトリに入れないでください。
-- プロジェクトにより厳格なローカル規約がある場合は、プロジェクトの正本と現在のユーザー要求を優先してください。
+導入・信頼・検証は各 README に従います。スクリプトのテスト成功だけでは実際の発火や配信を証明しません。
 
-## 付属フック
+## 保守と再利用
 
-[回答末尾の状態チェック](final-response-status/README.md)と [Telegram 停止通知](telegram-notify-on-stop/README.md)でスクリプトを説明しています。ルールのコピーだけではフックは導入されません。既存設定を保持して統合し、`/hooks` で信頼を確認してください。状態チェックは警告のみで再実行せず、Telegram は会話本文を送信しません。付属 Telegram スクリプトは旧版で、現在のルールが要求するタスク分離と結果要約は未実装です。現在のルールを採用するには対応する実装が必要です。スクリプトのテストは実際の発火や配信を保証しません。
+各テーマは `AGENTS.zh-CN.md` と `AGENTS.md` を維持し、三言語の README は選択方法を案内します。変更は中国語の正本を先に更新し、公開本文と訳文へ反映します。同じ事実に競合する正本を増やしません。
 
-## メンテナンス
-
-- 各テーマのディレクトリに英語の `AGENTS.md` と中国語の `AGENTS.zh-CN.md` を置き、付属フックのスクリプトと中国語・英語の README も同じ場所で管理します。重複する `HOOK.md` は作りません。
-- 中国語の原稿をルールの唯一の正本とします。変更時は原稿を先に更新し、影響する公開部分を忠実に翻訳して 3 言語の README に反映します。英語側で独自にルールを追加・変更しません。
-- push 前に Markdown、絶対パス、秘密値、意図しない生成ファイルを確認します。
-- ルール、README、リポジトリメタデータの変更を区別できる、焦点の明確なコミットを維持します。
-
-## Topics
-
-`AGENTS.md` · `codex` · `ai-agents` · `agent-instructions` · `multi-agent` · `prompt-engineering` · `workflow-automation`
-
-## License
-
-デフォルトではライセンスファイルを同梱していません。再利用条件を決めた後に、明示的なライセンスを追加してください。
+現在ライセンスは付属しておらず、オープンソースの許諾を意味しません。再配布前に利用条件を確認してください。
