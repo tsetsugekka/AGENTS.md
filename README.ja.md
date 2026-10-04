@@ -4,7 +4,7 @@
 
 Agent がいつ動き、何を読み、どの境界を守り、何をもって成果を引き渡すかを明確にするためのルール集です。
 
-**11 の独立したテーマ**を中国語原稿と英訳で提供します。**リポジトリ全体を一括導入する設定パッケージではありません。**
+**12 の独立したテーマ**を中国語原稿と英訳で提供します。**リポジトリ全体を一括導入する設定パッケージではありません。**
 
 ## はじめに
 
@@ -22,6 +22,7 @@ Agent がいつ動き、何を読み、どの境界を守り、何をもって�
 | 開発文書と引き継ぎ | 五種類の開発文書の責務と必要時に読む指示 | [中文](development-documentation-and-task-continuity/AGENTS.zh-CN.md) · [English](development-documentation-and-task-continuity/AGENTS.md) |
 | フロントエンド設計 | デザイン Skill の分担、コンパクトな配置、アプリ型のモバイル操作 | [中文](frontend-design/AGENTS.zh-CN.md) · [English](frontend-design/AGENTS.md) |
 | 一時ファイルと構成 | 一時成果物の整理、既存ファイルの保護、ルート構成の維持 | [中文](temporary-files-and-project-structure-hygiene/AGENTS.zh-CN.md) · [English](temporary-files-and-project-structure-hygiene/AGENTS.md) |
+| ブラウザーのタブ | 作業タブの再利用、不要ページの即時整理、ユーザーの既存タブの保護 | [中文](browser-tab-hygiene/AGENTS.zh-CN.md) · [English](browser-tab-hygiene/AGENTS.md) |
 | 長時間作業のスリープ防止 | 一時的な Caffeine の利用・解除と安全上の限界 | [中文](temporary-caffeine-mode-for-long-running-tasks/AGENTS.zh-CN.md) · [English](temporary-caffeine-mode-for-long-running-tasks/AGENTS.md) |
 | Telegram 通知 | 有用な終了通知、発動条件、タスク単位の回数制限 | [中文](telegram-notify-on-stop/AGENTS.zh-CN.md) · [English](telegram-notify-on-stop/AGENTS.md) |
 | GitHub 公開規律 | ブランチ、変更範囲の分離、他の作業の保護。自動公開権限は付与しない | [中文](github-publish-discipline/AGENTS.zh-CN.md) · [English](github-publish-discipline/AGENTS.md) |

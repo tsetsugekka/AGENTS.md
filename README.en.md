@@ -4,7 +4,7 @@
 
 Make it clear when an agent should act, what it should read, which boundaries it must respect, and what a trustworthy handoff requires.
 
-This catalog contains **11 independent topics**, each in Chinese and English. **It is not a configuration package to install wholesale.**
+This catalog contains **12 independent topics**, each in Chinese and English. **It is not a configuration package to install wholesale.**
 
 ## Start here
 
@@ -22,6 +22,7 @@ This catalog contains **11 independent topics**, each in Chinese and English. **
 | Development docs & continuity | Responsibilities of README / SPEC / CHANGELOG / TASK / CASE-STUDY and on-demand instructions | [中文](development-documentation-and-task-continuity/AGENTS.zh-CN.md) · [English](development-documentation-and-task-continuity/AGENTS.md) |
 | Frontend design | Design-skill roles, compact layouts, and app-like mobile workflows | [中文](frontend-design/AGENTS.zh-CN.md) · [English](frontend-design/AGENTS.md) |
 | Temporary files & structure | Temporary artifact cleanup, existing-file protection, and stable project roots | [中文](temporary-files-and-project-structure-hygiene/AGENTS.zh-CN.md) · [English](temporary-files-and-project-structure-hygiene/AGENTS.md) |
+| Browser tabs | Reuse task tabs, promptly close unneeded pages, and protect the user's existing tabs | [中文](browser-tab-hygiene/AGENTS.zh-CN.md) · [English](browser-tab-hygiene/AGENTS.md) |
 | Keep-awake for long tasks | Temporary Caffeine use, cleanup, and security limits | [中文](temporary-caffeine-mode-for-long-running-tasks/AGENTS.zh-CN.md) · [English](temporary-caffeine-mode-for-long-running-tasks/AGENTS.md) |
 | Telegram notifications | Useful end-of-task notifications, triggers, and the once-per-task limit | [中文](telegram-notify-on-stop/AGENTS.zh-CN.md) · [English](telegram-notify-on-stop/AGENTS.md) |
 | GitHub publishing | Branches, scope isolation, and preserving other changes; no automatic publishing authorization | [中文](github-publish-discipline/AGENTS.zh-CN.md) · [English](github-publish-discipline/AGENTS.md) |

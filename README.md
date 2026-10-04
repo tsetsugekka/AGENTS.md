@@ -4,7 +4,7 @@
 
 让 Agent 清楚知道：什么时候行动、该读什么、哪些边界不能越过，以及怎样交付可信的结果。
 
-这里收集 **11 个独立主题**，每个都有中文原稿与英文译文。它是一份可按需取用的规则目录，**不是要求整仓安装的配置包**。
+这里收集 **12 个独立主题**，每个都有中文原稿与英文译文。它是一份可按需取用的规则目录，**不是要求整仓安装的配置包**。
 
 ## 从这里开始
 
@@ -22,6 +22,7 @@
 | 开发文档与交接 | README / SPEC / CHANGELOG / TASK / CASE-STUDY 的职责与按需指令 | [中文](development-documentation-and-task-continuity/AGENTS.zh-CN.md) · [English](development-documentation-and-task-continuity/AGENTS.md) |
 | 前端设计 | 设计 Skill 分工、紧凑布局与手机 App 式流程 | [中文](frontend-design/AGENTS.zh-CN.md) · [English](frontend-design/AGENTS.md) |
 | 临时文件与目录 | 临时产物清理、既有文件保护、根目录稳定 | [中文](temporary-files-and-project-structure-hygiene/AGENTS.zh-CN.md) · [English](temporary-files-and-project-structure-hygiene/AGENTS.md) |
+| 浏览器标签页 | 复用任务页面、及时关闭无用页面、保护用户原有标签页 | [中文](browser-tab-hygiene/AGENTS.zh-CN.md) · [English](browser-tab-hygiene/AGENTS.md) |
 | 长任务保持唤醒 | 临时 Caffeine 的启停与安全限制 | [中文](temporary-caffeine-mode-for-long-running-tasks/AGENTS.zh-CN.md) · [English](temporary-caffeine-mode-for-long-running-tasks/AGENTS.md) |
 | Telegram 通知 | 有价值的结束通知、触发条件与每任务一次限制 | [中文](telegram-notify-on-stop/AGENTS.zh-CN.md) · [English](telegram-notify-on-stop/AGENTS.md) |
 | GitHub 发布纪律 | 分支、范围隔离及保护其他改动；不授予自动发布权限 | [中文](github-publish-discipline/AGENTS.zh-CN.md) · [English](github-publish-discipline/AGENTS.md) |
