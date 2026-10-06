@@ -32,22 +32,22 @@
 
 | テーマ | 別に保存する全文 | メイン隣での保存名 | 読む条件 |
 | --- | --- | --- | --- |
-| フロントエンド設計とページ SEO | [中文](frontend-design/AGENTS.zh-CN.md) · [English](frontend-design/AGENTS.md) | `FRONTEND-DESIGN.md` | UI の設計・改修、画面を伴う開発、ページ SEO／共有プレビュー。関連章のみ |
+| フロントエンド設計・性能・ページ SEO | [中文](frontend-design/AGENTS.zh-CN.md) · [English](frontend-design/AGENTS.md) | `FRONTEND-DESIGN.md` | UI の設計・改修、画面を伴う開発、ページ性能、SEO／共有プレビュー。関連章のみ |
 | 認証情報 | [中文](api-key-persistence-for-local-skills/AGENTS.zh-CN.md) · [English](api-key-persistence-for-local-skills/AGENTS.md) | `CREDENTIALS.md` | パスワード・key・token などの受領・保存・使用前 |
 | 文書メタデータ | [中文](anonymous-document-artifact-metadata/AGENTS.zh-CN.md) · [English](anonymous-document-artifact-metadata/AGENTS.md) | `DOCUMENT-METADATA.md` | 対象成果物の作成・編集・変換・描画・書き出し前 |
 
-### メインへ入れる入口：設計と SEO
+### メインへ入れる入口：設計・性能・SEO
 
 選んだ言語の設計本文を `FRONTEND-DESIGN.md` へ保存し、メイン `AGENTS.md` に以下を追加します。
 
 ```markdown
 ## フロントエンド設計：必要時に読む
-- UI の設計・改修、画面を伴うフロントエンド開発、またはページ SEO／共有プレビューでは、
+- UI の設計・改修、画面を伴うフロントエンド開発、ページの読み込み・性能改善、または SEO／共有プレビューでは、
   [フロントエンド設計ルール](FRONTEND-DESIGN.md) の関連章を読む。
   それ以外の作業では読まない。
 ```
 
-三つの設計 Skill の分担、compact、モバイル操作、チャートと操作の確認、SEO の本文配信・メタ情報・共有プレビュー要件はテーマ全文に置きます。**これらの詳細をメインへもコピーしません。**
+三つの設計 Skill の分担、compact、モバイル操作、チャートと操作の確認、読み込み性能、SEO の本文配信・メタ情報・共有プレビュー要件はテーマ全文に置きます。**これらの詳細をメインへもコピーしません。**
 
 ### メインへ入れる入口：認証情報
 
@@ -84,7 +84,7 @@
 1. 実行環境が実際に読むメイン指示パスを確認します。Codex の標準は `~/.codex/AGENTS.md` です。別の Codex ホームが設定されていれば、その設定を優先します。他の Agent は持続指示の入口を確認し、パスを推測したり改名だけで互換性を宣言したりしません。
 2. 既存のメインファイルと隣接文書を読み、保護します。一方の言語を選び、上の区分どおり常駐本文を統合し、三つの本文を保存して入口を追加します。対象は選んだテーマのみです。既存ファイルがなければ必要なものを作り、認証情報や作者の私的設定を加えません。
 3. 入口の相対パスが本文を開けること、付属リンクが読めること、テーマ全文がメインへも重複していないことを確認します。ユーザーが常駐や別の導入方式を指定した場合は従い、実際の不整合は具体的な位置を示します。
-4. ルール導入、Skill の利用可否、フック状態を別々に説明します。ルールを読むだけではツールは導入されません。設計の三 Skill と SEO Skill はテーマの出典から別途準備し、フックは下の説明に従います。
+4. ルール導入、Skill の利用可否、フック状態を別々に説明します。ルールを読むだけではツールは導入されません。設計の三 Skill はテーマの出典から別途準備します。SEO・共有プレビュー・性能の規則はテーマから直接実行でき、対応する Skill の導入は不要です。フックは下の説明に従います。
 5. 実際のメインパス、統合したテーマ、三文書のパス、入口パスの確認結果、未解決依存を報告します。ファイルの存在とリンク確認はルールの導入完了を示すだけで、将来の作業実行の正しさを証明しません。
 
 Codex の標準ディレクトリへ全テーマを導入する場合の例です。
@@ -92,7 +92,7 @@ Codex の標準ディレクトリへ全テーマを導入する場合の例で�
 ```text
 ~/.codex/
 ├── AGENTS.md             # 第1部の全文 + 第2部の三つの短い入口
-├── FRONTEND-DESIGN.md    # 設計、モバイル経験、ページ SEO。関連章を読む
+├── FRONTEND-DESIGN.md    # 設計、モバイル経験、読み込み性能、ページ SEO。関連章を読む
 ├── CREDENTIALS.md        # 認証情報の詳細。取り扱う前に読む
 └── DOCUMENT-METADATA.md  # 文書メタデータの詳細。対象成果物の操作前に読む
 ```
@@ -102,7 +102,7 @@ Codex の標準ディレクトリへ全テーマを導入する場合の例で�
 ## 依存と任意のフック
 
 - **出典：** 中国語はローカルの正本と明示参照された詳細から私的な内容を除いたもので、英語は忠実な翻訳です。全文と入口で競合する別ルールを維持しません。
-- **フロントエンドと SEO：** 詳細手法は [finesse-ui](https://github.com/mouse-lin/finesse-skill)、[redesign-existing-projects](https://github.com/Leonxlnx/taste-skill)、[impeccable](https://github.com/pbakaus/impeccable)、[public-page-seo-assist](https://github.com/tsetsugekka/codex-sakura-account-site-skills/blob/main/skills/public-page-seo-assist/SKILL.md) が維持します。本リポジトリは Skill を同梱せず設計フックも有効化しません。段階に必要な内容のみを読みます。
+- **フロントエンド設計：** 設計手法は [finesse-ui](https://github.com/mouse-lin/finesse-skill)、[redesign-existing-projects](https://github.com/Leonxlnx/taste-skill)、[impeccable](https://github.com/pbakaus/impeccable) が維持します。本リポジトリは Skill を同梱せず設計フックも有効化しません。段階に必要な内容のみを読みます。SEO・共有プレビュー・読み込み性能の条件、規則、確認要件は設計テーマに含まれ、別の Skill を導入せず実行できます。
 - **モデルとプラットフォーム：** 選択は用途と費用の選好であり、実際のモデル・推論レベル・ツールは実行環境の対応が必要です。コピーで権限は増えず、作者の自動 commit・push・デプロイ権限も含みません。
 - **スリープ防止：** 手動・管理下のロックを防ぐ保証はなく、パスワードや安全方針を迂回してはいけません。
 

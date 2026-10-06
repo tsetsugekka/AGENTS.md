@@ -32,22 +32,23 @@ Do not merge the complete rules for these **3 topics** into the main file. Save 
 
 | Topic | Complete text to save separately | Filename beside the main file | Read when |
 | --- | --- | --- | --- |
-| Frontend design & webpage SEO | [中文](frontend-design/AGENTS.zh-CN.md) · [English](frontend-design/AGENTS.md) | `FRONTEND-DESIGN.md` | Interface design, redesign, interface-related frontend work, or webpage SEO/sharing previews; relevant sections only |
+| Frontend design, performance & webpage SEO | [中文](frontend-design/AGENTS.zh-CN.md) · [English](frontend-design/AGENTS.md) | `FRONTEND-DESIGN.md` | Interface design, redesign, interface-related frontend work, webpage performance, or SEO/sharing previews; relevant sections only |
 | Credential handling | [中文](api-key-persistence-for-local-skills/AGENTS.zh-CN.md) · [English](api-key-persistence-for-local-skills/AGENTS.md) | `CREDENTIALS.md` | Before receiving, saving, or using passwords, keys, tokens, or other credentials |
 | Document metadata | [中文](anonymous-document-artifact-metadata/AGENTS.zh-CN.md) · [English](anonymous-document-artifact-metadata/AGENTS.md) | `DOCUMENT-METADATA.md` | Before creating, editing, converting, rendering, or exporting relevant artifacts |
 
-### Main-file trigger: frontend design and SEO
+### Main-file trigger: frontend design, performance and SEO
 
 Save the frontend topic in your chosen language as `FRONTEND-DESIGN.md`, then add this to the main `AGENTS.md`:
 
 ```markdown
 ## Frontend design: read on demand
 - For interface design, redesign, frontend work involving an interface,
-  or webpage SEO/sharing previews, read the relevant sections of
+  webpage loading and performance optimization, or SEO/sharing previews,
+  read the relevant sections of
   [Frontend design rules](FRONTEND-DESIGN.md). Do not read for other tasks.
 ```
 
-Skill responsibilities, compact layouts, mobile workflows, chart and interaction checks, and SEO content delivery, metadata, and sharing requirements belong in the topic text. **Do not copy these details into the main file as well.**
+Skill responsibilities, compact layouts, mobile workflows, chart and interaction checks, loading performance, and SEO content delivery, metadata, and sharing requirements belong in the topic text. **Do not copy these details into the main file as well.**
 
 ### Main-file trigger: credential handling
 
@@ -84,7 +85,7 @@ These blocks are the text to copy into the main file; table links point to the c
 1. Identify the main instruction path actually used by the runtime. Codex defaults to `~/.codex/AGENTS.md`; an explicitly configured Codex home takes precedence. For other agents, verify their persistent instruction entry point rather than guessing paths or claiming compatibility from renaming.
 2. Read and protect existing main and adjacent documents. Choose one language, then merge the always-loaded rules, save the three topic documents, and add their triggers as above, processing only selected topics. Create necessary files if absent; do not add credentials or the author's private configuration.
 3. Verify that relative trigger paths open their documents, companion links are readable, and topic text is not also inlined in the main file. Respect explicitly requested always-loaded content or other adoption methods; identify actual incompatible conflicts by location.
-4. Distinguish rule adoption, skill availability, and hook state. Reading rules does not install tools; prepare the three design skills and SEO skill separately from their listed sources. Handle hooks as described below.
+4. Distinguish rule adoption, skill availability, and hook state. Reading rules does not install tools; prepare the three design skills separately from their listed sources. Execute SEO, sharing-preview, and performance rules directly from the topic without installing corresponding skills. Handle hooks as described below.
 5. Report the actual main-file path, merged topics, the three topic-file paths, trigger-path verification, and unmet dependencies. File existence and working links establish rule adoption, not correct execution of future tasks.
 
 For example, adopting all topics in Codex's default directory gives:
@@ -92,7 +93,7 @@ For example, adopting all topics in Codex's default directory gives:
 ```text
 ~/.codex/
 ├── AGENTS.md             # Group 1 complete rules + Group 2's three short triggers
-├── FRONTEND-DESIGN.md    # Design, mobile experience, webpage SEO; relevant sections
+├── FRONTEND-DESIGN.md    # Design, mobile experience, loading performance, webpage SEO; relevant sections
 ├── CREDENTIALS.md        # Credential details; read before handling credentials
 └── DOCUMENT-METADATA.md  # Metadata details; read before relevant artifact work
 ```
@@ -102,7 +103,7 @@ The same layout may sit beside project-level instructions. Do not install both g
 ## Dependencies and optional hooks
 
 - **Source:** Chinese comes from the local Chinese source and explicitly referenced details, excluding private content; English is faithful translation. Complete topic text and triggers do not establish competing rule sets.
-- **Frontend and SEO:** Detailed methods remain with [finesse-ui](https://github.com/mouse-lin/finesse-skill), [redesign-existing-projects](https://github.com/Leonxlnx/taste-skill), [impeccable](https://github.com/pbakaus/impeccable), and [public-page-seo-assist](https://github.com/tsetsugekka/codex-sakura-account-site-skills/blob/main/skills/public-page-seo-assist/SKILL.md). This repository neither bundles skills nor enables design hooks. Read only what the current stage needs.
+- **Frontend design:** Design methods remain with [finesse-ui](https://github.com/mouse-lin/finesse-skill), [redesign-existing-projects](https://github.com/Leonxlnx/taste-skill), and [impeccable](https://github.com/pbakaus/impeccable). This repository neither bundles skills nor enables design hooks. Read only what the current stage needs. The frontend topic directly defines triggers, rules, and acceptance checks for SEO, sharing previews, and loading performance; these can run independently without installing another skill.
 - **Models and platforms:** Routing expresses preferences by purpose and cost; the runtime must support actual models, reasoning levels, and tools. Copying rules does not expand authority or include the author's automatic commit, push, or deployment authorization.
 - **Keep-awake:** It cannot guarantee protection against manual or managed locking and must not bypass passwords or security policies.
 

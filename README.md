@@ -32,21 +32,21 @@
 
 | 主题 | 另存的完整正文 | 主文件旁的保存名称 | 何时读 |
 | --- | --- | --- | --- |
-| 前端设计与页面 SEO | [中文](frontend-design/AGENTS.zh-CN.md) · [English](frontend-design/AGENTS.md) | `FRONTEND-DESIGN.md` | 界面设计、改版、涉及界面的前端开发、网页 SEO／分享预览；只读相关章节 |
+| 前端设计、性能与页面 SEO | [中文](frontend-design/AGENTS.zh-CN.md) · [English](frontend-design/AGENTS.md) | `FRONTEND-DESIGN.md` | 界面设计、改版、涉及界面的前端开发、网页性能、SEO／分享预览；只读相关章节 |
 | 凭据操作 | [中文](api-key-persistence-for-local-skills/AGENTS.zh-CN.md) · [English](api-key-persistence-for-local-skills/AGENTS.md) | `CREDENTIALS.md` | 接收、保存或使用密码、key、token 等凭据之前 |
 | 文档元数据 | [中文](anonymous-document-artifact-metadata/AGENTS.zh-CN.md) · [English](anonymous-document-artifact-metadata/AGENTS.md) | `DOCUMENT-METADATA.md` | 创建、编辑、转换、渲染或导出相关文档产物之前 |
 
-### 主文件入口：前端设计与 SEO
+### 主文件入口：前端设计、性能与 SEO
 
 将所选语言的前端正文另存为 `FRONTEND-DESIGN.md`，在主 `AGENTS.md` 中加入：
 
 ```markdown
 ## 前端设计按需入口
-- 仅在界面设计、改版、涉及界面的前端开发或网页 SEO／分享预览任务时，
+- 仅在界面设计、改版、涉及界面的前端开发、网页加载与性能优化或 SEO／分享预览任务时，
   按相关章节读取 [前端设计规则](FRONTEND-DESIGN.md)；其他任务不读取。
 ```
 
-三个设计 Skill 的分工、compact、手机流程、图表与交互检查，以及 SEO 正文交付、元信息和分享预览要求，都在专题正文里，**不要再把这些细则复制到主文件**。
+三个设计 Skill 的分工、compact、手机流程、图表与交互检查，以及加载性能、SEO 正文交付、元信息和分享预览要求，都在专题正文里，**不要再把这些细则复制到主文件**。
 
 ### 主文件入口：凭据操作
 
@@ -79,7 +79,7 @@
 1. 确认运行环境实际读取的主指令路径。Codex 默认使用 `~/.codex/AGENTS.md`；若配置了其他 Codex 主目录，则以实际配置为准。其他 Agent 核实其持久指令入口，不猜路径、不凭改名宣称兼容。
 2. 读取并保护已有主文件及相邻文档。选一种语言，按上面两部分合并常驻正文、保存三份专题正文并写入对应入口；只处理选中的主题。没有既有文件时创建所需文件，不添加个人凭据或作者的私人配置。
 3. 校验入口相对路径都能打开，配套链接可读，专题正文未重复内联到主文件。用户指定常驻或其他接入方式时服从用户要求；有实际不兼容冲突时说明具体位置。
-4. 分别说明规则接入、Skill 可用性和钩子状态。读取规则不等于安装工具；前端的三个设计 Skill 与 SEO Skill 按专题所列来源另行准备，钩子按下节处理。
+4. 分别说明规则接入、Skill 可用性和钩子状态。读取规则不等于安装工具；前端的三个设计 Skill 按专题所列来源另行准备；SEO、分享预览与性能规则直接按专题执行，不要求安装对应 Skill。钩子按下节处理。
 5. 报告实际主文件路径、合并的主题、三份专题文件路径、触发入口验证结果，以及未完成的依赖。文件存在和链接通过，只代表规则接入完成，不代表未来任务已正确执行。
 
 例如采用 Codex 默认目录及全部主题后：
@@ -87,7 +87,7 @@
 ```text
 ~/.codex/
 ├── AGENTS.md             # 第一部分的正文 + 第二部分的三个短入口
-├── FRONTEND-DESIGN.md    # 前端设计、手机经验、页面 SEO；按相关章节读
+├── FRONTEND-DESIGN.md    # 前端设计、手机经验、加载性能、页面 SEO；按相关章节读
 ├── CREDENTIALS.md        # 凭据操作细则；涉及凭据前读
 └── DOCUMENT-METADATA.md  # 文档元数据细则；相关产物操作前读
 ```
@@ -97,7 +97,7 @@
 ## 依赖与可选钩子
 
 - **来源**：中文取自本地中文底稿及其明确引用的细则，排除私人内容；英文忠实翻译。完整主题正文与入口不维护另一套相互竞争的规则。
-- **前端与 SEO**：[finesse-ui](https://github.com/mouse-lin/finesse-skill)、[redesign-existing-projects](https://github.com/Leonxlnx/taste-skill)、[impeccable](https://github.com/pbakaus/impeccable) 和 [public-page-seo-assist](https://github.com/tsetsugekka/codex-sakura-account-site-skills/blob/main/skills/public-page-seo-assist/SKILL.md) 的详细方法由各 Skill 维护。本仓库不捆绑 Skill、不启用设计钩子；按任务阶段只读取所需内容。
+- **前端设计**：[finesse-ui](https://github.com/mouse-lin/finesse-skill)、[redesign-existing-projects](https://github.com/Leonxlnx/taste-skill)、[impeccable](https://github.com/pbakaus/impeccable) 的设计方法由各 Skill 维护。本仓库不捆绑 Skill、不启用设计钩子；按任务阶段只读取所需内容。SEO、分享预览与加载性能的触发条件、规则和验收要求已写入前端专题，可独立执行，不要求安装另一个 Skill。
 - **模型与平台**：模型路由是用途和成本偏好，实际模型、思考档位与工具须由运行环境支持。复制规则不扩大权限，不带作者的自动提交、推送、部署授权。
 - **保持唤醒**：不能保证阻止手动或受管锁屏，不得绕过密码和安全策略。
 
