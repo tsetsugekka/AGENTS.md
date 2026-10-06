@@ -49,6 +49,7 @@ Skill sources: [finesse-ui](https://github.com/mouse-lin/finesse-skill), [redesi
 
 ## Shared interaction language and chart space
 
+- Style every scrollbar to match the page's actual visual design.
 - Header, footer, sidebar, and mobile bottom navigation belong to one design language. When changing shared components, check all actual consumers, not just the current page. Set bottom-bar entrances for actual primary content without filling a quota. Unify bar height, safe areas, icon sizes, labels, selected states, and control styles. Reuse one definition for synonymous icons; pages configure entrances and behavior rather than redrawing them or overriding dimensions.
 - Recheck mobile sidebar/drawer density: tighten brand areas, group spacing, menu rows, and account areas separately. Let menu content scroll independently, with close controls and the last item reachable; do not merely scale down the desktop sidebar.
 - Distinguish navigation-icon meanings by actual content or action, reusing one definition for synonymous entries. Use short labels for meanings that may be confused. Prioritize recognition over meaningless decoration; do not turn a project-specific icon composition into a universal template.
