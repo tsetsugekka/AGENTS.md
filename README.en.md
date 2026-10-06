@@ -2,7 +2,7 @@
 
 [中文](README.md) · [日本語](README.ja.md) · **English**
 
-This repository provides **13 independent topics**. Each topic's `AGENTS.zh-CN.md` and `AGENTS.md` contain its **complete text**, in Chinese and English respectively. Their filenames do not mean every topic belongs in full in the main AGENTS file.
+This repository provides **14 independent topics**. Each topic's `AGENTS.zh-CN.md` and `AGENTS.md` contain its **complete text**, in Chinese and English respectively. Their filenames do not mean every topic belongs in full in the main AGENTS file.
 
 When asked to install rules from this repository, use the two groups below. This is the default when no topics are specified; if the user selects topics, adopt only those. **Adopting rules does not install skills, enable hooks, or expand authority.**
 
@@ -28,14 +28,31 @@ Adjust relative companion links to readable locations. The hook documentation be
 
 ## 2. Keep only triggers in the main AGENTS.md; save full text separately
 
-Do not merge the complete rules for these **4 topics** into the main file. Save them as ordinary Markdown beside the main `AGENTS.md` and add only the corresponding triggers below. Credential and metadata triggers also retain essential safety boundaries.
+Do not merge the complete rules for these **5 topics** into the main file. Save them as ordinary Markdown beside the main `AGENTS.md` and add only the corresponding triggers below. Credential and metadata triggers also retain essential safety boundaries.
 
 | Topic | Complete text to save separately | Filename beside the main file | Read when |
 | --- | --- | --- | --- |
+| Automatic case studies | [中文](case-study-and-experience-maintenance/AGENTS.zh-CN.md) · [English](case-study-and-experience-maintenance/AGENTS.md) | `CASE-STUDY.md` | Reusable errors or experience, similar-issue lookup, or case updates |
 | Skill construction & private material | [中文](skill-construction/AGENTS.zh-CN.md) · [English](skill-construction/AGENTS.md) | `SKILL-CONSTRUCTION.md` | Creating, modifying, or publishing a skill; organizing guidance, workflows, and references |
 | Frontend design, performance & webpage SEO | [中文](frontend-design/AGENTS.zh-CN.md) · [English](frontend-design/AGENTS.md) | `FRONTEND-DESIGN.md` | Interface design, redesign, interface-related frontend work, webpage performance, or SEO/sharing previews; relevant sections only |
 | Credential handling | [中文](api-key-persistence-for-local-skills/AGENTS.zh-CN.md) · [English](api-key-persistence-for-local-skills/AGENTS.md) | `CREDENTIALS.md` | Before receiving, saving, or using passwords, keys, tokens, or other credentials |
 | Document metadata | [中文](anonymous-document-artifact-metadata/AGENTS.zh-CN.md) · [English](anonymous-document-artifact-metadata/AGENTS.md) | `DOCUMENT-METADATA.md` | Before creating, editing, converting, rendering, or exporting relevant artifacts |
+
+### Main-file trigger: automatic case studies
+
+Save the rules in your chosen language as `CASE-STUDY.md`, then add this to the global main `AGENTS.md`:
+
+```markdown
+## Automatic case studies
+- When an error, repeated failure, important fix, or newly verified experience
+  has reuse value, read [Case maintenance rules](CASE-STUDY.md) and
+  automatically create or update a case before finishing the task.
+  Keep project cases in their projects, cross-project cases in `case-study/`
+  beside this file, and skill-specific personal experience in its Private Reference.
+  Also use these rules to find similar issues or reuse lessons; do not load the entire collection by default.
+```
+
+The global case directory sits beside the global main file, defaulting to `~/.codex/case-study/` for Codex. Use one Markdown file per case and a directory README for navigation. Copy the [blank Chinese index](case-study-and-experience-maintenance/templates/case-study-index.zh-CN.md) or [English index](case-study-and-experience-maintenance/templates/case-study-index.md) to `case-study/README.md`; merge with an existing index rather than overwriting it with an empty template. Project- and skill-specific cases stay in their own scopes, and actual global cases are not published with this rule collection by default. The topic defines occurrence time, last verification, issue status, and lesson applicability, with updates when later work reveals upstream fixes rather than scheduled monitoring by default.
 
 ### Main-file trigger: skill construction
 
@@ -98,16 +115,18 @@ These blocks are the text to copy into the main file; table links point to the c
 ## Installation steps for an agent on a new computer
 
 1. Identify the main instruction path actually used by the runtime. Codex defaults to `~/.codex/AGENTS.md`; an explicitly configured Codex home takes precedence. For other agents, verify their persistent instruction entry point rather than guessing paths or claiming compatibility from renaming.
-2. Read and protect existing main and adjacent documents. Choose one language, then merge the always-loaded rules, save the four topic documents, and add their triggers as above, processing only selected topics. Create necessary files if absent; do not add credentials or the author's private configuration.
+2. Read and protect existing main and adjacent documents. Choose one language, then merge the always-loaded rules, save the five topic documents, and add their triggers as above, processing only selected topics. Create necessary files if absent; do not add credentials or the author's private configuration.
 3. Verify that relative trigger paths open their documents, companion links are readable, and topic text is not also inlined in the main file. Respect explicitly requested always-loaded content or other adoption methods; identify actual incompatible conflicts by location.
 4. Distinguish rule adoption, skill availability, and hook state. Reading rules does not install tools; prepare the three design skills separately from their listed sources. Execute SEO, sharing-preview, and performance rules directly from the topic without installing corresponding skills. Handle hooks as described below.
-5. Report the actual main-file path, merged topics, the four topic-file paths, trigger-path verification, and unmet dependencies. File existence and working links establish rule adoption, not correct execution of future tasks.
+5. Report the actual main-file path, merged topics, the five topic-file paths, trigger-path verification, and unmet dependencies. File existence and working links establish rule adoption, not correct execution of future tasks.
 
 For example, adopting all topics in Codex's default directory gives:
 
 ```text
 ~/.codex/
-├── AGENTS.md             # Group 1 complete rules + Group 2's four short triggers
+├── AGENTS.md             # Group 1 complete rules + Group 2's five short triggers
+├── CASE-STUDY.md         # Automatic recording, scope, and applicability; read when triggered
+├── case-study/README.md  # Global case index; actual cases stay local by default, with on-demand lookup
 ├── SKILL-CONSTRUCTION.md # Skill organization, references, private records, and public-package boundaries
 ├── FRONTEND-DESIGN.md    # Design, mobile experience, loading performance, webpage SEO; relevant sections
 ├── CREDENTIALS.md        # Credential details; read before handling credentials
