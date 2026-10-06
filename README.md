@@ -12,7 +12,7 @@
 
 | 主题 | 主 AGENTS.md 放什么 | 完整正文 |
 | --- | --- | --- |
-| 回答结束状态 | 完整规则：如实标记完成、未完成和阻塞 | [中文](final-response-status/AGENTS.zh-CN.md) · [English](final-response-status/AGENTS.md) |
+| 回答结束状态 | 完整规则：用六种彩色状态如实标记结果，状态独占全文最后一行 | [中文](final-response-status/AGENTS.zh-CN.md) · [English](final-response-status/AGENTS.md) |
 | 多 Agent 与模型路由 | 完整规则：委派边界、模型选择、等待和复核 | [中文](multi-agent-delegation-and-model-routing/AGENTS.zh-CN.md) · [English](multi-agent-delegation-and-model-routing/AGENTS.md) |
 | 开发文档与交接 | 完整规则：文档职责、唯一来源和任务连续性；实际项目文档按任务读 | [中文](development-documentation-and-task-continuity/AGENTS.zh-CN.md) · [English](development-documentation-and-task-continuity/AGENTS.md) |
 | 临时文件与目录 | 完整规则：临时产物位置、清理与既有文件保护 | [中文](temporary-files-and-project-structure-hygiene/AGENTS.zh-CN.md) · [English](temporary-files-and-project-structure-hygiene/AGENTS.md) |

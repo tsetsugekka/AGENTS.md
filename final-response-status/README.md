@@ -2,7 +2,7 @@
 
 [中文说明](README.zh-CN.md)
 
-[AGENTS.md](AGENTS.md) defines the status semantics; [check_final_status.py](check_final_status.py) only checks the label format. It reads the Stop event JSON from stdin and checks `last_assistant_message`. A short trailing `[status]` or `【状态】` label is accepted, with optional Markdown emphasis. Empty messages and unrelated events are skipped.
+[AGENTS.md](AGENTS.md) defines the status semantics; [check_final_status.py](check_final_status.py) only checks the label format. It reads the Stop event JSON from stdin and checks `last_assistant_message`. The last nonempty line must contain only one of six statuses: 🔴Awaiting choice, 🔴Awaiting discussion, 🔴Blocked, 🟡Partially complete, 🟡Awaiting confirmation, or 🟢Complete. Inline labels, the old bracket format, and added punctuation or Markdown emphasis are not accepted. Empty messages and unrelated events are skipped.
 
 Output is `{}` when no warning is needed, otherwise a `systemMessage`. It never restarts the agent, calls a model, stores messages, accesses the network, or judges actual completion. Requires Python 3 standard library.
 
@@ -18,6 +18,6 @@ Review and trust the new definition through `/hooks`. Do not edit trust records.
 
 ## Verification
 
-Test synthetic Stop events with valid, missing, misplaced and empty status labels, plus unrelated events; validate the merged JSON. Local tests do not prove the host has loaded or triggered the hook. Confirm actual triggering separately after trust approval.
+Test synthetic Stop events with all six valid labels, inline labels, misplaced labels, wrong colors, the old format, empty messages, and unrelated events; validate the merged JSON. Local tests do not prove the host has loaded or triggered the hook. Confirm actual triggering separately after trust approval.
 
-The English display text and square-bracket support match this repository's English rule; the checker also accepts the Chinese source's labels.
+The checker displays warnings in English and accepts the six colored labels from either the English rule or its Chinese source.
