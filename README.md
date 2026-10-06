@@ -1,60 +1,105 @@
-# AGENTS.md · 按需选用的 Agent 工作规则
+# AGENTS.md · 主文件规则与按需专题
 
 **中文** · [日本語](README.ja.md) · [English](README.en.md)
 
-让 Agent 清楚知道：什么时候行动、该读什么、哪些边界不能越过，以及怎样交付可信的结果。
+这里提供 **12 个独立主题**。目录中的 `AGENTS.zh-CN.md` 和 `AGENTS.md` 都是**完整主题正文**，分别为中文和英文；文件名不表示它们都应完整写进主 AGENTS。
 
-这里收集 **12 个独立主题**，每个都有中文原稿与英文译文。它是一份可按需取用的规则目录，**不是要求整仓安装的配置包**。
+让 Agent “按这个仓库安装规则”时，按下面两部分接入。未指定主题时采用这个默认方案；明确只选部分主题时，只接入选中的主题。**规则接入不安装 Skill、启用钩子或增加操作权限。**
 
-## 从这里开始
+## 一、正文直接放进主 AGENTS.md
 
-1. 从下表选择真正需要的主题，不必全选。
-2. 选一种语言，阅读适用范围、依赖和限制。
-3. 将常用规则合并到自己的持久指令文件；低频主题可改为按需读取。保留原有项目约束，不覆盖整个文件。
-4. 检查路径及配套文档。复制规则不会安装 Skill、钩子或其他工具，也不会自动获得操作权限。
+以下 **9 个主题**的完整规则，合并到实际使用的主 `AGENTS.md`。它们是通用约束、短条件规则或需要常驻的委派约定；“常驻”不表示每个任务都要执行相关动作。
 
-## 规则目录
-
-| 主题 | 解决什么问题 | 规则正文 |
+| 主题 | 主 AGENTS.md 放什么 | 完整正文 |
 | --- | --- | --- |
-| 回答状态 | 明确完成、未完成和阻塞 | [中文](final-response-status/AGENTS.zh-CN.md) · [English](final-response-status/AGENTS.md) |
-| 多 Agent 与模型路由 | 独立子任务、八种常用模型组合、合理等待与复核 | [中文](multi-agent-delegation-and-model-routing/AGENTS.zh-CN.md) · [English](multi-agent-delegation-and-model-routing/AGENTS.md) |
-| 开发文档与交接 | README / SPEC / CHANGELOG / TASK / CASE-STUDY 的职责与按需指令 | [中文](development-documentation-and-task-continuity/AGENTS.zh-CN.md) · [English](development-documentation-and-task-continuity/AGENTS.md) |
-| 前端设计 | 设计 Skill 分工、紧凑布局与手机 App 式流程 | [中文](frontend-design/AGENTS.zh-CN.md) · [English](frontend-design/AGENTS.md) |
-| 临时文件与目录 | 临时产物清理、既有文件保护、根目录稳定 | [中文](temporary-files-and-project-structure-hygiene/AGENTS.zh-CN.md) · [English](temporary-files-and-project-structure-hygiene/AGENTS.md) |
-| 浏览器标签页 | 复用任务页面、及时关闭无用页面、保护用户原有标签页 | [中文](browser-tab-hygiene/AGENTS.zh-CN.md) · [English](browser-tab-hygiene/AGENTS.md) |
-| 长任务保持唤醒 | 临时 Caffeine 的启停与安全限制 | [中文](temporary-caffeine-mode-for-long-running-tasks/AGENTS.zh-CN.md) · [English](temporary-caffeine-mode-for-long-running-tasks/AGENTS.md) |
-| Telegram 通知 | 有价值的结束通知、触发条件与每任务一次限制 | [中文](telegram-notify-on-stop/AGENTS.zh-CN.md) · [English](telegram-notify-on-stop/AGENTS.md) |
-| GitHub 发布纪律 | 分支、范围隔离及保护其他改动；不授予自动发布权限 | [中文](github-publish-discipline/AGENTS.zh-CN.md) · [English](github-publish-discipline/AGENTS.md) |
-| 凭据处理 | 本地 Skill 的安全输入、持久化与禁止泄露 | [中文](api-key-persistence-for-local-skills/AGENTS.zh-CN.md) · [English](api-key-persistence-for-local-skills/AGENTS.md) |
-| 网络抓取 | 节流、批量读取和限流处理；区分内部运维 | [中文](network-scraping-discipline/AGENTS.zh-CN.md) · [English](network-scraping-discipline/AGENTS.md) |
-| 文档元数据匿名化 | 清理身份字段与本地路径，复检实际交付文件 | [中文](anonymous-document-artifact-metadata/AGENTS.zh-CN.md) · [English](anonymous-document-artifact-metadata/AGENTS.md) |
+| 回答结束状态 | 完整规则：如实标记完成、未完成和阻塞 | [中文](final-response-status/AGENTS.zh-CN.md) · [English](final-response-status/AGENTS.md) |
+| 多 Agent 与模型路由 | 完整规则：委派边界、模型选择、等待和复核 | [中文](multi-agent-delegation-and-model-routing/AGENTS.zh-CN.md) · [English](multi-agent-delegation-and-model-routing/AGENTS.md) |
+| 开发文档与交接 | 完整规则：文档职责、唯一来源和任务连续性；实际项目文档按任务读 | [中文](development-documentation-and-task-continuity/AGENTS.zh-CN.md) · [English](development-documentation-and-task-continuity/AGENTS.md) |
+| 临时文件与目录 | 完整规则：临时产物位置、清理与既有文件保护 | [中文](temporary-files-and-project-structure-hygiene/AGENTS.zh-CN.md) · [English](temporary-files-and-project-structure-hygiene/AGENTS.md) |
+| 浏览器标签页 | 完整规则：任务页面复用、清理和用户标签页保护 | [中文](browser-tab-hygiene/AGENTS.zh-CN.md) · [English](browser-tab-hygiene/AGENTS.md) |
+| 长任务保持唤醒 | 完整规则：仅在适用时临时启用，结束时关闭，不绕过安全限制 | [中文](temporary-caffeine-mode-for-long-running-tasks/AGENTS.zh-CN.md) · [English](temporary-caffeine-mode-for-long-running-tasks/AGENTS.md) |
+| Telegram 通知 | 完整触发与安全规则；钩子的执行说明按需读，不默认启用通知 | [中文](telegram-notify-on-stop/AGENTS.zh-CN.md) · [English](telegram-notify-on-stop/AGENTS.md) |
+| GitHub 发布纪律 | 完整规则：分支、改动范围和其他工作保护；不授予自动发布权限 | [中文](github-publish-discipline/AGENTS.zh-CN.md) · [English](github-publish-discipline/AGENTS.md) |
+| 网络抓取 | 完整规则：外部抓取的节流、限流处理和内部运维边界 | [中文](network-scraping-discipline/AGENTS.zh-CN.md) · [English](network-scraping-discipline/AGENTS.md) |
 
-## 两种接入方式
+选一种语言，将所选正文合并到已有主文件，不覆盖整个文件。检查其中模型、工具和平台的支持情况；不把改文件名当成兼容性保证。已有同义规则去重，实际冲突保留并报告，不悄悄覆盖项目约束。
 
-**直接合并**适合经常适用的规则。把所选正文整合进自己的 `AGENTS.md`、`CLAUDE.md` 或其他实际使用的指令文件；先检查其中的模型、工具和平台假设，不把改文件名当作兼容性保证。
+正文中的相对配套链接须调整到实际可读的位置；下方钩子说明可使用对应仓库文档的完整 URL。不能把 `README.md` 原样留成指向用户主文件旁另一份无关 README 的链接。
 
-**按需读取**适合较长、低频的主题。将完整正文保存为普通 Markdown，在根指令保留明确的触发条件、路径和必要安全边界。例如，将设计主题正文保存到 `docs/FRONTEND-DESIGN.md` 后加入：
+## 二、主 AGENTS.md 只放触发入口，正文另存后按需读
+
+以下 **3 个主题**的完整正文不合并到主文件。将它们保存为主 `AGENTS.md` 同目录的普通 Markdown，主文件只加入下方对应入口；凭据和元数据入口同时保留必要的安全边界。
+
+| 主题 | 另存的完整正文 | 主文件旁的保存名称 | 何时读 |
+| --- | --- | --- | --- |
+| 前端设计与页面 SEO | [中文](frontend-design/AGENTS.zh-CN.md) · [English](frontend-design/AGENTS.md) | `FRONTEND-DESIGN.md` | 界面设计、改版、涉及界面的前端开发、网页 SEO／分享预览；只读相关章节 |
+| 凭据操作 | [中文](api-key-persistence-for-local-skills/AGENTS.zh-CN.md) · [English](api-key-persistence-for-local-skills/AGENTS.md) | `CREDENTIALS.md` | 接收、保存或使用密码、key、token 等凭据之前 |
+| 文档元数据 | [中文](anonymous-document-artifact-metadata/AGENTS.zh-CN.md) · [English](anonymous-document-artifact-metadata/AGENTS.md) | `DOCUMENT-METADATA.md` | 创建、编辑、转换、渲染或导出相关文档产物之前 |
+
+### 主文件入口：前端设计与 SEO
+
+将所选语言的前端正文另存为 `FRONTEND-DESIGN.md`，在主 `AGENTS.md` 中加入：
 
 ```markdown
-仅在界面设计、改版或涉及界面的前端开发时，
-先读取 docs/FRONTEND-DESIGN.md；其他任务不读取。
+## 前端设计按需入口
+- 仅在界面设计、改版、涉及界面的前端开发或网页 SEO／分享预览任务时，
+  按相关章节读取 [前端设计规则](FRONTEND-DESIGN.md)；其他任务不读取。
 ```
 
-路径相对于自己的指令文件调整。链接本身不保证自动读取；配套文档也要携带。不要让同一规则既常驻全文又按需重复加载，也不要把按需文档命名为当前运行环境会自动加载的根指令文件。
+三个设计 Skill 的分工、compact、手机流程、图表与交互检查，以及 SEO 正文交付、元信息和分享预览要求，都在专题正文里，**不要再把这些细则复制到主文件**。
 
-公开主题保留完整正文，使用者无需复制作者的本地目录结构。新增内容时，通用约束和安全边界留在入口，较长的任务专属细则按需读取；短规则和用户指定常驻的内容不必拆分。
+### 主文件入口：凭据操作
 
-## 选用前须知
+将所选语言的凭据正文另存为 `CREDENTIALS.md`，在主文件中加入：
 
-- **来源**：中文取自本地中文底稿及其明确引用的细则，排除私人内容；英文忠实翻译，不反向生成中文，不添加另一套规则。
-- **设计**：`finesse-ui`、Taste 的 `redesign-existing-projects` 和 `impeccable` 需在使用环境中可用。本仓库不捆绑这些 Skill，也不启用设计钩子。
-- **模型路由**：是用途和成本偏好，不是通用性能排名；实际模型与思考档位须由运行环境支持。
+```markdown
+## 凭据操作按需入口
+- 接收、保存或使用密码、key、token 等凭据前，先读取 [凭据操作规则](CREDENTIALS.md)；
+  项目或服务有更严格规范时从其规定。
+- 不要求用户把凭据发到聊天或普通 shell 提示符；明文不得进入命令参数、
+  历史、日志、工具输出、回复或 Skill 文件。
+```
+
+### 主文件入口：文档元数据
+
+将所选语言的元数据正文另存为 `DOCUMENT-METADATA.md`，在主文件中加入：
+
+```markdown
+## 文档元数据按需入口
+- 创建、编辑、转换、渲染或导出 Office、PDF、OpenDocument、
+  带元数据图像等文档产物前，先读取 [文档元数据规则](DOCUMENT-METADATA.md)。
+- 除非用户在当前任务明确要求该确切值，不嵌入或暴露身份信息和本地路径；
+  交付前清理继承的个人元数据及本地路径，并检查实际产物、复检清理结果。
+```
+
+这里的入口是复制到主文件的文字；表格链接才是需要另存的完整正文。路径相对于主 `AGENTS.md`。如果改存到 `docs/` 或其他目录，同时修改入口路径。**只复制入口而没有保存专题正文，接入不完整。** 不要让同一主题既常驻全文又按需重复加载，也不要把专题文档命名为运行环境会自动加载的主指令文件。
+
+## 给新电脑上的 Agent 的安装步骤
+
+1. 确认运行环境实际读取的主指令路径。Codex 默认使用 `~/.codex/AGENTS.md`；若配置了其他 Codex 主目录，则以实际配置为准。其他 Agent 核实其持久指令入口，不猜路径、不凭改名宣称兼容。
+2. 读取并保护已有主文件及相邻文档。选一种语言，按上面两部分合并常驻正文、保存三份专题正文并写入对应入口；只处理选中的主题。没有既有文件时创建所需文件，不添加个人凭据或作者的私人配置。
+3. 校验入口相对路径都能打开，配套链接可读，专题正文未重复内联到主文件。用户指定常驻或其他接入方式时服从用户要求；有实际不兼容冲突时说明具体位置。
+4. 分别说明规则接入、Skill 可用性和钩子状态。读取规则不等于安装工具；前端的三个设计 Skill 与 SEO Skill 按专题所列来源另行准备，钩子按下节处理。
+5. 报告实际主文件路径、合并的主题、三份专题文件路径、触发入口验证结果，以及未完成的依赖。文件存在和链接通过，只代表规则接入完成，不代表未来任务已正确执行。
+
+例如采用 Codex 默认目录及全部主题后：
+
+```text
+~/.codex/
+├── AGENTS.md             # 第一部分的正文 + 第二部分的三个短入口
+├── FRONTEND-DESIGN.md    # 前端设计、手机经验、页面 SEO；按相关章节读
+├── CREDENTIALS.md        # 凭据操作细则；涉及凭据前读
+└── DOCUMENT-METADATA.md  # 文档元数据细则；相关产物操作前读
+```
+
+复制项目级规则时，相同结构也可放在项目指令旁；不会替用户将全局与项目两层重复安装。
+
+## 依赖与可选钩子
+
+- **来源**：中文取自本地中文底稿及其明确引用的细则，排除私人内容；英文忠实翻译。完整主题正文与入口不维护另一套相互竞争的规则。
+- **前端与 SEO**：[finesse-ui](https://github.com/mouse-lin/finesse-skill)、[redesign-existing-projects](https://github.com/Leonxlnx/taste-skill)、[impeccable](https://github.com/pbakaus/impeccable) 和 [public-page-seo-assist](https://github.com/tsetsugekka/codex-sakura-account-site-skills/blob/main/skills/public-page-seo-assist/SKILL.md) 的详细方法由各 Skill 维护。本仓库不捆绑 Skill、不启用设计钩子；按任务阶段只读取所需内容。
+- **模型与平台**：模型路由是用途和成本偏好，实际模型、思考档位与工具须由运行环境支持。复制规则不扩大权限，不带作者的自动提交、推送、部署授权。
 - **保持唤醒**：不能保证阻止手动或受管锁屏，不得绕过密码和安全策略。
-- **发布与凭据**：规则不包含作者的自动提交、推送和部署授权；个人凭据、账号配置和私人路径不公开。
-- **适用边界**：采用前处理与现有项目规则的冲突，不因复制本文扩大权限；只选一种语言，避免中英文重复加载。
-
-## 可选钩子：规则与实现分开看
 
 | 配套内容 | 当前状态 |
 | --- | --- |
@@ -65,6 +110,6 @@
 
 ## 维护与复用
 
-每个主题维护 `AGENTS.zh-CN.md` 与 `AGENTS.md`，三语 README 只提供选用说明。规则变化先改中文权威来源，再同步公开正文和译文；同一事实不建立多份互相竞争的来源。
+保留各主题的独立目录及完整中英文正文。规则先更新中文权威来源，再同步公开正文、译文和本 README 的接入说明；同一事实只维护一个权威来源。
 
 本仓库尚未附带许可证，不代表已授予开源许可；对外再分发前请确认复用条款。
