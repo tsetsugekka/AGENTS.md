@@ -48,7 +48,7 @@ Save the frontend topic in your chosen language as `FRONTEND-DESIGN.md`, then ad
   [Frontend design rules](FRONTEND-DESIGN.md). Do not read for other tasks.
 ```
 
-Skill responsibilities, compact layouts, mobile workflows, chart and interaction checks, loading performance, and SEO content delivery, metadata, and sharing requirements belong in the topic text. **Do not copy these details into the main file as well.**
+Skill responsibilities, compact layouts, mobile workflows, chart and interaction checks, loading performance, and SEO content delivery, metadata, and sharing requirements belong in the topic text. **Do not copy these details into the main file as well.** The topic contains only principles and checks that transfer across projects; concrete business behavior, icon compositions, content organization, dimensions, and default states belong in project design documents or specifications.
 
 ### Main-file trigger: credential handling
 
