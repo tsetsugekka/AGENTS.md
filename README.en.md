@@ -12,7 +12,7 @@ Merge the complete rules for these **9 topics** into the actual main `AGENTS.md`
 
 | Topic | What belongs in the main AGENTS.md | Complete rules |
 | --- | --- | --- |
-| Response status | Complete rules for six colored, truthful statuses on a standalone final line | [中文](final-response-status/AGENTS.zh-CN.md) · [English](final-response-status/AGENTS.md) |
+| Response status | Complete rules for seven colored, truthful statuses on a standalone final line | [中文](final-response-status/AGENTS.zh-CN.md) · [English](final-response-status/AGENTS.md) |
 | Delegation & model routing | Complete rules for delegation boundaries, model selection, waiting, and review | [中文](multi-agent-delegation-and-model-routing/AGENTS.zh-CN.md) · [English](multi-agent-delegation-and-model-routing/AGENTS.md) |
 | Development docs & continuity | Complete rules for document responsibilities, authoritative sources, and continuity; read actual project documents for the task | [中文](development-documentation-and-task-continuity/AGENTS.zh-CN.md) · [English](development-documentation-and-task-continuity/AGENTS.md) |
 | Temporary files & structure | Complete rules for artifact placement, cleanup, and existing-file protection | [中文](temporary-files-and-project-structure-hygiene/AGENTS.zh-CN.md) · [English](temporary-files-and-project-structure-hygiene/AGENTS.md) |

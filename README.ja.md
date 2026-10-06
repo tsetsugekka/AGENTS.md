@@ -12,7 +12,7 @@
 
 | テーマ | メイン AGENTS.md に入れる内容 | 全文 |
 | --- | --- | --- |
-| 回答の状態 | 六種類の色付きラベルで実情を示し、最後の一行に単独で置く全ルール | [中文](final-response-status/AGENTS.zh-CN.md) · [English](final-response-status/AGENTS.md) |
+| 回答の状態 | 七種類の色付きラベルで実情を示し、最後の一行に単独で置く全ルール | [中文](final-response-status/AGENTS.zh-CN.md) · [English](final-response-status/AGENTS.md) |
 | 委任とモデル選択 | 委任範囲、モデル選択、待機、検証の全ルール | [中文](multi-agent-delegation-and-model-routing/AGENTS.zh-CN.md) · [English](multi-agent-delegation-and-model-routing/AGENTS.md) |
 | 開発文書と引き継ぎ | 文書の責務、唯一の正本、作業継続の全ルール。実際のプロジェクト文書は作業に応じて読む | [中文](development-documentation-and-task-continuity/AGENTS.zh-CN.md) · [English](development-documentation-and-task-continuity/AGENTS.md) |
 | 一時ファイルと構成 | 一時成果物の配置、整理、既存ファイル保護の全ルール | [中文](temporary-files-and-project-structure-hygiene/AGENTS.zh-CN.md) · [English](temporary-files-and-project-structure-hygiene/AGENTS.md) |
