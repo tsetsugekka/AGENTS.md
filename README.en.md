@@ -2,7 +2,7 @@
 
 [中文](README.md) · [日本語](README.ja.md) · **English**
 
-This repository provides **12 independent topics**. Each topic's `AGENTS.zh-CN.md` and `AGENTS.md` contain its **complete text**, in Chinese and English respectively. Their filenames do not mean every topic belongs in full in the main AGENTS file.
+This repository provides **13 independent topics**. Each topic's `AGENTS.zh-CN.md` and `AGENTS.md` contain its **complete text**, in Chinese and English respectively. Their filenames do not mean every topic belongs in full in the main AGENTS file.
 
 When asked to install rules from this repository, use the two groups below. This is the default when no topics are specified; if the user selects topics, adopt only those. **Adopting rules does not install skills, enable hooks, or expand authority.**
 
@@ -28,13 +28,28 @@ Adjust relative companion links to readable locations. The hook documentation be
 
 ## 2. Keep only triggers in the main AGENTS.md; save full text separately
 
-Do not merge the complete rules for these **3 topics** into the main file. Save them as ordinary Markdown beside the main `AGENTS.md` and add only the corresponding triggers below. Credential and metadata triggers also retain essential safety boundaries.
+Do not merge the complete rules for these **4 topics** into the main file. Save them as ordinary Markdown beside the main `AGENTS.md` and add only the corresponding triggers below. Credential and metadata triggers also retain essential safety boundaries.
 
 | Topic | Complete text to save separately | Filename beside the main file | Read when |
 | --- | --- | --- | --- |
+| Skill construction & private material | [中文](skill-construction/AGENTS.zh-CN.md) · [English](skill-construction/AGENTS.md) | `SKILL-CONSTRUCTION.md` | Creating, modifying, or publishing a skill; organizing guidance, workflows, and references |
 | Frontend design, performance & webpage SEO | [中文](frontend-design/AGENTS.zh-CN.md) · [English](frontend-design/AGENTS.md) | `FRONTEND-DESIGN.md` | Interface design, redesign, interface-related frontend work, webpage performance, or SEO/sharing previews; relevant sections only |
 | Credential handling | [中文](api-key-persistence-for-local-skills/AGENTS.zh-CN.md) · [English](api-key-persistence-for-local-skills/AGENTS.md) | `CREDENTIALS.md` | Before receiving, saving, or using passwords, keys, tokens, or other credentials |
 | Document metadata | [中文](anonymous-document-artifact-metadata/AGENTS.zh-CN.md) · [English](anonymous-document-artifact-metadata/AGENTS.md) | `DOCUMENT-METADATA.md` | Before creating, editing, converting, rendering, or exporting relevant artifacts |
+
+### Main-file trigger: skill construction
+
+Save the construction rules in your chosen language as `SKILL-CONSTRUCTION.md`, then add:
+
+```markdown
+## Skill construction: read on demand
+- Before creating, modifying, or publishing a skill, read
+  [Skill construction rules](SKILL-CONSTRUCTION.md), covering Guidebook,
+  Workflow, Reference organization and private-material isolation.
+  Do not read for other tasks.
+```
+
+The topic covers self-contained text, a routing entry point, and a Guidebook linking to Workflows. Public packages contain only private-record templates; filled personal records stay outside installed skills and public repositories. These construction rules do not install or modify existing skills.
 
 ### Main-file trigger: frontend design, performance and SEO
 
@@ -83,16 +98,17 @@ These blocks are the text to copy into the main file; table links point to the c
 ## Installation steps for an agent on a new computer
 
 1. Identify the main instruction path actually used by the runtime. Codex defaults to `~/.codex/AGENTS.md`; an explicitly configured Codex home takes precedence. For other agents, verify their persistent instruction entry point rather than guessing paths or claiming compatibility from renaming.
-2. Read and protect existing main and adjacent documents. Choose one language, then merge the always-loaded rules, save the three topic documents, and add their triggers as above, processing only selected topics. Create necessary files if absent; do not add credentials or the author's private configuration.
+2. Read and protect existing main and adjacent documents. Choose one language, then merge the always-loaded rules, save the four topic documents, and add their triggers as above, processing only selected topics. Create necessary files if absent; do not add credentials or the author's private configuration.
 3. Verify that relative trigger paths open their documents, companion links are readable, and topic text is not also inlined in the main file. Respect explicitly requested always-loaded content or other adoption methods; identify actual incompatible conflicts by location.
 4. Distinguish rule adoption, skill availability, and hook state. Reading rules does not install tools; prepare the three design skills separately from their listed sources. Execute SEO, sharing-preview, and performance rules directly from the topic without installing corresponding skills. Handle hooks as described below.
-5. Report the actual main-file path, merged topics, the three topic-file paths, trigger-path verification, and unmet dependencies. File existence and working links establish rule adoption, not correct execution of future tasks.
+5. Report the actual main-file path, merged topics, the four topic-file paths, trigger-path verification, and unmet dependencies. File existence and working links establish rule adoption, not correct execution of future tasks.
 
 For example, adopting all topics in Codex's default directory gives:
 
 ```text
 ~/.codex/
-├── AGENTS.md             # Group 1 complete rules + Group 2's three short triggers
+├── AGENTS.md             # Group 1 complete rules + Group 2's four short triggers
+├── SKILL-CONSTRUCTION.md # Skill organization, references, private records, and public-package boundaries
 ├── FRONTEND-DESIGN.md    # Design, mobile experience, loading performance, webpage SEO; relevant sections
 ├── CREDENTIALS.md        # Credential details; read before handling credentials
 └── DOCUMENT-METADATA.md  # Metadata details; read before relevant artifact work
