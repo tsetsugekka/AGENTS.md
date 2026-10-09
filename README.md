@@ -6,26 +6,6 @@
 
 让 Agent “按这个仓库安装规则”时，按下面两部分接入。未指定主题时采用这个默认方案；明确只选部分主题时，只接入选中的主题。**规则接入不安装 Skill、启用钩子或增加操作权限。**
 
-## 前端规则能做出什么？
-
-以下是按[前端设计规则](frontend-design/AGENTS.zh-CN.md)制作的三个网页的真实局部截图：每种语言两张，展示六种关系表达。三版内容互补，不是同一页面的翻译，也不是所有网页都要套用的模板。点击图片看大图。
-
-<table>
-  <tr><th width="33%">中文</th><th width="33%">日本語</th><th width="33%">English</th></tr>
-  <tr>
-    <td valign="top"><b>步骤与反馈</b><br><a href="frontend-design/references/previews/zh-flow.jpg"><img src="frontend-design/references/previews/zh-flow.jpg" alt="中文示例：五步流程与两条不同落点的返回线" width="360"></a></td>
-    <td valign="top"><b>角色交接泳道</b><br><a href="frontend-design/references/previews/ja-swimlane.jpg"><img src="frontend-design/references/previews/ja-swimlane.jpg" alt="日文示例：四个角色的交接泳道与退回修改" width="360"></a></td>
-    <td valign="top"><b>检查需求矩阵</b><br><a href="frontend-design/references/previews/en-matrix.jpg"><img src="frontend-design/references/previews/en-matrix.jpg" alt="英文示例：不同改动对应必需、建议和无需的检查矩阵" width="360"></a></td>
-  </tr>
-  <tr>
-    <td valign="top"><b>条件分支与汇合</b><br><a href="frontend-design/references/previews/zh-branch.jpg"><img src="frontend-design/references/previews/zh-branch.jpg" alt="中文示例：按材料完整性和目录状态分流、汇合或返回" width="360"></a></td>
-    <td valign="top"><b>分层架构与连接</b><br><a href="frontend-design/references/previews/ja-architecture.jpg"><img src="frontend-design/references/previews/ja-architecture.jpg" alt="日文示例：画面、处理和记录三层的实际连接" width="360"></a></td>
-    <td valign="top"><b>状态转换与退回</b><br><a href="frontend-design/references/previews/en-states.jpg"><img src="frontend-design/references/previews/en-states.jpg" alt="英文示例：草稿、审核、批准、发布和撤回的状态转换" width="360"></a></td>
-  </tr>
-</table>
-
-完整网页预览：[中文](https://primal1.sakura.ne.jp/ai-hub/examples/frontend-design/web-infographic.html) · [日本語](https://primal1.sakura.ne.jp/ai-hub/examples/frontend-design/web-infographic.ja.html) · [English](https://primal1.sakura.ne.jp/ai-hub/examples/frontend-design/web-infographic.en.html)。[HTML 源文件](frontend-design/references/)随主题提供，可在浏览器打开；三种语言都可作为视觉参考。
-
 ## 一、正文直接放进主 AGENTS.md
 
 以下 **9 个主题**的完整规则，合并到实际使用的主 `AGENTS.md`。它们是通用约束、短条件规则或需要常驻的委派约定；“常驻”不表示每个任务都要执行相关动作。
@@ -98,6 +78,25 @@
 三个设计 Skill 的分工、compact、手机流程、图表与交互检查，以及加载性能、SEO 正文交付、元信息和分享预览要求，都在专题正文里，**不要再把这些细则复制到主文件**。专题只收录跨项目可复用的原则与验收方法；具体业务、图标组合、栏目安排、尺寸及默认状态留在项目设计文档或规格中。
 
 说明类页面或区块在图示更利于理解工作原理、流程反馈、架构、范围或比较时，可按需采用轻量信息图；这不是所有网页的默认外观。参考自包含网页版示例：[中文](frontend-design/references/web-infographic.html)、[日文](frontend-design/references/web-infographic.ja.html)、[英文](frontend-design/references/web-infographic.en.html)。三版采用互补的关系示例和视觉处理，语言不限定设计风格；实际渲染后借鉴表达。复制前端主题时一并携带这三个参考文件，保持 `references/` 相对目录或调整正文链接；不需要另装静态流程图 Skill。
+
+#### 网页用例
+
+以下是按[前端设计规则](frontend-design/AGENTS.zh-CN.md)制作的网页局部截图，展示六种可借鉴的关系表达。按内容需要选用，不是所有网页都要套用的模板；点击图片看大图。
+
+<table>
+  <tr>
+    <td width="33%" valign="top"><b>步骤与反馈</b><br><a href="frontend-design/references/previews/zh-flow.jpg"><img src="frontend-design/references/previews/zh-flow.jpg" alt="五步流程与两条不同落点的返回线" width="360"></a></td>
+    <td width="33%" valign="top"><b>角色交接泳道</b><br><a href="frontend-design/references/previews/ja-swimlane.jpg"><img src="frontend-design/references/previews/ja-swimlane.jpg" alt="四个角色的交接泳道与退回修改" width="360"></a></td>
+    <td width="33%" valign="top"><b>检查需求矩阵</b><br><a href="frontend-design/references/previews/en-matrix.jpg"><img src="frontend-design/references/previews/en-matrix.jpg" alt="不同改动对应必需、建议和无需的检查矩阵" width="360"></a></td>
+  </tr>
+  <tr>
+    <td width="33%" valign="top"><b>条件分支与汇合</b><br><a href="frontend-design/references/previews/zh-branch.jpg"><img src="frontend-design/references/previews/zh-branch.jpg" alt="按材料完整性和目录状态分流、汇合或返回" width="360"></a></td>
+    <td width="33%" valign="top"><b>分层架构与连接</b><br><a href="frontend-design/references/previews/ja-architecture.jpg"><img src="frontend-design/references/previews/ja-architecture.jpg" alt="画面、处理和记录三层的实际连接" width="360"></a></td>
+    <td width="33%" valign="top"><b>状态转换与退回</b><br><a href="frontend-design/references/previews/en-states.jpg"><img src="frontend-design/references/previews/en-states.jpg" alt="草稿、审核、批准、发布和撤回的状态转换" width="360"></a></td>
+  </tr>
+</table>
+
+完整网页预览：[流程、分支与范围](https://primal1.sakura.ne.jp/ai-hub/examples/frontend-design/web-infographic.html) · [闭环、泳道与架构](https://primal1.sakura.ne.jp/ai-hub/examples/frontend-design/web-infographic.ja.html) · [矩阵、坐标与状态](https://primal1.sakura.ne.jp/ai-hub/examples/frontend-design/web-infographic.en.html)。[HTML 源文件](frontend-design/references/)随主题提供，可在浏览器打开。
 
 ### 主文件入口：凭据操作
 
