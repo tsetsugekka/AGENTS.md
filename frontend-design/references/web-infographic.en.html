@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Reference set for explanatory sections (English): a team handbook example showing a requirement matrix, a two-axis map and state transitions with triggers.">
+  <title>Draw the relationship · Explanatory infographic reference</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --bg: #f4f6f6; --paper: #fbfcfc; --surface: #fdfefe; --hair: #d4dcde; --rule: #b9c5c9;
+      --ink: #1b2629; --muted: #556368; --soft: #4a585d;
+      --accent: #0c6e77; --accent-bg: #e1f0f1; --accent-line: #a7d1d4;
+      --slate: #3a4b55; --slate-bg: #e8edf0;
+      --warn: #9b5a07; --warn-bg: #fbf0dc;
+      --stop: #a33b52; --stop-bg: #f9e9ed;
+      --line: #5d7380; --back: #a33b52; --quiet: #8a989e;
+      --shadow: 0 1px 0 rgba(27, 38, 41, .04), 0 8px 20px rgba(27, 38, 41, .06);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scrollbar-color: #a3b2b7 transparent; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 var(--font); }
+    ::selection { background: #c9e4e6; color: var(--ink); }
+    a { color: var(--accent); text-underline-offset: 3px; }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+    h1, h2, h3, p, figure, ul, ol, table { margin: 0; }
+    ul, ol { padding: 0; list-style: none; }
+    p, li, figcaption, td, th { text-wrap: pretty; }
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    .ic { width: 16px; height: 16px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+    main { width: min(1080px, 100% - 48px); margin: 52px auto 72px; }
+    header { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 40px; align-items: end; padding-bottom: 32px; border-bottom: 2px solid var(--ink); }
+    h1 { font-size: clamp(32px, 4.4vw, 52px); line-height: 1.08; letter-spacing: -.03em; font-weight: 800; }
+    .lede { max-width: 58ch; margin-top: 14px; color: var(--muted); font-size: 17px; line-height: 1.6; }
+    .when { display: grid; gap: 12px; font-size: 14px; }
+    .when div { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 10px; }
+    .when .mark { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; }
+    .when .yes .mark { background: var(--accent); color: var(--surface); }
+    .when .no .mark { box-shadow: inset 0 0 0 1.5px var(--rule); color: var(--muted); }
+    .when .mark .ic { width: 14px; height: 14px; stroke-width: 2.4; }
+    .when strong { display: block; font-size: 14px; }
+    .when p { color: var(--soft); font-size: 13.5px; line-height: 1.55; }
+    .when .fine { grid-template-columns: minmax(0, 1fr); padding-top: 10px; border-top: 1px solid var(--hair); color: var(--soft); font-size: 13px; }
+    .toc { display: flex; flex-wrap: wrap; gap: 6px 22px; margin-top: 18px; font-size: 14px; font-weight: 700; }
+    .toc a { color: var(--ink); text-decoration: none; }
+    .toc a span { margin-right: 6px; color: var(--accent); font-variant-numeric: tabular-nums; }
+    .toc a:hover { color: var(--accent); }
+
+    section { display: grid; grid-template-columns: 180px minmax(0, 1fr); column-gap: 40px; margin-top: 64px; }
+    .margin { padding-top: 6px; }
+    .figno { color: var(--accent); font-size: 13px; font-weight: 800; letter-spacing: .02em; font-variant-numeric: tabular-nums; }
+    .margin h2 { margin-top: 6px; font-size: 22px; line-height: 1.25; letter-spacing: -.015em; scroll-margin-top: 24px; }
+    .margin p { margin-top: 10px; color: var(--muted); font-size: 14px; line-height: 1.6; }
+    .margin ul { display: grid; gap: 8px; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--hair); }
+    .margin li { color: var(--soft); font-size: 13px; line-height: 1.55; }
+    .margin li::before { content: "→ "; color: var(--accent); font-weight: 800; }
+    .fig { min-width: 0; margin: 0; padding: 26px; border: 1px solid var(--hair); border-radius: 18px; background: var(--paper); }
+    figcaption { margin-top: 18px; color: var(--muted); font-size: 13.5px; line-height: 1.6; }
+    figcaption b { color: var(--ink); }
+
+    /* Marks: shape and fill carry the level, not colour alone. */
+    .mk { width: 30px; height: 30px; flex: none; }
+    .mk .req { fill: var(--accent); }
+    .mk .tick { fill: none; stroke: var(--surface); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+    .mk .rec { fill: url(#hatch); stroke: var(--accent); stroke-width: 1.6; }
+    .mk .none { fill: none; stroke: var(--quiet); stroke-width: 1.4; stroke-dasharray: 3 3; }
+
+    /* 1. Requirement matrix */
+    .matrix { width: 100%; border-collapse: separate; border-spacing: 0; table-layout: fixed; font-size: 14px; }
+    .matrix th, .matrix td { padding: 12px 10px; border-bottom: 1px solid var(--hair); vertical-align: middle; }
+    .matrix thead th { padding-top: 0; border-bottom: 2px solid var(--ink); color: var(--ink); font-size: 13px; font-weight: 800; text-align: center; }
+    .matrix thead th:first-child { width: 38%; text-align: left; color: var(--muted); font-weight: 700; }
+    .matrix thead .ic { display: block; width: 20px; height: 20px; margin: 0 auto 4px; color: var(--accent); }
+    .matrix tbody th { text-align: left; font-weight: 400; }
+    .matrix tbody th strong { display: block; font-size: 15px; }
+    .matrix tbody th span { display: block; margin-top: 2px; color: var(--muted); font-size: 13px; line-height: 1.45; }
+    .matrix td { text-align: center; }
+    .matrix td .mk { display: block; margin: 0 auto; }
+    .matrix td em { display: block; margin-top: 3px; color: var(--soft); font-size: 12px; font-style: normal; }
+    .matrix tbody tr:last-child > * { border-bottom: 0; }
+    .matrix tbody tr:hover > * { background: rgba(225, 240, 241, .35); }
+    .keys { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 18px; margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--hair); color: var(--soft); font-size: 13px; }
+    .keys span { display: inline-flex; align-items: center; gap: 7px; }
+    .keys .mk { width: 20px; height: 20px; }
+
+    /* 2. Two-axis map */
+    .map { display: grid; grid-template-columns: 44px repeat(3, minmax(0, 1fr)); grid-template-rows: auto auto 46px; gap: 0 8px; }
+    .map > .cell, .map > .x-axis, .map > .y-axis { position: relative; z-index: 1; }
+
+    .y-axis { grid-column: 1; grid-row: 1 / 3; position: relative; display: grid; place-items: center; }
+    .y-axis::before { content: ""; position: absolute; top: 10px; bottom: 4px; left: 50%; width: 2px; background: var(--line); transform: translateX(-50%); }
+    .y-axis::after { content: ""; position: absolute; top: 0; left: 50%; border: 6px solid transparent; border-top: 0; border-bottom: 10px solid var(--line); transform: translateX(-50%); }
+    .y-axis span { padding: 6px 0; background: var(--paper); color: var(--ink); font-size: 12.5px; font-weight: 800; writing-mode: vertical-rl; transform: rotate(180deg); z-index: 1; }
+    .x-axis { grid-column: 2 / 5; grid-row: 3; position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: end; }
+    .x-axis::before { content: ""; position: absolute; top: 10px; left: 0; right: 10px; height: 2px; background: var(--line); }
+    .x-axis::after { content: ""; position: absolute; top: 5px; right: 0; border: 6px solid transparent; border-right: 0; border-left: 10px solid var(--line); }
+    .x-axis span { padding-top: 20px; color: var(--soft); font-size: 12.5px; font-weight: 700; text-align: center; }
+    .x-axis .x-name { position: absolute; right: 18px; top: 2px; padding: 0 6px; background: var(--paper); color: var(--ink); font-size: 12.5px; }
+    .row-tag { display: none; }
+    .plane { grid-column: 2 / 5; grid-row: 1 / 3; border-radius: 14px; background: linear-gradient(to top right, #eef3f4 0 30%, #e3eff0 60%, #d4e8ea 100%); }
+    .cell { display: grid; align-content: start; gap: 8px; min-height: 132px; padding: 10px; }
+    .cell[data-pos$="r1"] { border-bottom: 1px dashed var(--rule); }
+    .cell[data-pos^="c2"], .cell[data-pos^="c3"] { border-right: 1px dashed var(--rule); }
+    .cell.empty { align-content: center; color: var(--muted); font-size: 12.5px; line-height: 1.5; text-align: center; }
+    .tile { display: grid; gap: 4px; padding: 10px 11px; border-radius: 10px; background: var(--surface); box-shadow: var(--shadow); }
+    .tile strong { font-size: 14px; line-height: 1.35; }
+    .tile span { display: flex; align-items: center; gap: 6px; color: var(--soft); font-size: 12.5px; line-height: 1.4; }
+    .tile .ic { width: 14px; height: 14px; color: var(--accent); }
+    .tile.caution { box-shadow: inset 0 0 0 1.5px var(--warn), var(--shadow); }
+    .tile.caution .ic { color: var(--warn); }
+    .cell[data-pos^="c2"] { grid-column: 2; } .cell[data-pos^="c3"] { grid-column: 3; } .cell[data-pos^="c4"] { grid-column: 4; }
+    .cell[data-pos$="r1"] { grid-row: 1; } .cell[data-pos$="r2"] { grid-row: 2; }
+
+    /* 3. State transitions */
+    .diagram { position: relative; }
+    .links { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; z-index: 0; }
+    .diagram > :not(.links) { position: relative; z-index: 1; }
+    .ln { fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .ln-main { stroke: var(--line); }
+    .ln-back { stroke: var(--back); stroke-dasharray: 6 6; }
+    .ln-quiet { stroke: var(--quiet); stroke-width: 1.6; }
+    .hd-main { fill: var(--line); } .hd-back { fill: var(--back); } .hd-quiet { fill: var(--quiet); }
+    .trig { display: inline-flex; align-items: center; gap: 5px; margin: 4px 8px 4px 0; color: var(--slate); font-size: 12px; font-weight: 800; white-space: nowrap; }
+    .js .trig { position: absolute; z-index: 2; margin: 0; padding: 0 8px; font-size: 12px; border-radius: 999px; background: var(--paper); box-shadow: inset 0 0 0 1px var(--rule); transform: translate(-50%, -50%); }
+    .js .trig[data-mode="v"] { padding: 8px 1px; writing-mode: vertical-rl; }
+    .trig.back { color: var(--back); }
+    .trig.quiet { color: var(--muted); }
+    .trig .ic { width: 13px; height: 13px; }
+    .states { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: auto auto; column-gap: 68px; row-gap: 86px; padding-top: 22px; }
+    .state { display: grid; align-content: start; gap: 8px; min-width: 0; padding: 12px; border: 1.5px solid var(--rule); border-radius: 14px; background: var(--surface); }
+    .state h3 { display: flex; align-items: center; gap: 8px; font-size: 15px; }
+    .state h3 i { width: 10px; height: 10px; border-radius: 50%; background: var(--c, var(--line)); }
+    .state > p { color: var(--soft); font-size: 13px; line-height: 1.5; }
+    .s-draft { --c: var(--slate); }
+    .s-review { --c: var(--warn); border-color: #d8b780; }
+    .s-ok { --c: var(--accent); border-color: var(--accent-line); }
+    .s-live { --c: var(--accent); border-color: var(--accent); background: #f2f9f9; }
+    .s-off { --c: var(--quiet); grid-column: 2; grid-row: 2; justify-self: end; width: 78%; border-style: dashed; background: transparent; }
+    .ui { display: grid; gap: 6px; padding-top: 9px; border-top: 1px dashed var(--hair); font-size: 12px; line-height: 1.45; }
+    .bar { height: 5px; border-radius: 3px; background: var(--hair); }
+    .bar.short { width: 62%; }
+    .btn { justify-self: start; display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 6px; font-size: 12px; font-weight: 800; }
+    .btn .ic { width: 12px; height: 12px; stroke-width: 2.2; }
+    .btn.fill { background: var(--slate); color: var(--surface); }
+    .btn.line { box-shadow: inset 0 0 0 1.4px currentColor; }
+    .comment { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 6px; align-items: start; }
+    .avatar { display: grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: var(--warn); color: var(--surface); font-size: 11px; font-weight: 800; }
+    .comment p { padding: 4px 8px; border-radius: 2px 9px 9px 9px; background: var(--warn-bg); }
+    .pair { display: flex; flex-wrap: wrap; gap: 5px; }
+    .pair .ok { color: var(--accent); }
+    .pair .back { color: var(--back); }
+    .badge { display: flex; align-items: center; gap: 6px; font-weight: 700; }
+    .badge .ic { width: 18px; height: 18px; padding: 2px; border-radius: 50%; background: var(--accent); color: var(--surface); stroke-width: 2.6; }
+    .live { display: inline-flex; align-items: center; gap: 5px; color: var(--accent); font-weight: 800; }
+    .live::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+    .link { display: flex; align-items: center; gap: 5px; color: var(--muted); }
+    .link .ic { width: 13px; height: 13px; color: var(--accent); }
+
+    footer { margin-top: 64px; padding-top: 18px; border-top: 2px solid var(--ink); color: var(--muted); font-size: 14px; }
+    footer p + p { margin-top: 4px; }
+
+    @media (max-width: 1000px) {
+      header { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+      section { grid-template-columns: minmax(0, 1fr); row-gap: 16px; }
+      .margin ul { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 20px; }
+    }
+    @media (max-width: 860px) {
+      .states { grid-template-columns: minmax(0, 1fr); row-gap: 34px; padding: 0 40px 0 34px; }
+      .s-off { grid-column: 1; grid-row: auto; justify-self: stretch; width: auto; }
+    }
+    @media (max-width: 640px) {
+      main { width: calc(100% - 32px); margin-top: 28px; }
+      .lede { font-size: 16px; }
+      section { margin-top: 48px; }
+      .margin ul { grid-template-columns: minmax(0, 1fr); }
+      .fig { padding: 14px 10px; border-radius: 14px; }
+      figcaption { padding: 0 4px; }
+      .matrix { font-size: 13px; }
+      .matrix th, .matrix td { padding: 9px 4px; }
+      .matrix thead th { font-size: 12px; }
+      .matrix thead th:first-child { width: 34%; padding-left: 6px; }
+      .matrix tbody th { padding-left: 6px; }
+      .matrix tbody th strong { font-size: 13px; }
+      .matrix tbody th span, .matrix td em { display: none; }
+      .matrix td .mk { width: 26px; height: 26px; }
+      .keys { gap: 4px 12px; font-size: 12px; }
+      .keys .mk { width: 16px; height: 16px; }
+      .map { grid-template-columns: 30px repeat(3, minmax(0, 1fr)); gap: 5px; }
+      .y-axis svg { inset: 4px 7px; }
+      .y-axis span { font-size: 12px; }
+      .x-axis span { font-size: 12px; }
+      .cell { min-height: 0; padding: 5px; gap: 5px; }
+      .cell.empty { padding: 6px; font-size: 12px; }
+      .tile { padding: 7px; }
+      .tile strong { font-size: 12.5px; }
+      .tile span { display: none; }
+    }
+  </style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <pattern id="hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="5" height="5" fill="#fdfefe"/><path d="M0 0v5" stroke="#0c6e77" stroke-width="2.2"/></pattern>
+  </defs>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7 7 17"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-6.5 10-6.5S22 12 22 12s-3.5 6.5-10 6.5S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-expert" viewBox="0 0 24 24"><path d="M4 19V6a2 2 0 0 1 2-2h12v15H6a2 2 0 0 0-2 2v0a2 2 0 0 0 2 2h12"/><path d="M9 9h5M9 12h4"/></symbol>
+  <symbol id="i-sign" viewBox="0 0 24 24"><path d="M3 17c3-4 5 2 8-2s4 2 6 0 2-2 4-1M4 21h16"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 4 22 20H2z"/><path d="M12 10v4M12 17h.01"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M4 12 20 4l-6 16-3-7-7-1Z"/></symbol>
+  <symbol id="i-archive" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="5" rx="1"/><path d="M5 9v10h14V9M10 13h4"/></symbol>
+  <symbol id="i-undo" viewBox="0 0 24 24"><path d="M9 7 4 12l5 5M4 12h11a5 5 0 0 1 0 10h-2"/></symbol>
+</svg>
+<main>
+  <header>
+    <div>
+      <h1>Draw the relationship, not the decoration</h1>
+      <p class="lede">A reference set for explanatory sections, English edition. The example is a team handbook that several people edit. It shows three relationships the other editions do not: levels across a grid, positions on two axes, and the states a draft can move between.</p>
+      <nav class="toc" aria-label="Figures on this page"><a href="#s-matrix"><span>01</span>Requirement matrix</a><a href="#s-map"><span>02</span>Two-axis map</a><a href="#s-states"><span>03</span>State transitions</a></nav>
+    </div>
+    <div class="when">
+      <div class="yes"><span class="mark"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span><p><strong>Use it for a section that explains</strong>how something works, steps and their feedback, structure, or a comparison, when a figure says it faster than a short paragraph.</p></div>
+      <div class="no"><span class="mark"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></span><p><strong>Don't apply it to a whole page</strong>Articles, forms, search and data browsing keep their own layouts. On a mixed page, only the explanatory section uses it.</p></div>
+      <p class="fine">Brand guidelines, an existing design system and the reader's or client's stated style come first.</p>
+    </div>
+  </header>
+
+  <section id="s-matrix" aria-labelledby="matrix-title">
+    <div class="margin">
+      <p class="figno">Fig. 01</p>
+      <h2 id="matrix-title">Which checks does a change need?</h2>
+      <p>Rows are kinds of change, columns are kinds of check. Each mark answers one question: is this check needed here?</p>
+      <ul><li>Shape and fill carry the level, so it survives grayscale.</li><li>On a phone the grid stays a grid; only the notes drop.</li></ul>
+    </div>
+    <figure class="fig" aria-labelledby="matrix-cap">
+      <table class="matrix">
+        <caption class="sr-only">Checks needed for each kind of handbook change</caption>
+        <thead><tr><th scope="col">Kind of change</th><th scope="col"><svg class="ic" aria-hidden="true"><use href="#i-eye"/></svg>Peer read</th><th scope="col"><svg class="ic" aria-hidden="true"><use href="#i-expert"/></svg>Subject expert</th><th scope="col"><svg class="ic" aria-hidden="true"><use href="#i-sign"/></svg>Owner sign-off</th></tr></thead>
+        <tbody>
+          <tr><th scope="row"><strong>Fix a typo</strong><span>Meaning stays the same</span></th>
+            <td><svg class="mk" viewBox="0 0 30 30" role="img" aria-label="Recommended"><circle class="rec" cx="15" cy="15" r="12"/></svg><em>Recommended</em></td>
+            <td><svg class="mk" viewBox="0 0 30 30" role="img" aria-label="Not needed"><circle class="none" cx="15" cy="15" r="8"/></svg><em>Not needed</em></td>
+            <td><svg class="mk" viewBox="0 0 30 30" role="img" aria-label="Not needed"><circle class="none" cx="15" cy="15" r="8"/></svg><em>Not needed</em></td></tr>
+          <tr><th scope="row"><strong>Add a how-to section</strong><span>New steps readers will follow</span></th>
+            <td><svg class="mk" viewBox="0 0 30 30" role="img" aria-label="Required"><circle class="req" cx="15" cy="15" r="14"/><path class="tick" d="m9.5 15.5 3.5 3.5 7.5-8"/></svg><em>Required</em></td>
+            <td><svg class="mk" viewBox="0 0 30 30" role="img" aria-label="Recommended"><circle class="rec" cx="15" cy="15" r="12"/></svg><em>Recommended</em></td>
+            <td><svg class="mk" viewBox="0 0 30 30" role="img" aria-label="Not needed"><circle class="none" cx="15" cy="15" r="8"/></svg><em>Not needed</em></td></tr>
+          <tr><th scope="row"><strong>Update a shared reference table</strong><span>Others copy these values</span></th>
+            <td><svg class="mk" viewBox="0 0 30 30" role="img" aria-label="Recommended"><circle class="rec" cx="15" cy="15" r="12"/></svg><em>Recommended</em></td>
+            <td><svg class="mk" viewBox="0 0 30 30" role="img" aria-label="Required"><circle class="req" cx="15" cy="15" r="14"/><path class="tick" d="m9.5 15.5 3.5 3.5 7.5-8"/></svg><em>Required</em></td>
+            <td><svg class="mk" viewBox="0 0 30 30" role="img" aria-label="Recommended"><circle class="rec" cx="15" cy="15" r="12"/></svg><em>Recommended</em></td></tr>
+          <tr><th scope="row"><strong>Change a policy statement</strong><span>Sets what people must do</span></th>
+            <td><svg class="mk" viewBox="0 0 30 30" role="img" aria-label="Required"><circle class="req" cx="15" cy="15" r="14"/><path class="tick" d="m9.5 15.5 3.5 3.5 7.5-8"/></svg><em>Required</em></td>
+            <td><svg class="mk" viewBox="0 0 30 30" role="img" aria-label="Required"><circle class="req" cx="15" cy="15" r="14"/><path class="tick" d="m9.5 15.5 3.5 3.5 7.5-8"/></svg><em>Required</em></td>
+            <td><svg class="mk" viewBox="0 0 30 30" role="img" aria-label="Required"><circle class="req" cx="15" cy="15" r="14"/><path class="tick" d="m9.5 15.5 3.5 3.5 7.5-8"/></svg><em>Required</em></td></tr>
+        </tbody>
+      </table>
+      <p class="keys" aria-hidden="true"><span><svg class="mk" viewBox="0 0 30 30"><circle class="req" cx="15" cy="15" r="14"/><path class="tick" d="m9.5 15.5 3.5 3.5 7.5-8"/></svg>Required</span><span><svg class="mk" viewBox="0 0 30 30"><circle class="rec" cx="15" cy="15" r="12"/></svg>Recommended</span><span><svg class="mk" viewBox="0 0 30 30"><circle class="none" cx="15" cy="15" r="8"/></svg>Not needed</span></p>
+      <figcaption id="matrix-cap"><b>Levels are a team agreement, not a measurement.</b> The marks compare rows and columns; they do not score how risky a change is.</figcaption>
+    </figure>
+  </section>
+
+  <section id="s-map" aria-labelledby="map-title">
+    <div class="margin">
+      <p class="figno">Fig. 02</p>
+      <h2 id="map-title">How far does a change travel?</h2>
+      <p>Two independent questions place each change: who will see it, and how hard it is to take back. The corner where both are high asks for the most care.</p>
+      <ul><li>An empty cell says why it is empty.</li><li>The plane deepens toward care, without numbers.</li></ul>
+    </div>
+    <figure class="fig" aria-labelledby="map-cap">
+      <div class="map">
+        <div class="y-axis" aria-hidden="true"><span>Harder to undo</span></div>
+        <div class="plane" aria-hidden="true"></div>
+        <div class="cell empty" data-pos="c2r1"><span class="sr-only">Only me, hard to undo: </span>Rare: changes only you can see are usually easy to undo.</div>
+        <div class="cell" data-pos="c3r1"><span class="sr-only">My team, hard to undo:</span><div class="tile"><strong>Rename a shared folder</strong><span><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg>Agree on a date first</span></div></div>
+        <div class="cell" data-pos="c4r1"><span class="sr-only">Everyone, hard to undo:</span><div class="tile caution"><strong>Change a policy statement</strong><span><svg class="ic" aria-hidden="true"><use href="#i-alert"/></svg>Stage it and get sign-off</span></div><div class="tile caution"><strong>Retire a page</strong><span><svg class="ic" aria-hidden="true"><use href="#i-alert"/></svg>Redirect readers first</span></div></div>
+        <div class="cell" data-pos="c2r2"><span class="sr-only">Only me, easy to undo:</span><div class="tile"><strong>Personal notes</strong><span><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg>Edit freely</span></div></div>
+        <div class="cell" data-pos="c3r2"><span class="sr-only">My team, easy to undo:</span><div class="tile"><strong>Reorder steps</strong><span><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg>Tell the team</span></div></div>
+        <div class="cell" data-pos="c4r2"><span class="sr-only">Everyone, easy to undo:</span><div class="tile"><strong>Fix a typo</strong><span><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg>A peer read is enough</span></div></div>
+        <div class="x-axis" aria-hidden="true"><span>Only me</span><span>My team</span><span>Everyone</span><b class="x-name">Wider reach</b></div>
+      </div>
+      <figcaption id="map-cap"><b>Positions are illustrative.</b> Read across for reach and up for how hard a change is to undo; the deeper the plane, the more care the change asks for.</figcaption>
+    </figure>
+  </section>
+
+  <section id="s-states" aria-labelledby="states-title">
+    <div class="margin">
+      <p class="figno">Fig. 03</p>
+      <h2 id="states-title">Where can a draft go next?</h2>
+      <p>Boxes are states, labels on the lines are what moves a draft between them. A request for changes goes back to the draft, not to the start of a new one.</p>
+      <ul><li>Name the trigger on the line itself.</li><li>Dead ends look different from the main path.</li></ul>
+    </div>
+    <figure class="fig" aria-labelledby="states-cap">
+      <div class="diagram states" data-diagram="en-states">
+        <article class="state s-draft" data-node="draft">
+          <h3><i></i>Draft</h3><p>The writer is editing.</p>
+          <div class="ui"><div class="bar"></div><div class="bar short"></div><span class="btn fill"><svg class="ic" aria-hidden="true"><use href="#i-send"/></svg>Submit for review</span></div>
+        </article>
+        <article class="state s-review" data-node="review">
+          <h3><i></i>In review</h3><p>A reviewer reads and comments.</p>
+          <div class="ui"><div class="comment"><span class="avatar">R</span><p>Step 3 needs the export setting.</p></div><div class="pair"><span class="btn line back">Request changes</span><span class="btn line ok">Approve</span></div></div>
+        </article>
+        <article class="state s-ok" data-node="ok">
+          <h3><i></i>Approved</h3><p>Ready, not yet visible.</p>
+          <div class="ui"><span class="badge"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Approved by the owner</span></div>
+        </article>
+        <article class="state s-live" data-node="live">
+          <h3><i></i>Published</h3><p>Readers see this version.</p>
+          <div class="ui"><span class="live">Live</span><span class="link"><svg class="ic" aria-hidden="true"><use href="#i-link"/></svg>Shareable link</span></div>
+        </article>
+        <article class="state s-off" data-node="off">
+          <h3><i></i>Withdrawn</h3><p>Kept in history, hidden from readers.</p>
+        </article>
+        <span class="trig" data-label="submit">Submit</span>
+        <span class="trig" data-label="approve">Approve</span>
+        <span class="trig" data-label="publish">Publish</span>
+        <span class="trig back" data-label="changes"><svg class="ic" aria-hidden="true"><use href="#i-undo"/></svg>Request changes</span>
+        <span class="trig quiet" data-label="withdraw">Withdraw</span>
+      </div>
+      <p class="sr-only">Transitions: Draft goes to In review on Submit. In review goes back to Draft on Request changes, to Approved on Approve, or to Withdrawn on Withdraw. Approved goes to Published on Publish. Withdrawn is a dead end.</p>
+      <figcaption id="states-cap"><b>Solid lines move forward, the dashed line returns, the thin line ends.</b> Mini screens show what each state looks like; they are illustrations, not working controls.</figcaption>
+    </figure>
+  </section>
+
+  <footer>
+    <p>An on-demand reference: borrow how relationships are drawn, not the layout, palette or content.</p>
+    <p>Lines are computed from the real position of each element and redrawn when the window changes width.</p>
+  </footer>
+</main>
+<script>
+(() => {
+  document.documentElement.classList.add('js');
+  const NS = 'http://www.w3.org/2000/svg';
+  const KINDS = ['main', 'back', 'quiet'];
+  const round = (pts, r = 12) => {
+    let d = `M${pts[0][0]} ${pts[0][1]}`;
+    for (let i = 1; i < pts.length - 1; i++) {
+      const [x0, y0] = pts[i - 1], [x1, y1] = pts[i], [x2, y2] = pts[i + 1];
+      const d1 = Math.hypot(x1 - x0, y1 - y0), d2 = Math.hypot(x2 - x1, y2 - y1);
+      if (!d1 || !d2) continue;
+      const k = Math.min(r, d1 / 2, d2 / 2);
+      d += ` L${x1 + (x0 - x1) / d1 * k} ${y1 + (y0 - y1) / d1 * k} Q${x1} ${y1} ${x1 + (x2 - x1) / d2 * k} ${y1 + (y2 - y1) / d2 * k}`;
+    }
+    const [xn, yn] = pts[pts.length - 1];
+    return `${d} L${xn} ${yn}`;
+  };
+  function surface(diagram) {
+    let svg = diagram.querySelector(':scope > .links');
+    if (!svg) {
+      svg = document.createElementNS(NS, 'svg');
+      svg.setAttribute('class', 'links'); svg.setAttribute('aria-hidden', 'true'); svg.setAttribute('focusable', 'false');
+      diagram.prepend(svg);
+    }
+    svg.replaceChildren();
+    const B = diagram.getBoundingClientRect();
+    svg.setAttribute('viewBox', `0 0 ${B.width} ${B.height}`);
+    const id = diagram.dataset.diagram;
+    const defs = document.createElementNS(NS, 'defs');
+    for (const kind of KINDS) {
+      const m = document.createElementNS(NS, 'marker');
+      m.id = `${id}-${kind}`;
+      for (const [k, v] of Object.entries({ viewBox: '0 0 10 10', refX: '8.6', refY: '5', markerWidth: '9', markerHeight: '9', markerUnits: 'userSpaceOnUse', orient: 'auto-start-reverse' })) m.setAttribute(k, v);
+      const p = document.createElementNS(NS, 'path');
+      p.setAttribute('d', 'M0 0.8 10 5 0 9.2Z'); p.setAttribute('class', `hd-${kind}`);
+      m.append(p); defs.append(m);
+    }
+    svg.append(defs);
+    const box = name => {
+      const r = diagram.querySelector(`[data-node="${name}"]`).getBoundingClientRect();
+      const l = r.left - B.left, t = r.top - B.top;
+      return { l, t, r: l + r.width, b: t + r.height, x: l + r.width / 2, y: t + r.height / 2, w: r.width, h: r.height };
+    };
+    const line = (pts, kind = 'main', arrow = true) => {
+      const p = document.createElementNS(NS, 'path');
+      p.setAttribute('d', round(pts)); p.setAttribute('class', `ln ln-${kind}`);
+      if (arrow) p.setAttribute('marker-end', `url(#${id}-${kind})`);
+      svg.append(p);
+    };
+    const label = (name, x, y, mode = '') => {
+      const el = diagram.querySelector(`[data-label="${name}"]`);
+      if (!el) return;
+      el.style.left = `${x}px`; el.style.top = `${y}px`; el.dataset.mode = mode;
+    };
+    return { W: B.width, H: B.height, box, line, label };
+  }
+  const stacked = (a, b) => b.t >= a.b - 1;
+  const draw = {
+    'en-states'({ W, box, line, label }) {
+      const d = box('draft'), r = box('review'), o = box('ok'), p = box('live'), w = box('off');
+      if (stacked(d, r)) {
+        line([[d.x, d.b], [d.x, r.t]]); label('submit', d.x, (d.b + r.t) / 2);
+        line([[r.x, r.b], [r.x, o.t]]); label('approve', r.x, (r.b + o.t) / 2);
+        line([[o.x, o.b], [o.x, p.t]]); label('publish', o.x, (o.b + p.t) / 2);
+        const rx = W - 16, lx = 12;
+        line([[r.r, r.t + 26], [rx, r.t + 26], [rx, d.y], [d.r, d.y]], 'back');
+        label('changes', rx, (d.y + r.t + 26) / 2, 'v');
+        line([[r.l, r.b - 22], [lx, r.b - 22], [lx, w.y], [w.l, w.y]], 'quiet');
+        label('withdraw', lx, (r.b + o.b) / 2, 'v');
+      } else {
+        line([[d.r, d.t + 34], [r.l, d.t + 34]]); label('submit', (d.r + r.l) / 2, d.t + 14);
+        line([[r.r, r.t + 34], [o.l, r.t + 34]]); label('approve', (r.r + o.l) / 2, r.t + 14);
+        line([[o.r, o.t + 34], [p.l, o.t + 34]]); label('publish', (o.r + p.l) / 2, o.t + 14);
+        const ya = Math.max(d.b, r.b) + 30, xa = r.l + r.w * .2;
+        line([[xa, r.b], [xa, ya], [d.x, ya], [d.x, d.b]], 'back');
+        label('changes', (d.x + xa) / 2, ya);
+        line([[w.x, r.b], [w.x, w.t]], 'quiet');
+        label('withdraw', w.x, (r.b + w.t) / 2 + 8);
+      }
+    }
+  };
+  let queued = false;
+  const redraw = () => {
+    queued = false;
+    document.querySelectorAll('[data-diagram]').forEach(el => draw[el.dataset.diagram]?.(surface(el)));
+  };
+  const schedule = () => { if (!queued) { queued = true; requestAnimationFrame(redraw); } };
+  new ResizeObserver(schedule).observe(document.querySelector('main'));
+  if (document.fonts) document.fonts.ready.then(schedule);
+  redraw();
+})();
+</script>
+</body>
+</html>

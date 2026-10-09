@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="説明セクションの図解リファレンス（日本語版）：問い合わせ対応を題材に、閉じたループの構成、役割の引き継ぎ、層の構成と線の意味の使い分けを示します。">
+  <title>関係をそのまま描く・説明セクションの図解リファレンス</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --font: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", Meiryo, "Noto Sans CJK JP", system-ui, sans-serif;
+      --bg: #f4f6f8; --fig: #fcfdfd; --surface: #fdfefe; --hair: #d5dde4; --frame: #b8c5d1;
+      --ink: #17283d; --muted: #536274; --soft: #4a596b;
+      --line: #3d5a7a; --back: #ad4660; --read: #7b93ac; --note: #9a5f0f;
+      --teal: #0f6b70; --teal-bg: #e2f1f1; --teal-line: #a9d3d3;
+      --sky: #2d5f97; --sky-bg: #e7eff8; --sky-line: #bccfe5;
+      --amber: #9a5b0a; --amber-bg: #fbf0dd;
+      --rose: #ad4660; --rose-bg: #fbeaee;
+      --shadow: 0 5px 14px rgba(23, 40, 61, .08);
+      --dots: radial-gradient(circle, #d6dee6 1px, transparent 1.3px);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scrollbar-color: #9cadbd transparent; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.75 var(--font); word-break: auto-phrase; }
+    ::selection { background: #cfdcea; color: var(--ink); }
+    a { color: var(--sky); text-underline-offset: 3px; }
+    a:focus-visible { outline: 2px solid var(--sky); outline-offset: 3px; border-radius: 3px; }
+    h1, h2, h3, h4, p, figure, ul, ol, dl, dd { margin: 0; }
+    ul, ol { padding: 0; list-style: none; }
+    p, li, span, figcaption, dd { text-wrap: pretty; }
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    .ic { width: 16px; height: 16px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+
+    main { width: min(1120px, 100% - 48px); margin: 44px auto 64px; }
+    header { padding-bottom: 28px; border-bottom: 1px solid var(--frame); }
+    h1 { font-size: clamp(28px, 3.6vw, 40px); line-height: 1.3; letter-spacing: -.01em; }
+    .lede { max-width: 760px; margin-top: 10px; color: var(--muted); }
+    .judge { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; margin-top: 22px; border: 1px solid var(--frame); border-radius: 14px; background: var(--fig); overflow: hidden; }
+    .judge > div { padding: 14px 16px; }
+    .judge > div + div { border-left: 1px solid var(--hair); }
+    .judge .jt { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 800; }
+    .judge .jt .ic { width: 20px; height: 20px; padding: 3px; border-radius: 50%; stroke-width: 2.2; }
+    .judge .use .jt .ic { background: var(--teal-bg); color: var(--teal); }
+    .judge .skip .jt .ic { background: var(--rose-bg); color: var(--rose); }
+    .judge ul { display: grid; gap: 4px; margin-top: 8px; }
+    .judge li { position: relative; padding-left: 14px; color: var(--soft); font-size: 13px; line-height: 1.65; }
+    .judge li::before { content: ""; position: absolute; top: .72em; left: 2px; width: 5px; height: 5px; border-radius: 1px; background: var(--frame); }
+    .judge .foot { grid-column: 1 / -1; padding: 9px 16px; border-top: 1px solid var(--hair); background: var(--bg); color: var(--soft); font-size: 12.5px; }
+    .legend { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; margin-top: 18px; color: var(--soft); font-size: 12.5px; }
+    .legend b { color: var(--ink); font-size: 12px; }
+    .legend span { display: inline-flex; align-items: center; gap: 7px; }
+    .legend svg { width: 34px; height: 10px; overflow: visible; }
+    .toc { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 14px; font-size: 13px; font-weight: 700; }
+    .toc a { display: inline-flex; align-items: center; gap: 6px; color: var(--ink); text-decoration: none; }
+    .toc a b { display: grid; place-items: center; width: 20px; height: 20px; border-radius: 5px; background: var(--ink); color: var(--surface); font-size: 11px; }
+    .toc a:hover { color: var(--sky); }
+
+    section { margin-top: 56px; }
+    .head { display: grid; grid-template-columns: 34px minmax(0, 1fr); column-gap: 12px; max-width: 820px; margin-bottom: 16px; }
+    .head > b { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 8px; background: var(--ink); color: var(--surface); font-size: 15px; }
+    h2.sec { font-size: clamp(20px, 2.1vw, 25px); line-height: 1.45; scroll-margin-top: 24px; }
+    .head p { grid-column: 2; margin-top: 4px; color: var(--muted); }
+    .fig { margin: 0; padding: 26px; border: 1px solid var(--frame); border-radius: 16px; background-color: var(--fig); background-image: var(--dots); background-size: 16px 16px; }
+    figcaption { margin-top: 18px; padding-top: 12px; border-top: 1px dashed var(--hair); color: var(--muted); font-size: 13px; line-height: 1.7; }
+    figcaption span { display: inline-block; }
+    .notes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px 20px; margin-top: 14px; counter-reset: n; }
+    .notes li { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 8px; color: var(--soft); font-size: 13px; line-height: 1.65; counter-increment: n; }
+    .notes li::before { content: counter(n); display: grid; place-items: center; width: 20px; height: 20px; border: 1px solid var(--frame); border-radius: 50%; color: var(--muted); font-size: 11px; font-weight: 800; }
+
+    /* Connectors from real element positions; line style carries meaning across the page. */
+    .diagram { position: relative; isolation: isolate; }
+    .links { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; z-index: 0; }
+    .diagram > :not(.links) { position: relative; z-index: 1; }
+    .ln { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .ln-main { stroke: var(--line); stroke-width: 2; }
+    .ln-back { stroke: var(--back); stroke-width: 2; stroke-dasharray: 7 5; }
+    .ln-read { stroke: var(--read); stroke-width: 1.4; }
+    .ln-note { stroke: var(--note); stroke-width: 2; stroke-dasharray: 1.5 5; }
+    .hd-main { fill: var(--line); }
+    .hd-back { fill: var(--back); }
+    .hd-read { fill: var(--read); }
+    .hd-note { fill: var(--note); }
+    .lbl { display: inline-flex; align-items: center; gap: 4px; margin: 4px 0; color: var(--back); font-size: 12px; font-weight: 700; white-space: nowrap; }
+    .js .lbl { position: absolute; z-index: 2; margin: 0; padding: 1px 7px; border: 1px solid currentColor; border-radius: 6px; background: var(--fig); transform: translate(-50%, -50%); }
+    .js .lbl[data-mode="v"] { padding: 7px 1px; writing-mode: vertical-rl; }
+
+    /* Shared node vocabulary */
+    .box { display: grid; gap: 8px; min-width: 0; padding: 12px; border: 1px solid var(--frame); border-radius: 12px; background: var(--surface); box-shadow: var(--shadow); }
+    .box-head { display: flex; align-items: center; gap: 8px; }
+    .box-head h3 { font-size: 14.5px; line-height: 1.4; }
+    .box > p { color: var(--soft); font-size: 12.5px; line-height: 1.6; }
+    .letter { display: grid; place-items: center; width: 22px; height: 22px; flex: none; border-radius: 6px; background: var(--ink); color: var(--surface); font-size: 11.5px; font-weight: 800; }
+    .glyph { display: grid; place-items: center; width: 30px; height: 30px; flex: none; border-radius: 8px; background: var(--sky-bg); color: var(--sky); }
+    .glyph .ic { width: 18px; height: 18px; }
+    .mini { display: grid; gap: 5px; padding: 8px 9px; border-radius: 8px; background: var(--bg); font-size: 12px; line-height: 1.5; }
+    .chip { display: inline-flex; align-items: center; flex: none; padding: 0 6px; border-radius: 5px; font-size: 11px; font-weight: 700; line-height: 1.6; }
+    .c-new { background: var(--sky-bg); color: var(--sky); }
+    .c-doing { background: var(--amber-bg); color: var(--amber); }
+    .c-wait { background: var(--rose-bg); color: var(--rose); }
+    .c-teal { background: var(--teal-bg); color: var(--teal); }
+    .skel { height: 5px; border-radius: 3px; background: var(--hair); }
+    .skel.s60 { width: 60%; }
+
+    /* 1. Closed loop */
+    .loop { display: grid; grid-template-columns: 178px 40px minmax(0, 1fr) 40px 196px; row-gap: 18px; }
+    .loop-req { grid-column: 1; grid-row: 1 / 3; align-content: center; }
+    .loop-in { grid-column: 3; grid-row: 1; }
+    .loop-q { grid-column: 5; grid-row: 1 / 3; align-content: center; background: var(--ink); color: var(--surface); border-color: var(--ink); }
+    .loop-out { grid-column: 3; grid-row: 2; }
+    .lane { display: grid; gap: 8px; padding: 10px; border: 1px dashed var(--frame); border-radius: 14px; background: rgba(253, 254, 254, .82); }
+    .lane-in { border-color: var(--sky-line); }
+    .lane-out { border-color: var(--teal-line); }
+    .lane-title { display: flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 800; }
+    .lane-in .lane-title { color: var(--sky); }
+    .lane-out .lane-title { color: var(--teal); }
+    .lane-title span { color: var(--muted); font-size: 12px; font-weight: 600; }
+    .paths { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+    .bubble { position: relative; padding: 6px 9px; border-radius: 10px 10px 10px 2px; background: var(--sky-bg); font-size: 12.5px; font-weight: 700; }
+    .m-form .field { display: grid; grid-template-columns: 34px minmax(0, 1fr); align-items: center; gap: 6px; }
+    .m-form small { color: var(--muted); font-size: 11px; }
+    .m-form .field i { height: 16px; border: 1px solid var(--hair); border-radius: 4px; background: var(--surface); }
+    .m-form .send { justify-self: end; padding: 0 8px; border-radius: 5px; background: var(--sky); color: var(--surface); font-size: 11px; font-weight: 700; }
+    .m-mail .row { display: flex; align-items: center; gap: 6px; }
+    .m-mail .ic { color: var(--sky); }
+    .q-title { display: flex; align-items: center; gap: 8px; }
+    .q-title .glyph { background: rgba(255, 255, 255, .14); color: var(--surface); }
+    .q-title h3 { font-size: 15px; }
+    .loop-q > p { color: #c4d2e1; font-size: 12.5px; }
+    .m-queue { background: rgba(255, 255, 255, .1); }
+    .m-queue li { display: flex; align-items: center; justify-content: space-between; gap: 6px; padding: 4px 6px; border-radius: 5px; background: rgba(255, 255, 255, .08); color: var(--surface); }
+    .m-reply .subj { font-weight: 700; }
+    .m-status ol { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; }
+    .m-status ol::before, .m-status ol::after { content: ""; position: absolute; top: 5px; left: 16.67%; height: 2px; }
+    .m-status ol::before { right: 16.67%; background: var(--hair); }
+    .m-status ol::after { width: 33.33%; background: var(--teal); }
+    .m-status li { position: relative; z-index: 1; display: grid; justify-items: center; gap: 2px; font-size: 11px; color: var(--muted); }
+    .m-status li i { width: 12px; height: 12px; border: 2px solid var(--frame); border-radius: 50%; background: var(--surface); }
+    .m-status li.done i { border-color: var(--teal); background: var(--teal); }
+    .m-status li.now i { border-color: var(--teal); }
+    .m-status li.now { color: var(--teal); font-weight: 800; }
+
+    /* 2. Swimlane hand-offs */
+    .swim { display: grid; grid-template-columns: 104px repeat(6, minmax(0, 1fr)); grid-template-rows: repeat(4, auto); column-gap: 26px; }
+    .swim .band { grid-column: 1 / -1; border-top: 1px solid var(--hair); background: rgba(252, 253, 253, .82); }
+    .diagram > .band { z-index: -1; }
+    .swim .band:nth-of-type(even) { background: rgba(236, 242, 249, .9); }
+    .swim .r1 { grid-row: 1; } .swim .r2 { grid-row: 2; } .swim .r3 { grid-row: 3; } .swim .r4 { grid-row: 4; }
+    .swim .c1 { grid-column: 2; } .swim .c2 { grid-column: 3; } .swim .c3 { grid-column: 4; } .swim .c4 { grid-column: 5; } .swim .c5 { grid-column: 6; } .swim .c6 { grid-column: 7; }
+    .role { grid-column: 1; display: flex; align-items: center; gap: 8px; padding: 14px 0 14px 4px; font-size: 13px; font-weight: 800; }
+    .role .glyph { width: 28px; height: 28px; }
+    .role-req .glyph, .step.by-req .tagline b { background: var(--sky-bg); color: var(--sky); }
+    .role-desk .glyph, .step.by-desk .tagline b { background: var(--teal-bg); color: var(--teal); }
+    .role-owner .glyph, .step.by-owner .tagline b { background: var(--amber-bg); color: var(--amber); }
+    .role-check .glyph, .step.by-check .tagline b { background: var(--rose-bg); color: var(--rose); }
+    .step { align-self: center; margin: 12px 0; padding: 10px; gap: 6px; }
+    .step.r4 { margin-bottom: 40px; }
+    .step h3 { font-size: 13.5px; line-height: 1.45; }
+    .tagline { display: none; }
+    .tagline b { display: inline-flex; align-items: center; gap: 4px; padding: 0 7px; border-radius: 5px; font-size: 11px; }
+    .tagline .ic { width: 13px; height: 13px; }
+    .m-route { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; }
+    .m-route .ic { width: 12px; height: 12px; color: var(--line); }
+    .m-approve { display: flex; flex-wrap: wrap; gap: 5px; }
+    .m-approve span { display: inline-flex; justify-content: center; align-items: center; gap: 3px; padding: 1px 8px; white-space: nowrap; border-radius: 5px; font-size: 11px; font-weight: 800; }
+    .m-approve .ok { background: var(--teal); color: var(--surface); }
+    .m-approve .ng { box-shadow: inset 0 0 0 1.5px var(--back); color: var(--back); }
+    .m-approve .ic { width: 12px; height: 12px; stroke-width: 2.4; }
+
+    /* 3. Layers with typed connections */
+    .layers { display: grid; gap: 30px; padding-right: 30px; }
+    .layer { display: grid; grid-template-columns: 112px repeat(3, minmax(0, 1fr)); column-gap: 44px; align-items: stretch; }
+    .layer-name { display: grid; align-content: center; gap: 2px; padding: 8px 12px; border-radius: 10px; background: var(--ink); color: var(--surface); }
+    .layer-name strong { font-size: 14px; }
+    .layer-name span { color: #c4d2e1; font-size: 11.5px; line-height: 1.5; }
+    .comp { gap: 5px; padding: 10px 11px; }
+    .comp .box-head h3 { font-size: 13.5px; }
+    .comp > p { font-size: 12px; }
+    .conn { display: none; }
+    .slot { border: 1px dashed var(--hair); border-radius: 12px; }
+    .linekey { display: inline-block; width: 22px; height: 0; border-top: 2px solid var(--line); vertical-align: middle; }
+    .linekey.read { border-top-width: 1.4px; border-color: var(--read); }
+    .linekey.note { border-top: 2px dotted var(--note); }
+
+    footer { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--frame); color: var(--muted); font-size: 13px; }
+    footer p + p { margin-top: 4px; }
+    footer span { display: inline-block; }
+
+    @media (max-width: 1040px) {
+      .notes { grid-template-columns: minmax(0, 1fr); }
+      .loop { grid-template-columns: 150px 34px minmax(0, 1fr) 34px 170px; }
+      .swim { grid-template-columns: minmax(0, 1fr); column-gap: 0; row-gap: 26px; padding-right: 34px; }
+      .swim .band, .role { display: none; }
+      .swim .step { grid-column: 1; grid-row: auto; margin: 0; }
+      .swim .step.r4 { margin-bottom: 0; }
+      .tagline { display: flex; }
+      .layers { gap: 22px; padding-right: 0; }
+      .layer { grid-template-columns: minmax(0, 1fr); row-gap: 8px; }
+      .layer-name { grid-template-columns: auto minmax(0, 1fr); align-items: baseline; column-gap: 10px; }
+      .slot { display: none; }
+      .conn { display: flex; flex-wrap: wrap; gap: 4px 10px; color: var(--soft); font-size: 11.5px; }
+      .conn span { display: inline-flex; align-items: center; gap: 5px; }
+    }
+    @media (max-width: 760px) {
+      main { width: calc(100% - 32px); margin-top: 26px; }
+      .judge { grid-template-columns: minmax(0, 1fr); }
+      .judge > div + div { border-left: 0; border-top: 1px solid var(--hair); }
+      .legend { gap: 6px 14px; font-size: 12px; }
+      section { margin-top: 44px; }
+      .head { grid-template-columns: 30px minmax(0, 1fr); column-gap: 10px; }
+      .head > b { width: 30px; height: 30px; }
+      .head p { grid-column: 1 / -1; }
+      .fig { padding: 14px 12px; border-radius: 14px; }
+      .loop { grid-template-columns: minmax(0, 1fr); row-gap: 30px; padding-left: 28px; }
+      .loop-req, .loop-in, .loop-q, .loop-out { grid-column: 1; grid-row: auto; }
+      .paths { grid-template-columns: minmax(0, 1fr); }
+      .swim { padding-right: 30px; }
+      .layer .comp { padding: 9px 10px; }
+    }
+  </style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></symbol>
+  <symbol id="i-form" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h4"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6 8.5 7 8.5-7"/></symbol>
+  <symbol id="i-inbox" viewBox="0 0 24 24"><path d="M4 13 6.5 5h11L20 13v6H4zM4 13h5l1 2h4l1-2h5"/></symbol>
+  <symbol id="i-reply" viewBox="0 0 24 24"><path d="M10 8 5 12l5 4M5 12h9a5 5 0 0 1 5 5v1"/></symbol>
+  <symbol id="i-steps" viewBox="0 0 24 24"><circle cx="5" cy="12" r="2.5"/><circle cx="12" cy="12" r="2.5"/><circle cx="19" cy="12" r="2.5"/><path d="M7.5 12h2M14.5 12h2"/></symbol>
+  <symbol id="i-desk" viewBox="0 0 24 24"><path d="M3 18h18M5 18V9h14v9M9 9V6h6v3"/></symbol>
+  <symbol id="i-pen" viewBox="0 0 24 24"><path d="m4 20 1-4 11-11 3 3-11 11zM14 7l3 3"/></symbol>
+  <symbol id="i-stamp" viewBox="0 0 24 24"><path d="M9 4h6l-1 7h3a3 3 0 0 1 3 3v2H4v-2a3 3 0 0 1 3-3h3zM5 20h14"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7 7 17"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M4 12 20 4l-6 16-3-7-7-1Z"/></symbol>
+  <symbol id="i-rules" viewBox="0 0 24 24"><path d="M4 6h10M4 12h7M4 18h10M17 4l3 3-3 3M17 14l3 3-3 3"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4zM10 21h4"/></symbol>
+  <symbol id="i-template" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 9h16M9 9v11"/></symbol>
+  <symbol id="i-db" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/></symbol>
+  <symbol id="i-history" viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.4-5.7L4 8.6M4 4v4.6h4.6M12 8v4l3 2"/></symbol>
+  <symbol id="i-screen" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></symbol>
+</svg>
+<main>
+  <header>
+    <h1>関係をそのまま描く</h1>
+    <p class="lede">説明セクションのための図解リファレンス（日本語版）。読み手が「何がどこを通り、誰に渡り、どの部品同士がつながるか」を追えるようにするための参考集です。題材は問い合わせ対応。閉じたループの構成、役割の引き継ぎ、層の構成と線の意味の使い分けを示します。</p>
+    <div class="judge">
+      <div class="use"><p class="jt"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>図にする価値がある</p><ul><li>仕組み・手順と差し戻し・構成・比較を説明するセクション</li><li>同じ分量の短い文章より、図のほうが速く正確に伝わるとき</li></ul></div>
+      <div class="skip"><p class="jt"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg>ページ全体には使わない</p><ul><li>記事、フォーム、検索、データ閲覧の画面</li><li>要点が一つ二つで、文章で十分に伝わるとき</li></ul></div>
+      <p class="foot">操作画面と説明が混在するページでは、説明セクションだけに使います。ブランドの設計方針や利用者が指定したスタイルが優先です。</p>
+    </div>
+    <div class="legend" aria-label="このページの線の意味"><b>線の意味（ページ全体で共通）</b>
+      <span><svg viewBox="0 0 34 10" aria-hidden="true"><path d="M1 5h24" stroke="#3d5a7a" stroke-width="2"/><path d="M25 1l8 4-8 4z" fill="#3d5a7a"/></svg>処理の流れ（記録・履歴への書き込みを含む）</span>
+      <span><svg viewBox="0 0 34 10" aria-hidden="true"><path d="M1 5h24" stroke="#ad4660" stroke-width="2" stroke-dasharray="7 5"/><path d="M25 1l8 4-8 4z" fill="#ad4660"/></svg>差し戻し・返送</span>
+      <span><svg viewBox="0 0 34 10" aria-hidden="true"><path d="M1 5h24" stroke="#7b93ac" stroke-width="1.4"/><path d="M25 1.5l7 3.5-7 3.5z" fill="#7b93ac"/></svg>読み取り</span>
+      <span><svg viewBox="0 0 34 10" aria-hidden="true"><path d="M1 5h24" stroke="#9a5f0f" stroke-width="2" stroke-dasharray="1.5 5" stroke-linecap="round"/><path d="M25 1l8 4-8 4z" fill="#9a5f0f"/></svg>通知</span>
+    </div>
+    <nav class="toc" aria-label="このページの例"><a href="#s-loop"><b>1</b>閉じたループ</a><a href="#s-swim"><b>2</b>役割の引き継ぎ</a><a href="#s-layers"><b>3</b>層の構成</a></nav>
+  </header>
+
+  <section id="s-loop" aria-labelledby="loop-title">
+    <div class="head"><b>1</b><h2 class="sec" id="loop-title">閉じたループ：問い合わせはどこを通って戻るか</h2><p>受け取る経路と返す経路を上下の二本に分け、受付キューを挟んで一周させます。経路が複数あっても、ループの形は一つです。</p></div>
+    <figure class="fig" aria-labelledby="loop-cap">
+      <div class="diagram loop" data-diagram="ja-loop">
+        <article class="box loop-req" data-node="req">
+          <div class="box-head"><span class="glyph"><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg></span><h3>依頼者</h3></div>
+          <p class="bubble">請求書を再発行してほしい</p>
+        </article>
+        <div class="lane lane-in loop-in" data-node="in">
+          <p class="lane-title"><svg class="ic" aria-hidden="true"><use href="#i-inbox"/></svg>受け取る<span>入口は二つ</span></p>
+          <div class="paths">
+            <div class="box"><div class="box-head"><span class="letter">A</span><h3>フォーム</h3></div><div class="mini m-form"><div class="field"><small>件名</small><i></i></div><div class="field"><small>内容</small><i></i></div><span class="send">送信</span></div></div>
+            <div class="box"><div class="box-head"><span class="letter">B</span><h3>メール</h3></div><div class="mini m-mail"><div class="row"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>再発行のお願い</div><div class="skel"></div><span class="chip c-teal">自動で取り込み</span></div></div>
+          </div>
+        </div>
+        <article class="box loop-q" data-node="queue">
+          <div class="q-title"><span class="glyph"><svg class="ic" aria-hidden="true"><use href="#i-desk"/></svg></span><h3>受付キュー</h3></div>
+          <p>入口が違っても同じ列に並び、状態で管理する</p>
+          <ul class="mini m-queue"><li>再発行<span class="chip c-new">新規</span></li><li>ログイン<span class="chip c-doing">対応中</span></li><li>仕様の質問<span class="chip c-wait">確認待ち</span></li></ul>
+        </article>
+        <div class="lane lane-out loop-out" data-node="out">
+          <p class="lane-title"><svg class="ic" aria-hidden="true"><use href="#i-reply"/></svg>返す<span>回答と途中経過</span></p>
+          <div class="paths">
+            <div class="box"><div class="box-head"><span class="letter">C</span><h3>回答メール</h3></div><div class="mini m-reply"><span class="subj">Re: 再発行のお願い</span><div class="skel"></div><div class="skel s60"></div><span class="chip c-teal">定型文：再発行</span></div></div>
+            <div class="box"><div class="box-head"><span class="letter">D</span><h3>状況ページ</h3></div><div class="mini m-status"><ol><li class="done"><i></i>受付</li><li class="now"><i></i>対応中</li><li><i></i>完了</li></ol></div></div>
+          </div>
+        </div>
+      </div>
+      <figcaption id="loop-cap"><span>上の経路で受け取り、下の経路で返す。</span><span>入口と出口がそれぞれ二つあっても、依頼者と受付キューを結ぶ一つのループとして描きます。</span></figcaption>
+    </figure>
+    <p class="sr-only">流れ：依頼者の問い合わせはフォームまたはメールで受付キューに入り、回答メールまたは状況ページで依頼者に返ります。</p>
+    <ol class="notes">
+      <li>両端の依頼者と受付キューを縦に伸ばし、上下の経路が同じ二点を結ぶことを見せる。</li>
+      <li>経路の中の選択肢（A／B、C／D）は横に並べ、ループの線は増やさない。</li>
+      <li>狭い画面では縦に並べ替え、返す線を左側に回して依頼者へ戻す。</li>
+    </ol>
+  </section>
+
+  <section id="s-swim" aria-labelledby="swim-title">
+    <div class="head"><b>2</b><h2 class="sec" id="swim-title">役割の引き継ぎ：誰の手を経て回答になるか</h2><p>役割ごとにレーンを分け、時間は左から右へ進めます。レーンをまたぐ線が引き継ぎ、破線が差し戻しです。</p></div>
+    <figure class="fig" aria-labelledby="swim-cap">
+      <div class="diagram swim" data-diagram="ja-swim">
+        <div class="band r1"></div><div class="band r2"></div><div class="band r3"></div><div class="band r4"></div>
+        <p class="role role-req r1"><span class="glyph"><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg></span>依頼者</p>
+        <p class="role role-desk r2"><span class="glyph"><svg class="ic" aria-hidden="true"><use href="#i-desk"/></svg></span>受付</p>
+        <p class="role role-owner r3"><span class="glyph"><svg class="ic" aria-hidden="true"><use href="#i-pen"/></svg></span>担当</p>
+        <p class="role role-check r4"><span class="glyph"><svg class="ic" aria-hidden="true"><use href="#i-stamp"/></svg></span>確認者</p>
+        <article class="box step by-req r1 c1" data-node="t1"><p class="tagline"><b><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg>依頼者</b></p><h3>問い合わせる</h3></article>
+        <article class="box step by-desk r2 c2" data-node="t2"><p class="tagline"><b><svg class="ic" aria-hidden="true"><use href="#i-desk"/></svg>受付</b></p><h3>内容を見て振り分ける</h3><div class="mini m-route"><span class="chip c-new">請求</span><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg><span>経理の担当へ</span></div></article>
+        <article class="box step by-owner r3 c3" data-node="t3"><p class="tagline"><b><svg class="ic" aria-hidden="true"><use href="#i-pen"/></svg>担当</b></p><h3>回答案を作る</h3><div class="mini"><div class="skel"></div><div class="skel s60"></div><span class="chip c-teal">定型文を下書きに</span></div></article>
+        <article class="box step by-check r4 c4" data-node="t4"><p class="tagline"><b><svg class="ic" aria-hidden="true"><use href="#i-stamp"/></svg>確認者</b></p><h3>内容を確認する</h3><div class="mini m-approve"><span class="ok"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>承認</span><span class="ng">差し戻し</span></div></article>
+        <article class="box step by-desk r2 c5" data-node="t5"><p class="tagline"><b><svg class="ic" aria-hidden="true"><use href="#i-desk"/></svg>受付</b></p><h3>回答を送る</h3><div class="mini m-route"><svg class="ic" aria-hidden="true"><use href="#i-send"/></svg><span>回答メール</span></div></article>
+        <article class="box step by-req r1 c6" data-node="t6"><p class="tagline"><b><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg>依頼者</b></p><h3>回答を受け取る</h3></article>
+        <span class="lbl" data-label="back">差し戻し</span>
+      </div>
+      <figcaption id="swim-cap"><span>レーンは役割、横方向は時間の流れ。</span><span>差し戻しは担当の「回答案を作る」へ戻り、受付からはやり直しません。</span></figcaption>
+    </figure>
+    <p class="sr-only">順序：依頼者が問い合わせ、受付が振り分け、担当が回答案を作り、確認者が確認します。確認者が差し戻すと担当の回答案作成に戻り、承認すると受付が回答を送り、依頼者が受け取ります。</p>
+    <ol class="notes">
+      <li>役割の名前は左端に一度だけ置き、各ステップに繰り返さない。</li>
+      <li>差し戻しの線は、やり直す担当のステップへ直接戻す。</li>
+      <li>狭い画面ではレーンをやめて縦の順序にし、各ステップに役割名を付ける。</li>
+    </ol>
+  </section>
+
+  <section id="s-layers" aria-labelledby="layers-title">
+    <div class="head"><b>3</b><h2 class="sec" id="layers-title">層の構成：どの部品同士が実際につながるか</h2><p>画面・処理・記録の三層に部品を並べ、実際にやり取りする部品だけを線で結びます。線の種類は凡例と同じ意味です。</p></div>
+    <figure class="fig" aria-labelledby="layers-cap">
+      <div class="diagram layers" data-diagram="ja-layers">
+        <div class="layer">
+          <p class="layer-name"><strong>画面</strong><span>人が触れるところ</span></p>
+          <article class="box comp" data-node="form"><div class="box-head"><span class="glyph"><svg class="ic" aria-hidden="true"><use href="#i-form"/></svg></span><h3>入力フォーム</h3></div><p>依頼を受け付ける</p><p class="conn"><span><i class="linekey"></i>振り分け処理へ渡す</span></p></article>
+          <article class="box comp" data-node="status"><div class="box-head"><span class="glyph"><svg class="ic" aria-hidden="true"><use href="#i-steps"/></svg></span><h3>状況ページ</h3></div><p>依頼者が進み具合を見る</p><p class="conn"><span><i class="linekey read"></i>依頼の記録を読む</span></p></article>
+          <article class="box comp" data-node="worker"><div class="box-head"><span class="glyph"><svg class="ic" aria-hidden="true"><use href="#i-screen"/></svg></span><h3>担当者画面</h3></div><p>回答を作って送る</p><p class="conn"><span><i class="linekey read"></i>定型文を読む</span><span><i class="linekey note"></i>期限の通知を受ける</span><span><i class="linekey"></i>回答の履歴へ書き込む</span></p></article>
+        </div>
+        <div class="layer">
+          <p class="layer-name"><strong>処理</strong><span>決まりと自動化</span></p>
+          <article class="box comp" data-node="rules"><div class="box-head"><span class="glyph"><svg class="ic" aria-hidden="true"><use href="#i-rules"/></svg></span><h3>振り分け処理</h3></div><p>ルールに沿って担当を決める</p><p class="conn"><span><i class="linekey"></i>依頼の記録へ書き込む</span></p></article>
+          <article class="box comp" data-node="deadline"><div class="box-head"><span class="glyph"><svg class="ic" aria-hidden="true"><use href="#i-bell"/></svg></span><h3>期限の通知</h3></div><p>回答期限が近いと知らせる</p><p class="conn"><span><i class="linekey note"></i>担当者画面へ通知する</span></p></article>
+          <article class="box comp" data-node="template"><div class="box-head"><span class="glyph"><svg class="ic" aria-hidden="true"><use href="#i-template"/></svg></span><h3>定型文</h3></div><p>よくある回答のひな形</p><p class="conn"><span><i class="linekey read"></i>担当者画面から読まれる</span></p></article>
+        </div>
+        <div class="layer">
+          <p class="layer-name"><strong>記録</strong><span>あとで確かめるため</span></p>
+          <article class="box comp" data-node="record"><div class="box-head"><span class="glyph"><svg class="ic" aria-hidden="true"><use href="#i-db"/></svg></span><h3>依頼の記録</h3></div><p>受付から完了までの状態</p><p class="conn"><span><i class="linekey read"></i>状況ページから読まれる</span></p></article>
+          <div class="slot" aria-hidden="true"></div>
+          <article class="box comp" data-node="history"><div class="box-head"><span class="glyph"><svg class="ic" aria-hidden="true"><use href="#i-history"/></svg></span><h3>回答の履歴</h3></div><p>送った回答の控え</p></article>
+        </div>
+      </div>
+      <figcaption id="layers-cap"><span>すべての部品を結ばず、実際のやり取りだけを描きます。</span><span>狭い画面では線の代わりに、各部品に接続先と線の種類を書きます。</span></figcaption>
+    </figure>
+    <p class="sr-only">つながり：入力フォームは振り分け処理へ依頼を渡し、振り分け処理は依頼の記録へ書き込みます。状況ページは依頼の記録を読み取ります。担当者画面は定型文を読み取り、期限の通知を受け、回答の履歴へ書き込みます。</p>
+    <ol class="notes">
+      <li>線の種類（処理の流れ・読み取り・通知）はページ全体で同じ意味に固定する。書き込みと呼ぶのは記録と履歴に保存する線だけ。</li>
+      <li>層の間の隙間を線の通り道にし、部品の上を横切らない。</li>
+      <li>空いた枠は「ここには部品がない」ことを示すだけで、意味を持たせない。</li>
+    </ol>
+  </section>
+
+  <footer>
+    <p><span>必要な場面で参照するための例です。</span><span>関係の描き方を借り、レイアウト、配色、内容はそのまま写しません。</span></p>
+    <p><span>小さな画面部品は説明のための見本で、操作はできません。</span><span>線は要素の実際の位置から計算し、画面幅が変わると描き直します。</span></p>
+  </footer>
+</main>
+<script>
+(() => {
+  document.documentElement.classList.add('js');
+  const NS = 'http://www.w3.org/2000/svg';
+  const KINDS = ['main', 'back', 'read', 'note'];
+  const round = (pts, r = 10) => {
+    let d = `M${pts[0][0]} ${pts[0][1]}`;
+    for (let i = 1; i < pts.length - 1; i++) {
+      const [x0, y0] = pts[i - 1], [x1, y1] = pts[i], [x2, y2] = pts[i + 1];
+      const d1 = Math.hypot(x1 - x0, y1 - y0), d2 = Math.hypot(x2 - x1, y2 - y1);
+      if (!d1 || !d2) continue;
+      const k = Math.min(r, d1 / 2, d2 / 2);
+      d += ` L${x1 + (x0 - x1) / d1 * k} ${y1 + (y0 - y1) / d1 * k} Q${x1} ${y1} ${x1 + (x2 - x1) / d2 * k} ${y1 + (y2 - y1) / d2 * k}`;
+    }
+    const [xn, yn] = pts[pts.length - 1];
+    return `${d} L${xn} ${yn}`;
+  };
+  function surface(diagram) {
+    let svg = diagram.querySelector(':scope > .links');
+    if (!svg) {
+      svg = document.createElementNS(NS, 'svg');
+      svg.setAttribute('class', 'links'); svg.setAttribute('aria-hidden', 'true'); svg.setAttribute('focusable', 'false');
+      diagram.prepend(svg);
+    }
+    svg.replaceChildren();
+    const B = diagram.getBoundingClientRect();
+    svg.setAttribute('viewBox', `0 0 ${B.width} ${B.height}`);
+    const id = diagram.dataset.diagram;
+    const defs = document.createElementNS(NS, 'defs');
+    for (const kind of KINDS) {
+      const m = document.createElementNS(NS, 'marker');
+      m.id = `${id}-${kind}`;
+      for (const [k, v] of Object.entries({ viewBox: '0 0 10 10', refX: '8.6', refY: '5', markerWidth: kind === 'read' ? '8' : '9', markerHeight: kind === 'read' ? '8' : '9', markerUnits: 'userSpaceOnUse', orient: 'auto-start-reverse' })) m.setAttribute(k, v);
+      const p = document.createElementNS(NS, 'path');
+      p.setAttribute('d', 'M0 0.8 10 5 0 9.2Z'); p.setAttribute('class', `hd-${kind}`);
+      m.append(p); defs.append(m);
+    }
+    svg.append(defs);
+    const box = name => {
+      const r = diagram.querySelector(`[data-node="${name}"]`).getBoundingClientRect();
+      const l = r.left - B.left, t = r.top - B.top;
+      return { l, t, r: l + r.width, b: t + r.height, x: l + r.width / 2, y: t + r.height / 2, w: r.width, h: r.height };
+    };
+    const line = (pts, kind = 'main', arrow = true) => {
+      const p = document.createElementNS(NS, 'path');
+      p.setAttribute('d', round(pts)); p.setAttribute('class', `ln ln-${kind}`);
+      if (arrow) p.setAttribute('marker-end', `url(#${id}-${kind})`);
+      svg.append(p);
+    };
+    const label = (name, x, y, mode = '') => {
+      const el = diagram.querySelector(`[data-label="${name}"]`);
+      if (!el) return;
+      el.style.left = `${x}px`; el.style.top = `${y}px`; el.dataset.mode = mode;
+    };
+    return { W: B.width, H: B.height, box, line, label };
+  }
+  const stacked = (a, b) => b.t >= a.b - 1;
+  const draw = {
+    'ja-loop'({ box, line }) {
+      const req = box('req'), inn = box('in'), q = box('queue'), out = box('out');
+      if (stacked(req, inn)) {
+        line([[inn.x, req.b], [inn.x, inn.t]]);
+        line([[inn.x, inn.b], [inn.x, q.t]]);
+        line([[q.x, q.b], [q.x, out.t]]);
+        line([[out.l, out.b - 22], [10, out.b - 22], [10, req.y], [req.l, req.y]]);
+      } else {
+        line([[req.r, inn.y], [inn.l, inn.y]]);
+        line([[inn.r, inn.y], [q.l, inn.y]]);
+        line([[q.l, out.y], [out.r, out.y]]);
+        line([[out.l, out.y], [req.r, out.y]]);
+      }
+    },
+    'ja-swim'({ W, box, line, label }) {
+      const t = ['t1', 't2', 't3', 't4', 't5', 't6'].map(box);
+      if (stacked(t[0], t[1]) && Math.abs(t[0].x - t[1].x) < 4) {
+        for (let i = 0; i < 5; i++) line([[t[i].x, t[i].b], [t[i].x, t[i + 1].t]]);
+        const rx = W - 13;
+        line([[t[3].r, t[3].y], [rx, t[3].y], [rx, t[2].y], [t[2].r, t[2].y]], 'back');
+        label('back', rx, (t[2].y + t[3].y) / 2, 'v');
+      } else {
+        for (let i = 0; i < 5; i++) {
+          const a = t[i], b = t[i + 1], mx = (a.r + b.l) / 2;
+          line([[a.r, a.y], [mx, a.y], [mx, b.y], [b.l, b.y]]);
+        }
+        const yb = t[3].b + 22;
+        line([[t[3].x, t[3].b], [t[3].x, yb], [t[2].x, yb], [t[2].x, t[2].b]], 'back');
+        label('back', (t[2].x + t[3].x) / 2, yb);
+      }
+    },
+    'ja-layers'({ W, box, line }) {
+      const form = box('form'), status = box('status'), worker = box('worker');
+      if (stacked(form, status)) return;
+      const rules = box('rules'), deadline = box('deadline'), template = box('template'), record = box('record'), history = box('history');
+      line([[form.x, form.b], [form.x, rules.t]]);
+      line([[rules.x, rules.b], [rules.x, record.t]]);
+      const g12 = (rules.r + deadline.l) / 2, g23 = (deadline.r + template.l) / 2;
+      line([[record.r, record.y], [g12, record.y], [g12, status.y], [status.l, status.y]], 'read');
+      line([[template.x, template.t], [template.x, worker.b]], 'read');
+      line([[deadline.r, deadline.y], [g23, deadline.y], [g23, worker.y + worker.h * .22], [worker.l, worker.y + worker.h * .22]], 'note');
+      line([[worker.r, worker.y], [W - 12, worker.y], [W - 12, history.y], [history.r, history.y]]);
+    }
+  };
+  let queued = false;
+  const redraw = () => {
+    queued = false;
+    document.querySelectorAll('[data-diagram]').forEach(d => draw[d.dataset.diagram]?.(surface(d)));
+  };
+  const schedule = () => { if (!queued) { queued = true; requestAnimationFrame(redraw); } };
+  new ResizeObserver(schedule).observe(document.querySelector('main'));
+  if (document.fonts) document.fonts.ready.then(schedule);
+  redraw();
+})();
+</script>
+</body>
+</html>

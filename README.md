@@ -77,6 +77,8 @@
 
 三个设计 Skill 的分工、compact、手机流程、图表与交互检查，以及加载性能、SEO 正文交付、元信息和分享预览要求，都在专题正文里，**不要再把这些细则复制到主文件**。专题只收录跨项目可复用的原则与验收方法；具体业务、图标组合、栏目安排、尺寸及默认状态留在项目设计文档或规格中。
 
+说明类页面或区块在图示更利于理解工作原理、流程反馈、架构、范围或比较时，可按需采用轻量信息图；这不是所有网页的默认外观。参考自包含网页版示例：[中文](frontend-design/references/web-infographic.html)、[日文](frontend-design/references/web-infographic.ja.html)、[英文](frontend-design/references/web-infographic.en.html)。三版采用互补的关系示例和视觉处理，语言不限定设计风格；实际渲染后借鉴表达。复制前端主题时一并携带这三个参考文件，保持 `references/` 相对目录或调整正文链接；不需要另装静态流程图 Skill。
+
 ### 主文件入口：凭据操作
 
 将所选语言的凭据正文另存为 `CREDENTIALS.md`，在主文件中加入：

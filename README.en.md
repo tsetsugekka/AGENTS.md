@@ -82,6 +82,8 @@ Save the frontend topic in your chosen language as `FRONTEND-DESIGN.md`, then ad
 
 Skill responsibilities, compact layouts, mobile workflows, chart and interaction checks, loading performance, and SEO content delivery, metadata, and sharing requirements belong in the topic text. **Do not copy these details into the main file as well.** The topic contains only principles and checks that transfer across projects; concrete business behavior, icon compositions, content organization, dimensions, and default states belong in project design documents or specifications.
 
+Explanatory pages or sections may use lightweight infographics on demand when diagrams clarify how something works, flows and feedback, architecture, scope, or comparisons. This is not the default appearance of every webpage. Refer to the self-contained web examples: [Chinese](frontend-design/references/web-infographic.html), [Japanese](frontend-design/references/web-infographic.ja.html), and [English](frontend-design/references/web-infographic.en.html). The three versions use complementary relationship examples and visual treatments; language does not determine design style. Render them before borrowing their expressive techniques. When copying the frontend topic, carry these three reference files with it, preserving the relative `references/` directory or adjusting the text's links. No separate static-flowchart skill is required.
+
 ### Main-file trigger: credential handling
 
 Save the credential topic in your chosen language as `CREDENTIALS.md`, then add:

@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="说明区信息图参考（中文版）：用一份操作指南的整理过程，演示步骤与反馈、分支与汇合、包含与范围。">
+  <title>把关系讲清楚 · 说明区信息图参考</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --font: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif;
+      --bg: #f3f6f9; --fig: #fbfcfd; --surface: #fdfefe; --hair: #d8e2ea;
+      --ink: #1d3247; --muted: #55687a; --soft-muted: #4c5e70;
+      --line: #7f9db8; --back: #50698b; --shadow: 0 6px 18px rgba(30, 70, 110, .09);
+      --blue: #2f68a6; --blue-bg: #e9f2fb; --blue-line: #bfd4ea;
+      --green: #217a59; --green-bg: #e7f4ed; --green-line: #b4d9c7;
+      --amber: #9a5c0a; --amber-bg: #fcf1df; --amber-line: #ecd3a5;
+      --rose: #ad3a55; --rose-bg: #fbebef; --rose-line: #efc3ce;
+      --violet: #5c49ad; --violet-bg: #efecfa; --violet-line: #cdc4ee;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scrollbar-color: #9fb3c4 transparent; }
+    body { margin: 0; background: linear-gradient(180deg, #e8f0f8 0, var(--bg) 420px); color: var(--ink); font: 15px/1.7 var(--font); word-break: auto-phrase; }
+    ::selection { background: #cfe0f1; color: var(--ink); }
+    a { color: var(--blue); text-underline-offset: 3px; }
+    a:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 4px; }
+    h1, h2, h3, h4, p, figure, ul, ol { margin: 0; }
+    ul, ol { padding: 0; list-style: none; }
+    p, li, span, figcaption { text-wrap: pretty; }
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    .ic { width: 16px; height: 16px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+    main { width: min(1120px, 100% - 48px); margin: 40px auto 64px; }
+    header { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 32px; align-items: start; }
+    h1 { font-size: clamp(28px, 3.6vw, 40px); line-height: 1.25; letter-spacing: -.02em; }
+    .lede { margin-top: 12px; color: var(--muted); font-size: 15px; }
+    .toc { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+    .toc a { display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px; border-radius: 8px; background: var(--surface); color: var(--ink); font-size: 13px; font-weight: 700; text-decoration: none; box-shadow: 0 0 0 1px var(--hair); }
+    .toc a:hover { box-shadow: 0 0 0 1px var(--line); }
+    .toc i { width: 8px; height: 8px; border-radius: 2px; background: var(--c); transform: rotate(45deg); }
+    .t-blue { --c: var(--blue); } .t-amber { --c: var(--amber); } .t-violet { --c: var(--violet); }
+
+    section { margin-top: 60px; }
+    .head { max-width: 760px; margin-bottom: 18px; }
+    h2 { font-size: clamp(21px, 2.2vw, 26px); line-height: 1.4; letter-spacing: -.015em; scroll-margin-top: 24px; }
+    .head p { margin-top: 6px; color: var(--muted); }
+    .fig { margin: 0; padding: 24px; border: 1px solid var(--hair); border-radius: 20px; background: var(--fig); }
+    figcaption { margin-top: 18px; color: var(--muted); font-size: 13px; line-height: 1.7; text-align: center; }
+    figcaption span { display: inline-block; }
+    .why { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px 22px; margin-top: 14px; }
+    .why li { display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: 8px; color: var(--soft-muted); font-size: 13px; line-height: 1.65; }
+    .why .ic { width: 18px; height: 18px; margin-top: 1px; color: var(--blue); }
+
+    /* Shared diagram surface: connectors are drawn from real element positions. */
+    .diagram { position: relative; }
+    .links { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; z-index: 0; }
+    .diagram > :not(.links) { position: relative; z-index: 1; }
+    .ln { fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .ln-main { stroke: var(--line); }
+    .ln-back { stroke: var(--back); stroke-dasharray: 6 6; }
+    .hd-main { fill: var(--line); }
+    .hd-back { fill: var(--back); }
+    .lbl { display: inline-flex; align-items: center; gap: 5px; margin: 6px 0; color: var(--back); font-size: 12px; font-weight: 700; white-space: nowrap; }
+    .js .lbl { position: absolute; z-index: 2; margin: 0; padding: 1px 8px; border-radius: 6px; background: var(--fig); transform: translate(-50%, -50%); }
+    .js .lbl[data-mode="v"] { padding: 8px 1px; writing-mode: vertical-rl; }
+    .js .lbl[data-mode="left"] { transform: translate(0, -50%); }
+    .lbl .ic { width: 14px; height: 14px; }
+    .lbl.is-yes { color: var(--green); }
+    .lbl.is-no { color: var(--rose); }
+
+    /* Infographic zones with small explanatory interfaces */
+    .zone { --c: var(--blue); --cb: var(--blue-bg); display: grid; grid-template-rows: auto 1fr; gap: 12px; min-width: 0; padding: 14px 13px; border-radius: 16px; background: var(--cb); }
+    .z1 { --c: var(--blue); --cb: var(--blue-bg); }
+    .z2 { --c: var(--green); --cb: var(--green-bg); }
+    .z3 { --c: var(--amber); --cb: var(--amber-bg); }
+    .z4 { --c: var(--rose); --cb: var(--rose-bg); }
+    .z5 { --c: var(--violet); --cb: var(--violet-bg); }
+    .zone-head { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 9px; align-items: start; }
+    .no { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--c); color: var(--surface); font-size: 14px; font-weight: 800; }
+    .zone h3 { margin: 2px 0 2px; font-size: 15px; line-height: 1.4; }
+    .zone-head p { color: var(--soft-muted); font-size: 12.5px; line-height: 1.6; }
+    .mini { align-self: start; display: grid; gap: 6px; padding: 10px; border-radius: 10px; background: var(--surface); box-shadow: var(--shadow); font-size: 12px; line-height: 1.5; }
+    .chip { display: inline-flex; align-items: center; flex: none; padding: 1px 6px; border-radius: 5px; font-size: 11px; font-weight: 700; }
+    .ok { background: var(--green-bg); color: var(--green); }
+    .wait { background: var(--amber-bg); color: var(--amber); }
+    .bad { background: var(--rose-bg); color: var(--rose); }
+
+    .m-files li { display: grid; grid-template-columns: 16px minmax(0, 1fr) auto; align-items: center; gap: 7px; padding-bottom: 6px; border-bottom: 1px solid var(--hair); }
+    .m-files li:last-child { padding-bottom: 0; border-bottom: 0; }
+    .m-files .ic { color: var(--blue); }
+    .m-groups { gap: 5px; }
+    .m-groups div { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; padding: 5px 6px; border-radius: 7px; background: var(--green-bg); }
+    .m-groups b { min-width: 2.6em; color: var(--green); font-size: 11px; }
+    .m-groups span { padding: 0 5px; border-radius: 4px; background: var(--surface); font-size: 11px; line-height: 1.6; }
+    .m-editor .bar { display: flex; gap: 5px; padding-bottom: 6px; border-bottom: 1px solid var(--hair); }
+    .m-editor .bar i { display: grid; place-items: center; width: 20px; height: 18px; border-radius: 4px; background: var(--bg); color: var(--muted); font-size: 11px; font-style: normal; font-weight: 800; }
+    .m-editor .bar .ic { width: 12px; height: 12px; }
+    .m-editor strong { font-size: 12.5px; }
+    .skel { height: 5px; border-radius: 3px; background: var(--hair); }
+    .skel.s70 { width: 70%; }
+    .skel.s55 { width: 55%; }
+    .m-editor .focus { display: flex; align-items: center; gap: 2px; padding: 3px 6px; border-radius: 5px; background: var(--amber-bg); color: var(--ink); font-weight: 700; }
+    .m-editor .caret { width: 1.5px; height: 14px; background: var(--amber); }
+    .m-check li { display: grid; grid-template-columns: 18px minmax(0, 1fr); align-items: center; gap: 6px; }
+    .m-check .ic { width: 18px; height: 18px; padding: 2px; border-radius: 50%; stroke-width: 2.4; }
+    .m-check .is-ok .ic { background: var(--green-bg); color: var(--green); }
+    .m-check .is-bad .ic { background: var(--rose-bg); color: var(--rose); }
+    .m-check .is-wait .ic { background: var(--amber-bg); color: var(--amber); stroke-width: 2; }
+    .m-check .is-bad, .m-check .is-wait { font-weight: 700; }
+    .m-publish .page { display: grid; gap: 4px; padding: 7px; border: 1px solid var(--hair); border-radius: 7px; }
+    .m-publish .row { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+    .m-publish .live { background: var(--violet-bg); color: var(--violet); }
+    .m-publish .share { display: flex; align-items: center; gap: 6px; padding: 4px 7px; border-radius: 6px; background: var(--bg); color: var(--muted); }
+    .m-publish .share .ic { width: 13px; height: 13px; color: var(--violet); }
+    .m-publish .share span { flex: 1; }
+
+    /* Fit check (header) */
+    .fit-box { padding: 16px; border: 1px solid var(--hair); border-radius: 18px; background: var(--fig); }
+    .fit-title { margin-bottom: 12px; color: var(--muted); font-size: 12px; font-weight: 800; }
+    .fit { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 46px; row-gap: 40px; }
+    .fit > div { padding: 9px 11px; border-radius: 12px; font-size: 13px; line-height: 1.5; }
+    .fit .q { background: var(--blue-bg); }
+    .fit .yes { background: var(--green-bg); font-weight: 800; color: var(--green); }
+    .fit .no-box { grid-column: 1 / 3; background: var(--bg); color: var(--soft-muted); }
+    .fit small { display: block; margin-top: 2px; color: var(--soft-muted); font-size: 11.5px; font-weight: 400; }
+    .fit-note { margin-top: 12px; color: var(--soft-muted); font-size: 12.5px; }
+
+    /* 1. Steps and feedback */
+    .flow-steps { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 34px; padding-bottom: 98px; }
+
+    /* 2. Branch and merge */
+    .branch { display: grid; grid-template-columns: minmax(0, .82fr) minmax(0, 1.42fr) minmax(0, .82fr); column-gap: 66px; align-items: center; padding-bottom: 66px; }
+    .branches { display: grid; gap: 16px; }
+    .node { --c: var(--blue); --cb: var(--blue-bg); display: grid; gap: 8px; min-width: 0; padding: 13px; border-radius: 16px; background: var(--cb); }
+    .node h3 { font-size: 15px; line-height: 1.4; }
+    .node > p { color: var(--soft-muted); font-size: 12.5px; line-height: 1.6; }
+    .n-b1 { --c: var(--green); --cb: var(--green-bg); }
+    .n-b2 { --c: var(--amber); --cb: var(--amber-bg); }
+    .n-b3 { --c: var(--rose); --cb: var(--rose-bg); }
+    .n-res { --c: var(--violet); --cb: var(--violet-bg); }
+    .cond { display: inline-flex; align-items: center; justify-self: start; gap: 6px; padding: 2px 9px; border: 1px solid; border-color: color-mix(in srgb, var(--c) 35%, transparent); border-radius: 999px; background: var(--surface); color: var(--c); font-size: 12px; font-weight: 800; }
+    .cond::before { content: ""; width: 7px; height: 7px; background: var(--c); transform: rotate(45deg); }
+    .branches .node { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); align-items: center; column-gap: 12px; }
+    .branches .node > .cond, .branches .node > h3 { grid-column: 1; }
+    .branches .node > .mini { grid-column: 2; grid-row: 1 / span 2; }
+    .m-q li { display: flex; align-items: center; gap: 6px; }
+    .m-q b { color: var(--blue); font-size: 12px; }
+    .m-outline li { display: flex; align-items: center; gap: 6px; }
+    .m-outline .ic { width: 14px; height: 14px; color: var(--green); stroke-width: 2.4; }
+    .m-outline b { color: var(--muted); font-size: 11px; }
+    .m-regroup { grid-template-columns: minmax(0, 1fr) 14px minmax(0, 1fr); align-items: center; gap: 4px; }
+    .m-regroup .loose { display: flex; flex-wrap: wrap; gap: 3px; }
+    .m-regroup .loose span { padding: 0 4px; border-radius: 4px; background: var(--amber-bg); font-size: 11px; }
+    .m-regroup .loose span:nth-child(2) { transform: rotate(-4deg); }
+    .m-regroup .loose span:nth-child(3) { transform: rotate(3deg); }
+    .m-regroup .ic { width: 14px; height: 14px; color: var(--line); }
+    .m-regroup .sets { display: grid; gap: 3px; }
+    .m-regroup .sets span { padding: 1px 5px; border-radius: 4px; box-shadow: inset 0 0 0 1px var(--amber-line); font-size: 11px; white-space: nowrap; }
+    .m-regroup .sets b { color: var(--amber); }
+    .m-request p { display: flex; align-items: center; gap: 6px; color: var(--rose); font-weight: 800; }
+    .m-request .item { padding: 4px 6px; border-radius: 5px; background: var(--rose-bg); }
+    .m-request .send { justify-self: end; display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 6px; background: var(--rose); color: var(--surface); font-size: 11px; font-weight: 700; }
+    .m-request .send .ic { width: 12px; height: 12px; }
+    .m-doc .title { display: flex; align-items: center; justify-content: space-between; gap: 6px; padding-bottom: 5px; border-bottom: 1px solid var(--hair); font-weight: 800; }
+    .m-doc ol { display: grid; gap: 4px; counter-reset: s; }
+    .m-doc li { display: grid; grid-template-columns: 16px minmax(0, 1fr); align-items: center; gap: 5px; counter-increment: s; }
+    .m-doc li::before { content: counter(s); display: grid; place-items: center; width: 16px; height: 16px; border-radius: 4px; background: var(--violet-bg); color: var(--violet); font-size: 11px; font-weight: 800; }
+
+    /* 3. Scope */
+    .scope-wrap { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, .7fr); gap: 24px; align-items: start; }
+    .ring { display: grid; gap: 12px; padding: 14px; border-radius: 18px; }
+    .r-out { border: 1px solid var(--blue-line); background: #f5f9fd; }
+    .r-mid { border: 1px solid var(--blue-line); background: var(--blue-bg); }
+    .r-in { padding: 12px 14px; border-radius: 14px; background: var(--ink); color: var(--surface); }
+    .ring-head { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 10px; align-items: start; }
+    .tag { display: inline-flex; align-items: center; gap: 5px; padding: 3px 8px; border-radius: 6px; background: var(--ink); color: var(--surface); font-size: 11.5px; font-weight: 800; white-space: nowrap; }
+    .tag .ic { width: 13px; height: 13px; }
+    .ring-head strong { display: block; font-size: 15px; line-height: 1.4; }
+    .ring-head p { margin: 2px 0 4px; color: var(--muted); font-size: 12.5px; line-height: 1.65; }
+    .ring-head small { display: inline-flex; align-items: center; gap: 6px; color: var(--blue); font-size: 12px; font-weight: 700; }
+    .ring-head small::before { content: ""; width: 12px; height: 2px; background: currentColor; }
+    .r-in .tag { background: var(--surface); color: var(--ink); }
+    .r-in .ring-head p { color: #c8d7e8; }
+    .r-in .ring-head small { color: var(--surface); }
+    .side h3 { font-size: 15px; line-height: 1.5; }
+    .calc { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr); grid-template-rows: auto auto auto; gap: 0 6px; margin-top: 12px; }
+    .calc > div { display: grid; grid-row: 1 / span 3; grid-template-rows: subgrid; row-gap: 3px; align-items: start; justify-items: start; padding: 10px; border: 1px solid var(--hair); border-radius: 12px; background: var(--surface); }
+    .calc small { color: var(--muted); font-size: 11.5px; }
+    .calc b { font-size: 13px; line-height: 1.4; }
+    .calc .op { grid-row: 1 / span 3; align-self: center; color: var(--muted); font-size: 17px; font-weight: 800; }
+    .calc .t-out { background: var(--blue-bg); color: var(--blue); }
+    .calc .t-mid { background: var(--ink); color: var(--surface); }
+    .calc .result { border-color: var(--ink); background: var(--ink); color: var(--surface); }
+    .calc .result small { color: #c8d7e8; }
+    .calc .result b { grid-row: span 2; }
+    .side ul { display: grid; margin-top: 16px; }
+    .side li { display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: 8px; padding: 10px 0; border-top: 1px solid var(--hair); color: var(--soft-muted); font-size: 13px; }
+    .side li .ic { width: 18px; height: 18px; color: var(--blue); }
+
+    footer { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--hair); color: var(--muted); font-size: 13px; }
+    footer p + p { margin-top: 4px; }
+
+    @media (max-width: 1040px) {
+      header { grid-template-columns: minmax(0, 1fr); }
+      .flow-steps { grid-template-columns: minmax(0, 1fr); gap: 30px; padding: 0 50px 0 0; }
+      .flow-steps .zone { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); grid-template-rows: none; align-items: center; gap: 16px; }
+      .why { grid-template-columns: minmax(0, 1fr); }
+      .scope-wrap { grid-template-columns: minmax(0, 1fr); }
+    }
+    @media (max-width: 860px) {
+      .branch { grid-template-columns: minmax(0, 1fr); row-gap: 28px; padding: 0 30px 0 36px; }
+    }
+    @media (max-width: 760px) {
+      main { width: calc(100% - 32px); margin-top: 24px; }
+      section { margin-top: 44px; }
+      .fig { padding: 14px 12px; border-radius: 16px; }
+      figcaption { text-align: left; }
+      figcaption span { display: inline; }
+      .fit { grid-template-columns: minmax(0, 1fr); row-gap: 30px; padding-right: 42px; }
+      .fit .no-box { grid-column: auto; }
+      .flow-steps { padding-right: 44px; }
+      .flow-steps .zone { grid-template-columns: minmax(0, 1fr); gap: 10px; padding: 12px; }
+      .flow figcaption, .branch-fig figcaption { padding-left: 2px; }
+      .branches .node { grid-template-columns: minmax(0, 1fr); }
+      .branches .node > .mini { grid-column: 1; grid-row: auto; }
+      .ring { padding: 10px; }
+      .ring-head { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+      .tag { justify-self: start; }
+      .calc { column-gap: 4px; }
+      .calc > div { padding: 8px; }
+      .calc b { font-size: 12px; }
+    }
+  </style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M7 3h7l5 5v13H7zM14 3v5h5M9.5 12.5h5M9.5 16.5h5"/></symbol>
+  <symbol id="i-video" viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="m16 10.5 5-3v9l-5-3"/></symbol>
+  <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.6a2.5 2.5 0 1 1 3.4 2.3c-.7.3-1 .8-1 1.5v.4M12 17h.01"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7 7 17"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 4v10M12 18.5h.01"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M4 12 20 4l-6 16-3-7-7-1Z"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 16 5-5 4 4 3-3 6 6"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M9 7 4 12l5 5M4 12h11a5 5 0 0 1 0 10h-2"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c1-3.5 3.5-5.5 6.5-5.5s5.5 2 6.5 5.5M16 4.6a3.5 3.5 0 0 1 0 6.8M17.5 14.6c2 .6 3.4 2.6 4 5.4"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6-5.6-6-10a6 6 0 0 1 12 0c0 4.4-6 10-6 10Z"/><circle cx="12" cy="11" r="2"/></symbol>
+</svg>
+<main>
+  <header>
+    <div>
+      <h1>把关系讲清楚</h1>
+      <p class="lede">说明区信息图参考 · 中文版。先弄清读者要理解的关系，再决定画什么。本页以“整理一份操作指南”为例，演示步骤与反馈、分支与汇合、包含与范围。</p>
+      <nav class="toc" aria-label="本页示例"><a href="#s-flow" class="t-blue"><i></i>步骤与反馈</a><a href="#s-branch" class="t-amber"><i></i>分支与汇合</a><a href="#s-scope" class="t-violet"><i></i>包含与范围</a></nav>
+    </div>
+    <div class="fit-box" aria-labelledby="fit-title">
+      <p class="fit-title" id="fit-title">先判断：这一块需要图示吗？</p>
+      <div class="diagram fit" data-diagram="zh-fit">
+        <div class="q" data-node="q1">主要在解释原理、步骤与反馈、结构或对比吗？</div>
+        <div class="q" data-node="q2">图示比同样篇幅的短文更清楚吗？</div>
+        <div class="yes" data-node="yes">在这一块用图示<small>只画这一块，不推广到全页</small></div>
+        <div class="no-box" data-node="no">用短文或列表：文章、表单、查询、数据浏览通常属于这里</div>
+        <span class="lbl is-yes" data-label="y1">是</span><span class="lbl is-yes" data-label="y2">是</span><span class="lbl is-no" data-label="n1">否</span><span class="lbl is-no" data-label="n2">否</span>
+      </div>
+      <p class="fit-note">混合页面只在说明区使用；项目品牌、既有设计系统和用户指定的风格优先。</p>
+    </div>
+  </header>
+
+  <section id="s-flow" aria-labelledby="flow-title">
+    <div class="head"><h2 id="flow-title">步骤与反馈：问题回到哪一步？</h2><p>整理一份操作指南要经过五步。预览时发现的问题不同，返回的位置也不同：表述有误回到撰写，缺少材料回到收集。</p></div>
+    <figure class="fig flow" aria-labelledby="flow-cap">
+      <div class="diagram" data-diagram="zh-flow">
+        <ol class="flow-steps">
+          <li class="zone z1" data-node="s1">
+            <div class="zone-head"><span class="no">1</span><div><h3>收集材料</h3><p>把录屏、旧版说明和常见问题放在一起</p></div></div>
+            <ul class="mini m-files"><li><svg class="ic" aria-hidden="true"><use href="#i-video"/></svg>操作录屏<span class="chip ok">已收集</span></li><li><svg class="ic" aria-hidden="true"><use href="#i-doc"/></svg>旧版说明<span class="chip ok">已收集</span></li><li><svg class="ic" aria-hidden="true"><use href="#i-help"/></svg>常见问题<span class="chip wait">待补充</span></li></ul>
+          </li>
+          <li class="zone z2" data-node="s2">
+            <div class="zone-head"><span class="no">2</span><div><h3>归类要点</h3><p>按读者的任务分组，而不是按材料来源</p></div></div>
+            <div class="mini m-groups"><div><b>准备</b><span>开通权限</span><span>确认范围</span></div><div><b>操作</b><span>选择报表</span><span>导出</span></div><div><b>排错</b><span>结果为空</span></div></div>
+          </li>
+          <li class="zone z3" data-node="s3">
+            <div class="zone-head"><span class="no">3</span><div><h3>撰写草稿</h3><p>写清动作、顺序和每一步的条件</p></div></div>
+            <div class="mini m-editor"><div class="bar" aria-hidden="true"><i>B</i><i><svg class="ic"><use href="#i-list"/></svg></i><i><svg class="ic"><use href="#i-image"/></svg></i></div><strong>导出月度报表</strong><div class="skel" aria-hidden="true"></div><div class="skel s70" aria-hidden="true"></div><div class="focus">③ 选择日期范围<span class="caret" aria-hidden="true"></span></div></div>
+          </li>
+          <li class="zone z4" data-node="s4">
+            <div class="zone-head"><span class="no">4</span><div><h3>预览检查</h3><p>用读者的眼睛走一遍，记下问题</p></div></div>
+            <ul class="mini m-check"><li class="is-ok"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>步骤顺序</li><li class="is-bad"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg>术语前后不一致</li><li class="is-wait"><svg class="ic" aria-hidden="true"><use href="#i-alert"/></svg>缺少排错截图</li></ul>
+          </li>
+          <li class="zone z5" data-node="s5">
+            <div class="zone-head"><span class="no">5</span><div><h3>发布</h3><p>通过检查后交给读者</p></div></div>
+            <div class="mini m-publish"><div class="page"><div class="row"><strong>导出月度报表</strong><span class="chip live">已发布</span></div><div class="skel" aria-hidden="true"></div><div class="skel s55" aria-hidden="true"></div></div><div class="share"><svg class="ic" aria-hidden="true"><use href="#i-link"/></svg><span>分享链接</span><svg class="ic" aria-hidden="true"><use href="#i-copy"/></svg></div></div>
+          </li>
+        </ol>
+        <span class="lbl" data-label="fix"><svg class="ic" aria-hidden="true"><use href="#i-back"/></svg>表述有误 → 回到撰写</span>
+        <span class="lbl" data-label="more"><svg class="ic" aria-hidden="true"><use href="#i-back"/></svg>缺少材料 → 回到收集</span>
+      </div>
+      <p class="sr-only">返回关系：预览检查发现表述问题时回到第 3 步“撰写草稿”；发现缺少材料时回到第 1 步“收集材料”。</p>
+      <figcaption id="flow-cap"><span>实线表示前进，虚线表示返回；</span><span>每条返回线都指向实际需要重做的那一步。</span><span>小界面为示意，不可操作。</span></figcaption>
+    </figure>
+    <ul class="why">
+      <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>两条返回线落点不同，用不同深度绕行，互不交叉。</li>
+      <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>返回条件写在线上，读者不必去图下找注释。</li>
+      <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>窄屏改为纵向，返回线移到右侧，仍指向同一步。</li>
+    </ul>
+  </section>
+
+  <section id="s-branch" aria-labelledby="branch-title">
+    <div class="head"><h2 id="branch-title">分支与汇合：条件决定走哪条路？</h2><p>先看关键步骤是否齐全：缺步骤时优先补充材料，补完回到检查；材料齐全后，再按目录是否清楚选择整理方式，两条路径汇合成同一份初稿。</p></div>
+    <figure class="fig branch-fig" aria-labelledby="branch-cap">
+      <div class="diagram branch" data-diagram="zh-branch">
+        <article class="node" data-node="src">
+          <h3>检查材料</h3><p>先看步骤是否齐全，再看目录</p>
+          <ol class="mini m-q"><li><b>①</b>关键步骤都有截图？</li><li><b>②</b>已有清楚的目录？</li></ol>
+        </article>
+        <div class="branches">
+          <article class="node n-b1" data-node="b1"><span class="cond">材料齐全・目录清楚</span><h3>沿用结构</h3><ul class="mini m-outline"><li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><b>1</b>准备</li><li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><b>2</b>操作</li><li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><b>3</b>排错</li></ul></article>
+          <article class="node n-b2" data-node="b2"><span class="cond">材料齐全・目录混乱</span><h3>重新分组</h3><div class="mini m-regroup"><div class="loose"><span>导出</span><span>权限</span><span>为空</span><span>范围</span></div><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg><div class="sets"><span><b>准备</b> 权限、范围</span><span><b>操作</b> 导出</span></div></div></article>
+          <article class="node n-b3" data-node="b3"><span class="cond">缺关键步骤（优先）</span><h3>先补充材料</h3><div class="mini m-request"><p>请补充</p><div class="item">导出设置的截图</div><span class="send"><svg class="ic" aria-hidden="true"><use href="#i-send"/></svg>发给提供者</span></div></article>
+        </div>
+        <article class="node n-res" data-node="res">
+          <h3>形成初稿</h3><p>两种整理方式汇合到同一份初稿</p>
+          <div class="mini m-doc"><div class="title">导出月度报表<span class="chip wait">初稿</span></div><ol><li>准备</li><li>操作</li><li>排错</li></ol></div>
+        </article>
+        <span class="lbl" data-label="recheck"><svg class="ic" aria-hidden="true"><use href="#i-back"/></svg>补充后重新检查</span>
+      </div>
+      <p class="sr-only">分支关系：检查材料时先看关键步骤。缺少关键步骤时优先补充材料，然后返回“检查材料”。材料齐全时再看目录：目录清楚则沿用结构，目录混乱则重新分组，这两条路径汇合为初稿。</p>
+      <figcaption id="branch-cap"><span>条件写在各分支入口，三个条件互不重叠；</span><span>缺步骤优先补充并回到检查，</span><span>材料齐全后才按目录分流、汇合到初稿。</span></figcaption>
+    </figure>
+    <ul class="why">
+      <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>分支条件要互斥：先判断的条件（缺步骤）写明优先，其余条件带上前提。</li>
+      <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>“汇合”和“返回”用线型区分：前者实线进入结果，后者虚线回到起点。</li>
+      <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>窄屏用左侧主干分叉、右侧汇合，归属关系不变。</li>
+    </ul>
+  </section>
+
+  <section id="s-scope" aria-labelledby="scope-title">
+    <div class="head"><h2 id="scope-title">包含与范围：这份指南可以给谁看？</h2><p>引用的资料各有可用范围。范围用嵌套表示包含关系；多份资料一起使用时，按其中最窄的范围决定。</p></div>
+    <figure class="fig" aria-labelledby="scope-cap">
+      <div class="scope-wrap">
+        <div class="ring r-out" aria-label="范围嵌套图：公开包含团队内部，团队内部包含仅自己">
+          <div class="ring-head"><span class="tag"><svg class="ic" aria-hidden="true"><use href="#i-globe"/></svg>公开</span><div><strong>任何人都可以读</strong><p>资料允许公开使用：自己编写的内容、开放许可的资料、已获授权的内容</p><small>公开网页、可下载文件</small></div></div>
+          <div class="ring r-mid">
+            <div class="ring-head"><span class="tag"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg>团队内部</span><div><strong>在团队内共享</strong><p>内部文档、仅限团队使用的资料</p><small>内网页面、团队文件夹</small></div></div>
+            <div class="ring r-in">
+              <div class="ring-head"><span class="tag"><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg>仅自己</span><div><strong>自己参考</strong><p>个人笔记、仅限个人使用的资料</p><small>个人工作区</small></div></div>
+            </div>
+          </div>
+        </div>
+        <aside class="side" aria-labelledby="calc-title">
+          <h3 id="calc-title">多份资料一起用时，按最窄的范围</h3>
+          <div class="calc" role="img" aria-label="例：资料甲可以公开，资料乙仅限团队使用，两者合用的指南只能在团队内部共享">
+            <div><small>资料甲</small><b>可以公开</b><span class="chip t-out">公开</span></div>
+            <span class="op">＋</span>
+            <div><small>资料乙</small><b>仅限团队使用</b><span class="chip t-mid">团队内部</span></div>
+            <span class="op">＝</span>
+            <div class="result"><small>这份指南</small><b>团队内部共享</b></div>
+          </div>
+          <ul>
+            <li><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>先确认每份资料的范围，再决定发布位置。</li>
+            <li><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>范围不明的资料按最窄处理，确认后再放宽。</li>
+          </ul>
+        </aside>
+      </div>
+      <figcaption id="scope-cap"><span>外层包含内层；</span><span>区域大小只表示层次，不代表数量或比例。</span></figcaption>
+    </figure>
+  </section>
+
+  <footer>
+    <p>这是一组按需使用的参考：借鉴关系的表达方式，不照搬版式、配色或内容。</p>
+    <p>小界面为示意，不可操作；连线按页面中元素的实际位置计算，窗口宽度改变时会重新排布。</p>
+  </footer>
+</main>
+<script>
+(() => {
+  document.documentElement.classList.add('js');
+  const NS = 'http://www.w3.org/2000/svg';
+  const KINDS = ['main', 'back'];
+  const round = (pts, r = 12) => {
+    let d = `M${pts[0][0]} ${pts[0][1]}`;
+    for (let i = 1; i < pts.length - 1; i++) {
+      const [x0, y0] = pts[i - 1], [x1, y1] = pts[i], [x2, y2] = pts[i + 1];
+      const d1 = Math.hypot(x1 - x0, y1 - y0), d2 = Math.hypot(x2 - x1, y2 - y1);
+      if (!d1 || !d2) continue;
+      const k = Math.min(r, d1 / 2, d2 / 2);
+      d += ` L${x1 + (x0 - x1) / d1 * k} ${y1 + (y0 - y1) / d1 * k} Q${x1} ${y1} ${x1 + (x2 - x1) / d2 * k} ${y1 + (y2 - y1) / d2 * k}`;
+    }
+    const [xn, yn] = pts[pts.length - 1];
+    return `${d} L${xn} ${yn}`;
+  };
+  function surface(diagram) {
+    let svg = diagram.querySelector(':scope > .links');
+    if (!svg) {
+      svg = document.createElementNS(NS, 'svg');
+      svg.setAttribute('class', 'links'); svg.setAttribute('aria-hidden', 'true'); svg.setAttribute('focusable', 'false');
+      diagram.prepend(svg);
+    }
+    svg.replaceChildren();
+    const B = diagram.getBoundingClientRect();
+    svg.setAttribute('viewBox', `0 0 ${B.width} ${B.height}`);
+    const id = diagram.dataset.diagram;
+    const defs = document.createElementNS(NS, 'defs');
+    for (const kind of KINDS) {
+      const m = document.createElementNS(NS, 'marker');
+      m.id = `${id}-${kind}`;
+      for (const [k, v] of Object.entries({ viewBox: '0 0 10 10', refX: '8.6', refY: '5', markerWidth: '9', markerHeight: '9', markerUnits: 'userSpaceOnUse', orient: 'auto-start-reverse' })) m.setAttribute(k, v);
+      const p = document.createElementNS(NS, 'path');
+      p.setAttribute('d', 'M0 0.8 10 5 0 9.2Z'); p.setAttribute('class', `hd-${kind}`);
+      m.append(p); defs.append(m);
+    }
+    svg.append(defs);
+    const box = name => {
+      const r = diagram.querySelector(`[data-node="${name}"]`).getBoundingClientRect();
+      const l = r.left - B.left, t = r.top - B.top;
+      return { l, t, r: l + r.width, b: t + r.height, x: l + r.width / 2, y: t + r.height / 2, w: r.width, h: r.height };
+    };
+    const line = (pts, kind = 'main', arrow = true) => {
+      const p = document.createElementNS(NS, 'path');
+      p.setAttribute('d', round(pts)); p.setAttribute('class', `ln ln-${kind}`);
+      if (arrow) p.setAttribute('marker-end', `url(#${id}-${kind})`);
+      svg.append(p);
+    };
+    const label = (name, x, y, mode = '') => {
+      const el = diagram.querySelector(`[data-label="${name}"]`);
+      if (!el) return;
+      el.style.left = `${x}px`; el.style.top = `${y}px`; el.dataset.mode = mode;
+    };
+    return { W: B.width, H: B.height, box, line, label };
+  }
+  const stacked = (a, b) => b.t >= a.b - 1;
+  const draw = {
+    'zh-fit'({ W, box, line, label }) {
+      const q1 = box('q1'), q2 = box('q2'), yes = box('yes'), no = box('no');
+      if (stacked(q1, q2)) {
+        line([[q1.x, q1.b], [q1.x, q2.t]]); label('y1', q1.x + 22, (q1.b + q2.t) / 2);
+        line([[q2.x, q2.b], [q2.x, yes.t]]); label('y2', q2.x + 22, (q2.b + yes.t) / 2);
+        const rx = W - 16;
+        line([[q1.r, q1.y], [rx, q1.y], [rx, no.y], [no.r, no.y]]);
+        line([[q2.r, q2.y], [rx, q2.y]], 'main', false);
+        label('n1', rx, (q1.y + q2.y) / 2); label('n2', rx, (q2.y + no.y) / 2);
+      } else {
+        line([[q1.r, q1.y], [q2.l, q2.y]]); label('y1', (q1.r + q2.l) / 2, q1.y - 14);
+        line([[q2.r, q2.y], [yes.l, yes.y]]); label('y2', (q2.r + yes.l) / 2, q2.y - 14);
+        line([[q1.x, q1.b], [q1.x, no.t]]); label('n1', q1.x, (q1.b + no.t) / 2);
+        line([[q2.x, q2.b], [q2.x, no.t]]); label('n2', q2.x, (q2.b + no.t) / 2);
+      }
+    },
+    'zh-flow'({ W, H, box, line, label }) {
+      const s = ['s1', 's2', 's3', 's4', 's5'].map(box);
+      if (stacked(s[0], s[1])) {
+        for (let i = 0; i < 4; i++) line([[s[i].x, s[i].b], [s[i].x, s[i + 1].t]]);
+        const y1 = s[3].t + s[3].h * .38, y2 = s[3].t + s[3].h * .68;
+        const xa = W - 30, xb = W - 12;
+        line([[s[3].r, y1], [xa, y1], [xa, s[2].y], [s[2].r, s[2].y]], 'back');
+        line([[s[3].r, y2], [xb, y2], [xb, s[0].y], [s[0].r, s[0].y]], 'back');
+        label('fix', xa, (s[2].y + y1) / 2, 'v');
+        label('more', xb, (s[0].y + s[1].y) / 2, 'v');
+      } else {
+        for (let i = 0; i < 4; i++) line([[s[i].r, s[i].y], [s[i + 1].l, s[i + 1].y]]);
+        const base = Math.max(...s.map(n => n.b));
+        const ya = base + 30, yb = base + 70;
+        const xa = s[3].l + s[3].w * .32, xb = s[3].l + s[3].w * .68;
+        line([[xa, s[3].b], [xa, ya], [s[2].x, ya], [s[2].x, s[2].b]], 'back');
+        line([[xb, s[3].b], [xb, yb], [s[0].x, yb], [s[0].x, s[0].b]], 'back');
+        label('fix', (s[2].x + xa) / 2, ya);
+        label('more', (s[0].x + s[2].x) / 2, yb);
+      }
+    },
+    'zh-branch'({ W, H, box, line, label }) {
+      const src = box('src'), b1 = box('b1'), b2 = box('b2'), b3 = box('b3'), res = box('res');
+      if (stacked(src, b1)) {
+        const tx = 18, rx = W - 14;
+        line([[src.l, src.y], [tx, src.y], [tx, b3.y]], 'main', false);
+        for (const b of [b1, b2, b3]) line([[tx, b.y], [b.l, b.y]]);
+        line([[b1.r, b1.y], [rx, b1.y], [rx, res.y], [res.r, res.y]]);
+        line([[b2.r, b2.y], [rx, b2.y]], 'main', false);
+        const ry = b3.b - 16;
+        line([[b3.l, ry], [6, ry], [6, src.t + 16], [src.l, src.t + 16]], 'back');
+        label('recheck', b3.l, b3.b + 14, 'left');
+      } else {
+        const tx = (src.r + b1.l) / 2, mx = (b1.r + res.l) / 2;
+        line([[src.r, src.y], [tx, src.y]], 'main', false);
+        line([[tx, b1.y], [tx, b3.y]], 'main', false);
+        for (const b of [b1, b2, b3]) line([[tx, b.y], [b.l, b.y]]);
+        line([[b1.r, b1.y], [mx, b1.y], [mx, Math.max(b2.y, res.y)]], 'main', false);
+        line([[b2.r, b2.y], [mx, b2.y]], 'main', false);
+        line([[mx, res.y], [res.l, res.y]]);
+        const yb = H - 22;
+        line([[b3.x, b3.b], [b3.x, yb], [src.x, yb], [src.x, src.b]], 'back');
+        label('recheck', (src.x + b3.x) / 2, yb);
+      }
+    }
+  };
+  let queued = false;
+  const redraw = () => {
+    queued = false;
+    document.querySelectorAll('[data-diagram]').forEach(d => draw[d.dataset.diagram]?.(surface(d)));
+  };
+  const schedule = () => { if (!queued) { queued = true; requestAnimationFrame(redraw); } };
+  new ResizeObserver(schedule).observe(document.querySelector('main'));
+  if (document.fonts) document.fonts.ready.then(schedule);
+  redraw();
+})();
+</script>
+</body>
+</html>
