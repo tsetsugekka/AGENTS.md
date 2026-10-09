@@ -166,7 +166,7 @@ The same layout may sit beside project-level instructions. Do not install both g
 | Companion | Current status |
 | --- | --- |
 | [Final-response status checker](final-response-status/README.md) | Checks label format, not actual completion; does not restart the agent |
-| [Telegram notifications](telegram-notify-on-stop/README.md) | The included legacy script does not meet the current task-isolation and result-summary contract; do not enable it as an implementation of the new rules |
+| [Telegram notifications](telegram-notify-on-stop/README.md) | Includes a script with task-isolated ready records, redacted result summaries, recipient allowlisting and duplicate-send protection; configure, review and trust as documented before enabling |
 
 Follow each README for installation, trust, and verification. Passing script tests does not establish actual triggering or message delivery.
 

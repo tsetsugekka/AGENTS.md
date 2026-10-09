@@ -157,7 +157,7 @@
 | 配套内容 | 当前状态 |
 | --- | --- |
 | [回答末尾状态检查](final-response-status/README.zh-CN.md) | 检查状态标签格式，不判断任务是否真的完成，也不自动续跑 |
-| [Telegram 通知](telegram-notify-on-stop/README.zh-CN.md) | 附带脚本是旧版，尚不满足当前规则的任务隔离和结果摘要契约；不要按新版规则直接启用 |
+| [Telegram 通知](telegram-notify-on-stop/README.zh-CN.md) | 附带任务隔离的就绪记录、脱敏结果摘要、接收人白名单及防重复发送脚本；按说明配置并审阅信任后启用 |
 
 安装、信任及验证按对应 README 执行；脚本测试通过不代表实际触发或消息送达。
 
