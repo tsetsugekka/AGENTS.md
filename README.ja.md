@@ -6,6 +6,26 @@
 
 「このリポジトリのルールをローカルへ導入して」と依頼された場合、以下の二つに分けて接続します。テーマ指定がなければこの標準構成を使い、一部を指定された場合はそのテーマだけを対象にします。**ルールの導入で Skill・フックが有効になったり、操作権限が増えたりすることはありません。**
 
+## フロントエンドのルールで何が作れる？
+
+[フロントエンド設計ルール](frontend-design/AGENTS.md)に沿って作成した三つのウェブページから、各言語二枚、計六種類の関係表現を実際のスクリーンショットで紹介します。三版は相互に補完する内容で、同じページの翻訳でも、すべてのページに当てはめるテンプレートでもありません。画像をクリックすると拡大できます。
+
+<table>
+  <tr><th width="33%">中文</th><th width="33%">日本語</th><th width="33%">English</th></tr>
+  <tr>
+    <td valign="top"><b>手順とフィードバック</b><br><a href="frontend-design/references/previews/zh-flow.jpg"><img src="frontend-design/references/previews/zh-flow.jpg" alt="中国語の例：五つの手順と、異なる手順へ戻る二本の線" width="360"></a></td>
+    <td valign="top"><b>役割をまたぐ引き継ぎ</b><br><a href="frontend-design/references/previews/ja-swimlane.jpg"><img src="frontend-design/references/previews/ja-swimlane.jpg" alt="日本語の例：四つの役割のスイムレーンと差し戻し" width="360"></a></td>
+    <td valign="top"><b>必要な確認のマトリクス</b><br><a href="frontend-design/references/previews/en-matrix.jpg"><img src="frontend-design/references/previews/en-matrix.jpg" alt="英語の例：変更の種類ごとに確認の必須・推奨・不要を示す表" width="360"></a></td>
+  </tr>
+  <tr>
+    <td valign="top"><b>条件分岐と合流</b><br><a href="frontend-design/references/previews/zh-branch.jpg"><img src="frontend-design/references/previews/zh-branch.jpg" alt="中国語の例：資料の不足と目次の状態による分岐・合流・戻り" width="360"></a></td>
+    <td valign="top"><b>層の構成と接続</b><br><a href="frontend-design/references/previews/ja-architecture.jpg"><img src="frontend-design/references/previews/ja-architecture.jpg" alt="日本語の例：画面・処理・記録の三層と実際の接続" width="360"></a></td>
+    <td valign="top"><b>状態遷移と差し戻し</b><br><a href="frontend-design/references/previews/en-states.jpg"><img src="frontend-design/references/previews/en-states.jpg" alt="英語の例：下書き・確認・承認・公開・取り下げの状態遷移" width="360"></a></td>
+  </tr>
+</table>
+
+ページ全体のプレビュー：[中文](https://primal1.sakura.ne.jp/ai-hub/examples/frontend-design/web-infographic.html) · [日本語](https://primal1.sakura.ne.jp/ai-hub/examples/frontend-design/web-infographic.ja.html) · [English](https://primal1.sakura.ne.jp/ai-hub/examples/frontend-design/web-infographic.en.html)。[HTML ソース](frontend-design/references/)もテーマに付属し、ブラウザーで開けます。三言語のどの例も視覚表現の参考にできます。
+
 ## 1. 全文をメイン AGENTS.md に入れる
 
 以下の **9 テーマ**の全文を、実際に使うメイン `AGENTS.md` へ統合します。一般的な制約、短い条件付きルール、常駐させる委任の約束です。常駐とは、毎回その操作を実行するという意味ではありません。

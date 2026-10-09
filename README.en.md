@@ -6,6 +6,26 @@ This repository provides **14 independent topics**. Each topic's `AGENTS.zh-CN.m
 
 When asked to install rules from this repository, use the two groups below. This is the default when no topics are specified; if the user selects topics, adopt only those. **Adopting rules does not install skills, enable hooks, or expand authority.**
 
+## What can the frontend rules produce?
+
+These real screenshots come from three webpages built using the [frontend design rules](frontend-design/AGENTS.md): two per language, showing six kinds of relationship. The editions complement one another; they are neither translations of one page nor templates for every website. Click an image to enlarge it.
+
+<table>
+  <tr><th width="33%">中文</th><th width="33%">日本語</th><th width="33%">English</th></tr>
+  <tr>
+    <td valign="top"><b>Steps and feedback</b><br><a href="frontend-design/references/previews/zh-flow.jpg"><img src="frontend-design/references/previews/zh-flow.jpg" alt="Chinese example: five steps with two feedback paths returning to different steps" width="360"></a></td>
+    <td valign="top"><b>Role handoff swimlanes</b><br><a href="frontend-design/references/previews/ja-swimlane.jpg"><img src="frontend-design/references/previews/ja-swimlane.jpg" alt="Japanese example: handoffs across four roles and a revision loop" width="360"></a></td>
+    <td valign="top"><b>Requirement matrix</b><br><a href="frontend-design/references/previews/en-matrix.jpg"><img src="frontend-design/references/previews/en-matrix.jpg" alt="English example: required, recommended and unnecessary checks for different changes" width="360"></a></td>
+  </tr>
+  <tr>
+    <td valign="top"><b>Branches and merge</b><br><a href="frontend-design/references/previews/zh-branch.jpg"><img src="frontend-design/references/previews/zh-branch.jpg" alt="Chinese example: branches, merge and return based on material completeness and structure" width="360"></a></td>
+    <td valign="top"><b>Layered architecture</b><br><a href="frontend-design/references/previews/ja-architecture.jpg"><img src="frontend-design/references/previews/ja-architecture.jpg" alt="Japanese example: actual connections between interface, processing and records" width="360"></a></td>
+    <td valign="top"><b>State transitions</b><br><a href="frontend-design/references/previews/en-states.jpg"><img src="frontend-design/references/previews/en-states.jpg" alt="English example: draft, review, approval, publication, withdrawal and revision states" width="360"></a></td>
+  </tr>
+</table>
+
+Full-page previews: [中文](https://primal1.sakura.ne.jp/ai-hub/examples/frontend-design/web-infographic.html) · [日本語](https://primal1.sakura.ne.jp/ai-hub/examples/frontend-design/web-infographic.ja.html) · [English](https://primal1.sakura.ne.jp/ai-hub/examples/frontend-design/web-infographic.en.html). The [HTML source files](frontend-design/references/) are included with the topic and open in a browser; all three languages can serve as visual references.
+
 ## 1. Put the complete rules directly in the main AGENTS.md
 
 Merge the complete rules for these **9 topics** into the actual main `AGENTS.md`. They are general constraints, short conditional rules, or delegation agreements intended to remain loaded. Being always loaded does not mean taking the associated action in every task.
