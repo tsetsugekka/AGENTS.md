@@ -77,7 +77,9 @@ Save the frontend topic in your chosen language as `FRONTEND-DESIGN.md`, then ad
 - For interface design, redesign, frontend work involving an interface,
   webpage loading and performance optimization, or SEO/sharing previews,
   read the relevant sections of
-  [Frontend design rules](FRONTEND-DESIGN.md). Do not read for other tasks.
+  [Frontend design rules](FRONTEND-DESIGN.md). For design and redesign,
+  start with “Design judgment and reference review” before choosing skills and visual approaches;
+  performance and SEO tasks go directly to their relevant sections. Do not read for other tasks.
 ```
 
 Skill responsibilities, compact layouts, mobile workflows, chart and interaction checks, loading performance, and SEO content delivery, metadata, and sharing requirements belong in the topic text. **Do not copy these details into the main file as well.** The topic contains only principles and checks that transfer across projects; concrete business behavior, icon compositions, content organization, dimensions, and default states belong in project design documents or specifications.
