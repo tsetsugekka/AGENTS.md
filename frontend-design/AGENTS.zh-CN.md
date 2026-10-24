@@ -1,6 +1,6 @@
 # 前端设计规则（按需读取）
 
-仅用于界面设计、改版、涉及界面的前端开发、网页加载与性能优化及 SEO／分享预览任务；按相关章节读取，纯后台、数据、文档或其他无关任务不读取。本文件为设计偏好的唯一详细来源，不复制到三个设计 Skill 中。SEO、分享预览与性能检查直接按本文执行，不要求安装对应 Skill。
+仅用于界面设计、改版、涉及界面的前端开发、网页加载与性能优化及 SEO／分享预览任务；按相关章节读取，纯后台、数据、文档或其他无关任务不读取。本文件为设计偏好的唯一详细来源，不复制到各设计 Skill 中。SEO、分享预览与性能检查直接按本文执行，不要求安装对应 Skill。
 
 只保留可跨项目复用的设计原则与验收方法；具体业务、栏目、图标组合、尺寸及默认状态由项目设计文档或规格维护。
 
@@ -14,12 +14,13 @@
 
 ## Skill 分工
 
+- 需要建立或校准设计系统，或查找配色、字体、风格、图表、UX 与技术栈建议时，按需用 `ui-ux-pro-max`（UI UX Pro Max）检索其本地资料并形成候选；已有明确设计系统或仅做小范围修改时，不默认重新生成整套方案。检索结果是参考，由模型结合真实内容、品牌和用户认可方向判断，不把推荐或通用数值当成项目硬约束，不覆盖既有决定。
 - 从零创建页面优先用 `finesse-ui`：依据上述判断简述设计方向并实现；后续反馈优先局部调整，用户要求整体重做时重新判断方向。
 - 既有页面改版优先用 Taste 套件的 `redesign-existing-projects`（目录 `redesign-skill`）：先确认保留项、目标风格及改动范围，再调整版面、动效与信息密度，保留未要求改变的功能。
 - 设计实现后用 `impeccable audit` 检查，再针对实际问题按需 `polish` 收尾；不把审计当成修改授权，不反复审计或无止境打磨。
-- 这是默认分工，不是每次必跑三套的流水线；按任务阶段只读所需 Skill 与参考资料。用户明确指定、项目既有设计系统及局部改动范围优先，不机械叠加相互冲突的风格规则。
+- 这是默认分工，不是每次必跑全部 Skill 的流水线；按任务阶段只读所需 Skill 与参考资料。用户明确指定、项目既有设计系统及局部改动范围优先，不机械叠加相互冲突的风格规则。
 
-Skill 来源：[finesse-ui](https://github.com/mouse-lin/finesse-skill)、[redesign-existing-projects](https://github.com/Leonxlnx/taste-skill)、[impeccable](https://github.com/pbakaus/impeccable)。按各作者的当前安装说明准备实际使用环境；这些规则不代替 Skill 正文，也不代表已安装。
+Skill 来源：[UI UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill)、[finesse-ui](https://github.com/mouse-lin/finesse-skill)、[redesign-existing-projects](https://github.com/Leonxlnx/taste-skill)、[impeccable](https://github.com/pbakaus/impeccable)。按各作者的当前安装说明准备实际使用环境；这些规则不代替 Skill 正文，也不代表已安装。
 
 ## 说明类页面的信息图表达（按需）
 

@@ -1,6 +1,6 @@
 # Frontend design
 
-Use only for interface design, redesign, frontend development involving an interface, webpage loading and performance optimization, and SEO or sharing previews. Read the relevant sections; do not read for backend-only, data, documentation, or other unrelated tasks. This file is the single detailed source of design preferences; do not duplicate it in the three design skills. Execute SEO, sharing-preview, and performance checks directly from this document; installing corresponding skills is not required.
+Use only for interface design, redesign, frontend development involving an interface, webpage loading and performance optimization, and SEO or sharing previews. Read the relevant sections; do not read for backend-only, data, documentation, or other unrelated tasks. This file is the single detailed source of design preferences; do not duplicate it in individual design skills. Execute SEO, sharing-preview, and performance checks directly from this document; installing corresponding skills is not required.
 
 Keep only design principles and verification methods that transfer across projects. Project design documents or specifications own concrete business behavior, content sections, icon compositions, dimensions, and default states.
 
@@ -14,12 +14,13 @@ Keep only design principles and verification methods that transfer across projec
 
 ## Skill responsibilities
 
+- When establishing or calibrating a design system, or looking up palettes, typography, styles, charts, UX, or stack-specific recommendations, use `ui-ux-pro-max` (UI UX Pro Max) on demand to search its local resources and form candidates. Do not regenerate a complete system by default when an explicit design system already exists or the change is localized. Treat results as references: judge them against actual content, branding, and the direction the user has accepted, rather than making recommendations or generic numeric values project requirements or overriding existing decisions.
 - For new pages, prefer `finesse-ui`: briefly describe the direction based on the judgment above and implement it. Prefer localized adjustments for subsequent feedback; reassess the direction when the user requests a complete redesign.
 - For redesigning existing pages, prefer the Taste suite's `redesign-existing-projects` (directory `redesign-skill`): first confirm what to retain, the target style, and the scope, then adjust layout, motion, and information density while preserving functionality not requested to change.
 - After implementation, use `impeccable audit`, then apply `polish` as needed for actual issues. An audit does not authorize changes; avoid repeated audits or endless polishing.
-- These are default responsibilities, not a pipeline requiring all three skills every time. Read only the skills and references needed for the current stage. Explicit user choices, existing project design systems, and the scope of localized changes take precedence; do not mechanically stack conflicting style rules.
+- These are default responsibilities, not a pipeline requiring every skill on every task. Read only the skills and references needed for the current stage. Explicit user choices, existing project design systems, and the scope of localized changes take precedence; do not mechanically stack conflicting style rules.
 
-Skill sources: [finesse-ui](https://github.com/mouse-lin/finesse-skill), [redesign-existing-projects](https://github.com/Leonxlnx/taste-skill), and [impeccable](https://github.com/pbakaus/impeccable). Prepare the actual execution environment using each author's current installation instructions. These rules neither replace the skills' full text nor establish that they are installed.
+Skill sources: [UI UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill), [finesse-ui](https://github.com/mouse-lin/finesse-skill), [redesign-existing-projects](https://github.com/Leonxlnx/taste-skill), and [impeccable](https://github.com/pbakaus/impeccable). Prepare the actual execution environment using each author's current installation instructions. These rules neither replace the skills' full text nor establish that they are installed.
 
 ## Infographics for explanatory pages (on demand)
 
