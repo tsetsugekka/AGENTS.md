@@ -28,12 +28,13 @@
 
 ## 二、主 AGENTS.md 只放触发入口，正文另存后按需读
 
-以下 **5 个主题**的完整正文不合并到主文件。将它们保存为主 `AGENTS.md` 同目录的普通 Markdown，主文件只加入下方对应入口；凭据和元数据入口同时保留必要的安全边界。
+以下 **6 个主题**的完整正文不合并到主文件。将它们保存为主 `AGENTS.md` 同目录的普通 Markdown，主文件只加入下方对应入口；凭据和元数据入口同时保留必要的安全边界。
 
 | 主题 | 另存的完整正文 | 主文件旁的保存名称 | 何时读 |
 | --- | --- | --- | --- |
 | Case Study 自动沉淀 | [中文](case-study-and-experience-maintenance/AGENTS.zh-CN.md) · [English](case-study-and-experience-maintenance/AGENTS.md) | `CASE-STUDY.md` | 值得复用的错误或经验、同类问题检索、案例更新 |
 | Skill 构建与私人资料 | [中文](skill-construction/AGENTS.zh-CN.md) · [English](skill-construction/AGENTS.md) | `SKILL-CONSTRUCTION.md` | 创建、修改或发布 Skill；组织指引、执行方案与参考资料 |
+| 私人设置与账号选择 | [中文](private-settings-and-account-selection/AGENTS.zh-CN.md) · [English](private-settings-and-account-selection/AGENTS.md) | `PRIVATE-SETTINGS.md` | 选择账号、发件身份、收件人或其他用户专属设置时 |
 | 前端设计、性能与页面 SEO | [中文](frontend-design/AGENTS.zh-CN.md) · [English](frontend-design/AGENTS.md) | `FRONTEND-DESIGN.md` | 界面设计、改版、涉及界面的前端开发、网页性能、SEO／分享预览；只读相关章节 |
 | 凭据操作 | [中文](api-key-persistence-for-local-skills/AGENTS.zh-CN.md) · [English](api-key-persistence-for-local-skills/AGENTS.md) | `CREDENTIALS.md` | 接收、保存或使用密码、key、token 等凭据之前 |
 | 文档元数据 | [中文](anonymous-document-artifact-metadata/AGENTS.zh-CN.md) · [English](anonymous-document-artifact-metadata/AGENTS.md) | `DOCUMENT-METADATA.md` | 创建、编辑、转换、渲染或导出相关文档产物之前 |
@@ -111,6 +112,20 @@
   历史、日志、工具输出、回复或 Skill 文件。
 ```
 
+### 主文件入口：私人设置与账号选择
+
+将所选语言的规则另存为 `PRIVATE-SETTINGS.md`，在主文件中加入：
+
+```markdown
+## 私人设置按需入口
+- 涉及账号、发件身份、收件人或其他用户专属设置时，先读取
+  [私人设置规则](PRIVATE-SETTINGS.md)，仅按任务读取私人索引中的相关设置；
+  已配置且能唯一匹配时直接使用，不因多账号连接重复询问。
+  私人配置不进入公开产物，也不授予新操作权限。
+```
+
+这是本机私人配置层的约定，不是平台的“私密上传”开关。实际值由使用者保存在公开仓库和 Skill 安装目录之外，默认从 `private/SETTINGS.md` 索引按需读取；本仓库不附任何已填写的个人配置，也不因此自动启用邮件提醒。
+
 ### 主文件入口：文档元数据
 
 将所选语言的元数据正文另存为 `DOCUMENT-METADATA.md`，在主文件中加入：
@@ -128,20 +143,21 @@
 ## 给新电脑上的 Agent 的安装步骤
 
 1. 确认运行环境实际读取的主指令路径。Codex 默认使用 `~/.codex/AGENTS.md`；若配置了其他 Codex 主目录，则以实际配置为准。其他 Agent 核实其持久指令入口，不猜路径、不凭改名宣称兼容。
-2. 读取并保护已有主文件及相邻文档。选一种语言，按上面两部分合并常驻正文、保存五份专题正文并写入对应入口；只处理选中的主题。没有既有文件时创建所需文件，不添加个人凭据或作者的私人配置。
+2. 读取并保护已有主文件及相邻文档。选一种语言，按上面两部分合并常驻正文、保存六份专题正文并写入对应入口；只处理选中的主题。没有既有文件时创建所需文件，不添加个人凭据或作者的私人配置。
 3. 校验入口相对路径都能打开，配套链接可读，专题正文未重复内联到主文件。用户指定常驻或其他接入方式时服从用户要求；有实际不兼容冲突时说明具体位置。
 4. 分别说明规则接入、Skill 可用性和钩子状态。读取规则不等于安装工具；前端的四个设计 Skill 按专题所列来源另行准备；SEO、分享预览与性能规则直接按专题执行，不要求安装对应 Skill。钩子按下节处理。
-5. 报告实际主文件路径、合并的主题、五份专题文件路径、触发入口验证结果，以及未完成的依赖。文件存在和链接通过，只代表规则接入完成，不代表未来任务已正确执行。
+5. 报告实际主文件路径、合并的主题、六份专题文件路径、触发入口验证结果，以及未完成的依赖。文件存在和链接通过，只代表规则接入完成，不代表未来任务已正确执行。
 
 例如采用 Codex 默认目录及全部主题后：
 
 ```text
 ~/.codex/
-├── AGENTS.md             # 第一部分的正文 + 第二部分的五个短入口
+├── AGENTS.md             # 第一部分的正文 + 第二部分的六个短入口
 ├── CASE-STUDY.md         # 自动沉淀、作用域与时效规则；触发时读
 ├── case-study/README.md  # 全局案例索引；实际案例默认仅本地，按需检索
 ├── SKILL-CONSTRUCTION.md # Skill 组织、参考资料、私人记录与公开包边界
 ├── FRONTEND-DESIGN.md    # 前端设计、手机经验、加载性能、页面 SEO；按相关章节读
+├── PRIVATE-SETTINGS.md   # 私人设置、账号选择和公开边界；相关任务前读
 ├── CREDENTIALS.md        # 凭据操作细则；涉及凭据前读
 └── DOCUMENT-METADATA.md  # 文档元数据细则；相关产物操作前读
 ```
