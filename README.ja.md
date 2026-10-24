@@ -76,6 +76,8 @@
 - UI の設計・改修、画面を伴うフロントエンド開発、ページの読み込み・性能改善、または SEO／共有プレビューでは、
   [フロントエンド設計ルール](FRONTEND-DESIGN.md) の関連章を読む。
   設計・改版では「设计判断与参考校准」（英語版は “Design judgment and reference review”）を先に読み、Skillと表現方法を選ぶ。
+  フォーム部品やフィルターを扱う場合は「信息密度」と「共享交互语言与图表空间」
+  （英語版は “Information density” と “Shared interaction language and chart space”）も読む。
   性能・SEOの作業では対応する章を直接読む。
   それ以外の作業では読まない。
 ```
