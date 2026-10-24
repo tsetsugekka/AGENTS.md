@@ -135,7 +135,7 @@ Save the rules in your chosen language as `PRIVATE-SETTINGS.md`, then add:
   Private configurations stay out of public artifacts and grant no new authority.
 ```
 
-This defines a local private configuration layer, not a platform's private-upload switch. Users keep actual values outside public repositories and skill installation directories, with on-demand lookup through `private/SETTINGS.md` by default. This repository includes no completed personal configurations and does not automatically enable email reminders.
+This defines a local private configuration layer, not a platform's private-upload switch. Users keep actual values outside public repositories and skill installation directories, with on-demand lookup through `private/SETTINGS.md` beside the user-level main instructions by default. Project rules also reference an external private index rather than creating actual settings inside the repository. This repository includes no completed personal configurations and does not automatically enable email reminders.
 
 ### Main-file trigger: document metadata
 
@@ -176,7 +176,7 @@ For example, adopting all topics in Codex's default directory gives:
 └── DOCUMENT-METADATA.md  # Metadata details; read before relevant artifact work
 ```
 
-The same layout may sit beside project-level instructions. Do not install both global and project layers on the user's behalf with duplicated rules.
+The same public rule-document layout may sit beside project-level instructions, while actual private indexes and settings remain external. Do not install both global and project layers on the user's behalf with duplicated rules.
 
 ## Dependencies and optional hooks
 
